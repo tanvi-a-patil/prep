@@ -31,7 +31,28 @@
   "stack_2": true,
   "stack_3": true,
   "stack_4": true,
-  "stack_5": true
+  "stack_5": true,
+  "stack_12": true,
+  "stack_6": true,
+  "stack_7": true,
+  "stack_9": true,
+  "stack_10": true,
+  "stack_11": true,
+  "stack_13": true,
+  "linked-list_2": true,
+  "linked-list_6": true,
+  "linked-list_4": true,
+  "trees-bst_2": true,
+  "trees-bst_3": true,
+  "trees-bst_4": true,
+  "trees-bst_1": true,
+  "trees-bst_5": true,
+  "trees-bst_8": true,
+  "trees-bst_9": true,
+  "trees-bst_6": true,
+  "trees-bst_7": true,
+  "trees-bst_10": true,
+  "trees-bst_11": true
 }</script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SDE 2 Interview Prep — DSA, LLD, HLD</title>
@@ -278,7 +299,7 @@ th.cb-col, td.cb-col { text-align: center; width: 40px; }
 <button id="save-btn" onclick="saveFile()" class="">Save Progress</button>
 
 <!-- ===== SUPER HOME ===== -->
-<div class="super-home" id="super-home">
+<div class="super-home hidden" id="super-home">
   <div class="home-header">
     <h1 style="border:none;">SDE 2 Interview Prep</h1>
     <p class="subtitle">DSA • Low-Level Design • High-Level Design</p>
@@ -305,135 +326,179 @@ th.cb-col, td.cb-col { text-align: center; width: 40px; }
     </div>
   </div>
 
-    <!-- ===== 53-DAY STUDY PLAN ===== -->
+    <!-- ===== 7-WEEK STUDY PLAN ===== -->
   <div style="max-width:960px; width:100%; margin:50px auto 0; text-align:left;">
-        <h2 style="text-align:center; cursor:pointer; color:var(--primary); border:none; user-select:none; font-size:1.5em;" onclick="var el=this.nextElementSibling; el.style.display = el.style.display==='none'?'block':'none'; this.textContent = el.style.display==='none' ? '▶ 53-Day Study Plan (Apr 1 → May 23)' : '▼ 53-Day Study Plan (Apr 1 → May 23)';">
-            ▼ 53-Day Study Plan (Apr 1 → May 23)
+        <h2 style="text-align:center; cursor:pointer; color:var(--primary); border:none; user-select:none; font-size:1.5em;" onclick="var el=this.nextElementSibling; el.style.display = el.style.display==='none'?'block':'none'; this.textContent = el.style.display==='none' ? '▶ 7-Week Hybrid Study Plan (Apr 7 → May 25)' : '▼ 7-Week Hybrid Study Plan (Apr 7 → May 25)';">
+            ▼ 7-Week Hybrid Study Plan (Apr 7 → May 25)
     </h2>
     <div style="background:white; border-radius:16px; padding:30px 35px; border:2px solid #e5e7eb; margin-top:12px;">
 
-            <p style="color:#777; margin-bottom:18px; font-size:0.95em;">3–4 hours daily • Deeper DSA → LLD → HLD • Revision days built in • Interview-ready by late May</p>
+            <p style="color:#777; margin-bottom:18px; font-size:0.95em;">Hybrid schedule (3 office + 2 WFH) • ~23 hrs/week • 1 leave/week on commute day • Interview-ready by late May</p>
 
-      <!-- Daily Structure -->
+      <!-- Weekly Structure -->
       <div style="background:var(--primary-light); border-radius:10px; padding:16px 20px; margin-bottom:24px;">
-        <strong style="color:var(--primary);">Daily Structure (3.5 hrs avg)</strong><br>
-        <span style="display:inline-block; width:130px; font-weight:600;">30–45 min</span> Read notes (this file)<br>
-        <span style="display:inline-block; width:130px; font-weight:600;">1.5–2 hrs</span> Solve problems / design practice<br>
-        <span style="display:inline-block; width:130px; font-weight:600;">30–45 min</span> Revise: write pattern in own words, re-solve 1 problem from memory
+        <strong style="color:var(--primary);">Weekly Time Budget (~23 hrs)</strong><br>
+        <span style="display:inline-block; width:200px; font-weight:600;">Office commute (passive)</span> 3 hrs — review notes on phone, pattern recognition<br>
+        <span style="display:inline-block; width:200px; font-weight:600;">Office evenings</span> 2 hrs — 1 problem max per evening<br>
+        <span style="display:inline-block; width:200px; font-weight:600;">WFH days (2/week)</span> 7 hrs — morning + saved commute + post-work<br>
+        <span style="display:inline-block; width:200px; font-weight:600;">Weekends</span> 7–8 hrs — Sat 4-5 hrs (hard topics), Sun 3 hrs (revision)<br>
+        <span style="display:inline-block; width:200px; font-weight:600;">Leave day (1/week)</span> 4 hrs — deep focused prep day
       </div>
 
-      <!-- PHASE 1: DSA -->
-    <h3 style="color:var(--primary); border-bottom:2px solid var(--primary-light); padding-bottom:6px; margin-bottom:12px;">Phase 1 — DSA Core Depth (Apr 1 → Apr 30)</h3>
-      <p style="font-size:0.9em; color:#666; margin-bottom:10px;">Each day: Read notes (45 min) → Solve 3–4 problems (2 hrs) → Revise patterns (30 min)</p>
+      <!-- Leave Strategy -->
+      <div style="background:var(--yellow-light); border-radius:10px; padding:16px 20px; margin-bottom:24px; border-left:4px solid var(--yellow);">
+        <strong style="color:var(--yellow);">Leave Strategy (10 of 25 AL)</strong><br>
+        7 leaves — 1 per week on a commute day (e.g., every Wednesday)<br>
+        2–3 leaves — saved for interview week (mock practice + rest)<br>
+        15 leaves — preserved for encashment (~1 month expenses safety net)
+      </div>
+
+      <!-- WEEK 1 -->
+    <h3 style="color:var(--primary); border-bottom:2px solid var(--primary-light); padding-bottom:6px; margin-bottom:12px;">Week 1 (Apr 7–13): Finish Stack + Linked List + Trees</h3>
+      <p style="font-size:0.9em; color:#666; margin-bottom:10px;">Done so far: Arrays/Hashing, Two Pointers, Binary Search, Sliding Window, Stack (7 problems)</p>
 
       <table style="width:100%; border-collapse:collapse; font-size:0.92em; margin-bottom:24px;">
         <tbody><tr style="background:var(--primary); color:white;">
-          <th style="padding:8px 10px; text-align:left; width:50px;">Day</th>
-          <th style="padding:8px 10px; text-align:left; width:120px;">Date</th>
-          <th style="padding:8px 10px; text-align:left;">Topic</th>
+          <th style="padding:8px 10px; text-align:left; width:100px;">Day</th>
+          <th style="padding:8px 10px; text-align:left; width:80px;">Type</th>
           <th style="padding:8px 10px; text-align:left;">Focus</th>
+          <th style="padding:8px 10px; text-align:left; width:50px;">Hrs</th>
         </tr>
-                <tr style="background:#fafafa;"><td style="padding:6px 10px;">1</td><td>Apr 1 (Wed)</td><td><strong>Arrays &amp; Hashing — Day 1</strong></td><td>Frequency maps, prefix sums, common templates</td></tr>
-                <tr><td style="padding:6px 10px;">2</td><td>Apr 2 (Thu)</td><td><strong>Arrays &amp; Hashing — Day 2</strong></td><td>Medium/Hard variants + timed re-solve</td></tr>
-                <tr style="background:#fafafa;"><td style="padding:6px 10px;">3</td><td>Apr 3 (Fri)</td><td><strong>Two Pointers — Day 1</strong></td><td>Opposite-end and reader-writer templates</td></tr>
-                <tr><td style="padding:6px 10px;">4</td><td>Apr 4 (Sat)</td><td><strong>Two Pointers — Day 2</strong></td><td>3Sum/Trapping Rain Water timed set</td></tr>
-                <tr style="background:#fafafa;"><td style="padding:6px 10px;">5</td><td>Apr 5 (Sun)</td><td><strong>Sliding Window — Day 1</strong></td><td>Fixed vs dynamic windows</td></tr>
-                <tr><td style="padding:6px 10px;">6</td><td>Apr 6 (Mon)</td><td><strong>Sliding Window — Day 2</strong></td><td>Hard variants (min window / deque)</td></tr>
-                <tr style="background:#fafafa;"><td style="padding:6px 10px;">7</td><td>Apr 7 (Tue)</td><td><strong>Binary Search — Day 1</strong></td><td>Exact match vs boundary templates</td></tr>
-                <tr><td style="padding:6px 10px;">8</td><td>Apr 8 (Wed)</td><td><strong>Binary Search — Day 2</strong></td><td>Binary search on answer problems</td></tr>
-                <tr style="background:#fafafa;"><td style="padding:6px 10px;">9</td><td>Apr 9 (Thu)</td><td><strong>Stack — Day 1</strong></td><td>Monotonic stack fundamentals</td></tr>
-                <tr><td style="padding:6px 10px;">10</td><td>Apr 10 (Fri)</td><td><strong>Stack — Day 2</strong></td><td>NGE, histogram, subarray mins</td></tr>
-                <tr style="background:#fafafa;"><td style="padding:6px 10px;">11</td><td>Apr 11 (Sat)</td><td><strong>Linked List — Day 1</strong></td><td>Fast-slow, reverse, merge templates</td></tr>
-                <tr><td style="padding:6px 10px;">12</td><td>Apr 12 (Sun)</td><td><strong>Linked List — Day 2</strong></td><td>LRU/cycle/intersection variants</td></tr>
-                <tr style="background:var(--green-light);"><td style="padding:6px 10px;">13</td><td>Apr 13 (Mon)</td><td><strong style="color:var(--green);">↻ Revision Day</strong></td><td>Re-solve 1 hard each from Days 1–12</td></tr>
-                <tr style="background:#fafafa;"><td style="padding:6px 10px;">14</td><td>Apr 14 (Tue)</td><td><strong>Trees &amp; BST — Day 1</strong></td><td>DFS/BFS core traversals + recursion</td></tr>
-                <tr><td style="padding:6px 10px;">15</td><td>Apr 15 (Wed)</td><td><strong>Trees &amp; BST — Day 2</strong></td><td>LCA, diameter, balanced tree</td></tr>
-                <tr style="background:#fafafa;"><td style="padding:6px 10px;">16</td><td>Apr 16 (Thu)</td><td><strong>Trees &amp; BST — Day 3</strong></td><td>Serialize/deserialize, construct tree</td></tr>
-                <tr><td style="padding:6px 10px;">17</td><td>Apr 17 (Fri)</td><td><strong>Trees &amp; BST — Day 4</strong></td><td>Mixed timed set + weak-area repair</td></tr>
-                <tr style="background:#fafafa;"><td style="padding:6px 10px;">18</td><td>Apr 18 (Sat)</td><td><strong>Graphs — Day 1</strong></td><td>BFS/DFS grid + connected components</td></tr>
-                <tr><td style="padding:6px 10px;">19</td><td>Apr 19 (Sun)</td><td><strong>Graphs — Day 2</strong></td><td>Cycle detection + topological sort</td></tr>
-                <tr style="background:#fafafa;"><td style="padding:6px 10px;">20</td><td>Apr 20 (Mon)</td><td><strong>Graphs — Day 3</strong></td><td>Union-Find and MST</td></tr>
-                <tr><td style="padding:6px 10px;">21</td><td>Apr 21 (Tue)</td><td><strong>Graphs — Day 4</strong></td><td>Dijkstra / shortest path patterns</td></tr>
-                <tr style="background:#fafafa;"><td style="padding:6px 10px;">22</td><td>Apr 22 (Wed)</td><td><strong>Graphs — Day 5</strong></td><td>Advanced mixed graph drills</td></tr>
-                <tr style="background:var(--green-light);"><td style="padding:6px 10px;">23</td><td>Apr 23 (Thu)</td><td><strong style="color:var(--green);">↻ Revision Day</strong></td><td>Graphs/Trees re-solve + note consolidation</td></tr>
-                <tr style="background:#fafafa;"><td style="padding:6px 10px;">24</td><td>Apr 24 (Fri)</td><td><strong>DP — Day 1</strong></td><td>1D DP states and transitions</td></tr>
-                <tr><td style="padding:6px 10px;">25</td><td>Apr 25 (Sat)</td><td><strong>DP — Day 2</strong></td><td>Knapsack and subsequence style DP</td></tr>
-                <tr style="background:#fafafa;"><td style="padding:6px 10px;">26</td><td>Apr 26 (Sun)</td><td><strong>DP — Day 3</strong></td><td>2D grid/string DP (LCS/edit distance)</td></tr>
-                <tr><td style="padding:6px 10px;">27</td><td>Apr 27 (Mon)</td><td><strong>DP — Day 4</strong></td><td>Partition/interval DP practice</td></tr>
-                <tr style="background:#fafafa;"><td style="padding:6px 10px;">28</td><td>Apr 28 (Tue)</td><td><strong>DP — Day 5</strong></td><td>Timed DP mix + reconstruction patterns</td></tr>
-                <tr><td style="padding:6px 10px;">29</td><td>Apr 29 (Wed)</td><td><strong>Heaps + Greedy</strong></td><td>Top-K, scheduling, greedy proof practice</td></tr>
-                <tr style="background:var(--yellow-light);"><td style="padding:6px 10px;">30</td><td>Apr 30 (Thu)</td><td><strong style="color:var(--yellow);">★ DSA Grand Revision + Mock</strong></td><td>90-min timed DSA mock + weak area patch</td></tr>
+                <tr style="background:#fafafa;"><td style="padding:6px 10px;">Mon</td><td>Office</td><td>Commute: revise Stack patterns on phone</td><td>1</td></tr>
+                <tr><td style="padding:6px 10px;">Tue</td><td>Office</td><td>Commute: Linked List notes. Evening: 1 problem</td><td>2</td></tr>
+                <tr style="background:var(--green-light);"><td style="padding:6px 10px;"><strong>Wed</strong></td><td><strong>LEAVE</strong></td><td>Finish Stack problems + Linked List (3–4 problems)</td><td>5</td></tr>
+                <tr style="background:#fafafa;"><td style="padding:6px 10px;">Thu</td><td>WFH</td><td>Trees/BST — patterns 1–3 (DFS, BFS, BST)</td><td>3.5</td></tr>
+                <tr><td style="padding:6px 10px;">Fri</td><td>WFH</td><td>Trees/BST — patterns 4–5 (construction, path problems)</td><td>3.5</td></tr>
+                <tr style="background:#fafafa;"><td style="padding:6px 10px;">Sat</td><td>Weekend</td><td>Trees practice — 4 problems timed</td><td>5</td></tr>
+                <tr><td style="padding:6px 10px;">Sun</td><td>Weekend</td><td>Revise week's weak spots, 2 retry problems</td><td>3</td></tr>
       </tbody></table>
 
-      <!-- PHASE 2: LLD -->
-    <h3 style="color:var(--blue); border-bottom:2px solid var(--blue-light); padding-bottom:6px; margin-bottom:12px;">Phase 2 — LLD (May 1 → May 9)</h3>
-      <p style="font-size:0.9em; color:#666; margin-bottom:10px;">Each day: Read notes (30 min) → Design on paper (1.5 hrs) → Code key classes (1 hr) → Review (30 min)</p>
+      <!-- WEEK 2 -->
+    <h3 style="color:var(--primary); border-bottom:2px solid var(--primary-light); padding-bottom:6px; margin-bottom:12px;">Week 2 (Apr 14–20): Backtracking + Heaps + Graphs Basics</h3>
+
+      <table style="width:100%; border-collapse:collapse; font-size:0.92em; margin-bottom:24px;">
+        <tbody><tr style="background:var(--primary); color:white;">
+          <th style="padding:8px 10px; text-align:left; width:100px;">Day</th>
+          <th style="padding:8px 10px; text-align:left; width:80px;">Type</th>
+          <th style="padding:8px 10px; text-align:left;">Focus</th>
+          <th style="padding:8px 10px; text-align:left; width:50px;">Hrs</th>
+        </tr>
+                <tr style="background:#fafafa;"><td style="padding:6px 10px;">Mon</td><td>Office</td><td>Commute: read Backtracking notes</td><td>1</td></tr>
+                <tr><td style="padding:6px 10px;">Tue</td><td>Office</td><td>Commute: Heaps notes. Evening: 1 backtracking problem</td><td>2</td></tr>
+                <tr style="background:var(--green-light);"><td style="padding:6px 10px;"><strong>Wed</strong></td><td><strong>LEAVE</strong></td><td>Backtracking (permutations, combinations, subsets) + Heaps</td><td>5</td></tr>
+                <tr style="background:#fafafa;"><td style="padding:6px 10px;">Thu</td><td>WFH</td><td>Heaps — Top K, merge K, two heaps pattern</td><td>3.5</td></tr>
+                <tr><td style="padding:6px 10px;">Fri</td><td>WFH</td><td>Graphs BFS/DFS — traversal, islands, cycle detection</td><td>3.5</td></tr>
+                <tr style="background:#fafafa;"><td style="padding:6px 10px;">Sat</td><td>Weekend</td><td>Graphs BFS/DFS practice — 4 problems</td><td>5</td></tr>
+                <tr><td style="padding:6px 10px;">Sun</td><td>Weekend</td><td>Revise Trees + Backtracking (solve 2 from each)</td><td>3</td></tr>
+      </tbody></table>
+
+      <!-- WEEK 3 -->
+    <h3 style="color:var(--primary); border-bottom:2px solid var(--primary-light); padding-bottom:6px; margin-bottom:12px;">Week 3 (Apr 21–27): Graphs Advanced + DP Part 1</h3>
+
+      <table style="width:100%; border-collapse:collapse; font-size:0.92em; margin-bottom:24px;">
+        <tbody><tr style="background:var(--primary); color:white;">
+          <th style="padding:8px 10px; text-align:left; width:100px;">Day</th>
+          <th style="padding:8px 10px; text-align:left; width:80px;">Type</th>
+          <th style="padding:8px 10px; text-align:left;">Focus</th>
+          <th style="padding:8px 10px; text-align:left; width:50px;">Hrs</th>
+        </tr>
+                <tr style="background:#fafafa;"><td style="padding:6px 10px;">Mon</td><td>Office</td><td>Commute: Graphs Advanced notes (Dijkstra, Topo sort)</td><td>1</td></tr>
+                <tr><td style="padding:6px 10px;">Tue</td><td>Office</td><td>Commute: DP Part 1 notes. Evening: 1 graph problem</td><td>2</td></tr>
+                <tr style="background:var(--green-light);"><td style="padding:6px 10px;"><strong>Wed</strong></td><td><strong>LEAVE</strong></td><td>Graphs Advanced (shortest path, MST, Union Find)</td><td>5</td></tr>
+                <tr style="background:#fafafa;"><td style="padding:6px 10px;">Thu</td><td>WFH</td><td>DP Part 1 — Fibonacci, climbing stairs, house robber</td><td>3.5</td></tr>
+                <tr><td style="padding:6px 10px;">Fri</td><td>WFH</td><td>DP Part 1 — 0/1 Knapsack, subset sum, coin change</td><td>3.5</td></tr>
+                <tr style="background:#fafafa;"><td style="padding:6px 10px;">Sat</td><td>Weekend</td><td>DP practice — 4–5 problems (needs most time)</td><td>5</td></tr>
+                <tr><td style="padding:6px 10px;">Sun</td><td>Weekend</td><td>Revise Graphs + retry 2 DP problems</td><td>3</td></tr>
+      </tbody></table>
+
+      <!-- WEEK 4 -->
+    <h3 style="color:var(--primary); border-bottom:2px solid var(--primary-light); padding-bottom:6px; margin-bottom:12px;">Week 4 (Apr 28 — May 4): DP Part 2 + Greedy + Intervals + Trie/Strings/Bits</h3>
+      <p style="font-size:0.9em; color:#666; margin-bottom:10px;">Compressed: Trie, Strings, Bit Manipulation are lower-frequency — covered in 1 leave day. HLD passive learning starts via commute.</p>
+
+      <table style="width:100%; border-collapse:collapse; font-size:0.92em; margin-bottom:24px;">
+        <tbody><tr style="background:var(--primary); color:white;">
+          <th style="padding:8px 10px; text-align:left; width:100px;">Day</th>
+          <th style="padding:8px 10px; text-align:left; width:80px;">Type</th>
+          <th style="padding:8px 10px; text-align:left;">Focus</th>
+          <th style="padding:8px 10px; text-align:left; width:50px;">Hrs</th>
+        </tr>
+                <tr style="background:#fafafa;"><td style="padding:6px 10px;">Mon</td><td>Office</td><td>Commute: DP Part 2 notes (LCS, LIS, matrix) + <strong style="color:#E67E22;">HLD: read Fundamentals</strong></td><td>1</td></tr>
+                <tr><td style="padding:6px 10px;">Tue</td><td>Office</td><td>Commute: Greedy notes + <strong style="color:#E67E22;">HLD: CAP, LB, caching concepts</strong>. Evening: 1 DP problem</td><td>2</td></tr>
+                <tr style="background:var(--green-light);"><td style="padding:6px 10px;"><strong>Wed</strong></td><td><strong>LEAVE</strong></td><td>DP Part 2 (string DP, interval DP) + Trie + Strings + Bit Manipulation (finish DSA!)</td><td>5</td></tr>
+                <tr style="background:#fafafa;"><td style="padding:6px 10px;">Thu</td><td>WFH</td><td>Greedy — all patterns (activity selection, jump game)</td><td>3.5</td></tr>
+                <tr><td style="padding:6px 10px;">Fri</td><td>WFH</td><td>Intervals — merge, insert, meeting rooms, sweep line</td><td>3.5</td></tr>
+                <tr style="background:#fafafa;"><td style="padding:6px 10px;">Sat</td><td>Weekend</td><td>Mixed DP + Greedy practice — 4 problems timed</td><td>5</td></tr>
+                <tr><td style="padding:6px 10px;">Sun</td><td>Weekend</td><td>Revise all DP (highest-weight interview topic)</td><td>3</td></tr>
+      </tbody></table>
+
+      <!-- WEEK 5 -->
+    <h3 style="color:var(--blue); border-bottom:2px solid var(--blue-light); padding-bottom:6px; margin-bottom:12px;">Week 5 (May 5–11): LLD + HLD Fundamentals</h3>
+      <p style="font-size:0.9em; color:#666; margin-bottom:10px;">LLD patterns + practice problems. HLD building blocks covered in parallel via commute + Sunday.</p>
 
       <table style="width:100%; border-collapse:collapse; font-size:0.92em; margin-bottom:24px;">
         <tbody><tr style="background:var(--blue); color:white;">
-          <th style="padding:8px 10px; text-align:left; width:50px;">Day</th>
-          <th style="padding:8px 10px; text-align:left; width:120px;">Date</th>
-          <th style="padding:8px 10px; text-align:left;">Topic</th>
+          <th style="padding:8px 10px; text-align:left; width:100px;">Day</th>
+          <th style="padding:8px 10px; text-align:left; width:80px;">Type</th>
           <th style="padding:8px 10px; text-align:left;">Focus</th>
+          <th style="padding:8px 10px; text-align:left; width:50px;">Hrs</th>
         </tr>
-                <tr style="background:#fafafa;"><td style="padding:6px 10px;">31</td><td>May 1 (Fri)</td><td><strong>SOLID Principles</strong></td><td>Violation → fix for each, know by heart</td></tr>
-                <tr><td style="padding:6px 10px;">32</td><td>May 2 (Sat)</td><td><strong>Creational + Structural</strong></td><td>Singleton, Builder, Factory, Decorator, Adapter</td></tr>
-                <tr style="background:#fafafa;"><td style="padding:6px 10px;">33</td><td>May 3 (Sun)</td><td><strong>Behavioral + UML</strong></td><td>Strategy, Observer, State, Command + class diagrams</td></tr>
-                <tr><td style="padding:6px 10px;">34</td><td>May 4 (Mon)</td><td><strong>Parking Lot</strong></td><td>Full design from scratch on paper</td></tr>
-                <tr style="background:#fafafa;"><td style="padding:6px 10px;">35</td><td>May 5 (Tue)</td><td><strong>Elevator System</strong></td><td>Scheduling strategy, state machine</td></tr>
-                <tr><td style="padding:6px 10px;">36</td><td>May 6 (Wed)</td><td><strong>BookMyShow</strong></td><td>Seat locking — the key problem</td></tr>
-                <tr style="background:#fafafa;"><td style="padding:6px 10px;">37</td><td>May 7 (Thu)</td><td><strong>Splitwise</strong></td><td>Balance sheet, debt simplification</td></tr>
-                <tr><td style="padding:6px 10px;">38</td><td>May 8 (Fri)</td><td><strong>Rate Limiter (LLD)</strong></td><td>Token bucket, sliding window in Java</td></tr>
-                <tr style="background:var(--yellow-light);"><td style="padding:6px 10px;">39</td><td>May 9 (Sat)</td><td><strong style="color:var(--yellow);">★ LLD Mock</strong></td><td>Pick random problem, design in 45 min</td></tr>
+                <tr style="background:#fafafa;"><td style="padding:6px 10px;">Mon</td><td>Office</td><td>Commute: <strong style="color:#E67E22;">HLD: DB Design — SQL vs NoSQL, sharding, indexing</strong></td><td>1</td></tr>
+                <tr><td style="padding:6px 10px;">Tue</td><td>Office</td><td>Commute: <strong style="color:#E67E22;">HLD: Consistent hashing, message queues</strong>. Evening: 1 LLD problem</td><td>2</td></tr>
+                <tr style="background:var(--green-light);"><td style="padding:6px 10px;"><strong>Wed</strong></td><td><strong>LEAVE</strong></td><td>LLD — SOLID + Creational + Structural + Behavioral patterns</td><td>5</td></tr>
+                <tr style="background:#fafafa;"><td style="padding:6px 10px;">Thu</td><td>WFH</td><td>LLD — UML + Parking Lot (full design + code)</td><td>3.5</td></tr>
+                <tr><td style="padding:6px 10px;">Fri</td><td>WFH</td><td>LLD — Elevator + BookMyShow</td><td>3.5</td></tr>
+                <tr style="background:#fafafa;"><td style="padding:6px 10px;">Sat</td><td>Weekend</td><td>LLD — Splitwise + Rate Limiter</td><td>5</td></tr>
+                <tr><td style="padding:6px 10px;">Sun</td><td>Weekend</td><td><strong style="color:#E67E22;">HLD: URL Shortener + Twitter Feed</strong> (read notes + draw architecture)</td><td>3</td></tr>
       </tbody></table>
 
-      <!-- PHASE 3: HLD -->
-    <h3 style="color:#E67E22; border-bottom:2px solid #FEF5E7; padding-bottom:6px; margin-bottom:12px;">Phase 3 — HLD (May 10 → May 19)</h3>
-      <p style="font-size:0.9em; color:#666; margin-bottom:10px;">Each day: Read notes (30 min) → Draw architecture (1 hr) → Deep-dive key decision (1 hr) → Estimation (30 min)</p>
+      <!-- WEEK 6 -->
+    <h3 style="color:#E67E22; border-bottom:2px solid #FEF5E7; padding-bottom:6px; margin-bottom:12px;">Week 6 (May 12–18): HLD Deep Dive — System Designs</h3>
+      <p style="font-size:0.9em; color:#666; margin-bottom:10px;">Full focus on HLD. You already have fundamentals from 2 weeks of commute reading + last Sunday.</p>
 
       <table style="width:100%; border-collapse:collapse; font-size:0.92em; margin-bottom:24px;">
         <tbody><tr style="background:#E67E22; color:white;">
-          <th style="padding:8px 10px; text-align:left; width:50px;">Day</th>
-          <th style="padding:8px 10px; text-align:left; width:120px;">Date</th>
-          <th style="padding:8px 10px; text-align:left;">Topic</th>
+          <th style="padding:8px 10px; text-align:left; width:100px;">Day</th>
+          <th style="padding:8px 10px; text-align:left; width:80px;">Type</th>
           <th style="padding:8px 10px; text-align:left;">Focus</th>
+          <th style="padding:8px 10px; text-align:left; width:50px;">Hrs</th>
         </tr>
-                <tr style="background:#fafafa;"><td style="padding:6px 10px;">40</td><td>May 10 (Sun)</td><td><strong>Building Blocks</strong></td><td>LB, Cache, MQ, CAP, Consistent Hashing</td></tr>
-                <tr><td style="padding:6px 10px;">41</td><td>May 11 (Mon)</td><td><strong>Database Design</strong></td><td>SQL vs NoSQL, sharding, indexing</td></tr>
-                <tr style="background:#fafafa;"><td style="padding:6px 10px;">42</td><td>May 12 (Tue)</td><td><strong>URL Shortener</strong></td><td>Base62, ID generation, 301 vs 302</td></tr>
-                <tr><td style="padding:6px 10px;">43</td><td>May 13 (Wed)</td><td><strong>Twitter / News Feed</strong></td><td>Fan-out push vs pull (hybrid)</td></tr>
-                <tr style="background:#fafafa;"><td style="padding:6px 10px;">44</td><td>May 14 (Thu)</td><td><strong>WhatsApp</strong></td><td>WebSocket, message delivery, offline</td></tr>
-                <tr><td style="padding:6px 10px;">45</td><td>May 15 (Fri)</td><td><strong>Uber</strong></td><td>Geohash, matching, real-time tracking</td></tr>
-                <tr style="background:#fafafa;"><td style="padding:6px 10px;">46</td><td>May 16 (Sat)</td><td><strong>Notification + Instagram</strong></td><td>Multi-channel queue, photo pipeline</td></tr>
-                <tr><td style="padding:6px 10px;">47</td><td>May 17 (Sun)</td><td><strong>Rate Limiter + Dist. Cache</strong></td><td>Redis Lua, stampede, consistent hashing</td></tr>
-                <tr style="background:var(--yellow-light);"><td style="padding:6px 10px;">48</td><td>May 18 (Mon)</td><td><strong style="color:var(--yellow);">★ HLD Mock</strong></td><td>Pick 2 systems, design in 40 min each</td></tr>
-                <tr style="background:var(--green-light);"><td style="padding:6px 10px;">49</td><td>May 19 (Tue)</td><td><strong style="color:var(--green);">↻ HLD Revision</strong></td><td>Re-draw architectures from memory</td></tr>
+                <tr style="background:#fafafa;"><td style="padding:6px 10px;">Mon</td><td>Office</td><td>Commute: re-read URL Shortener + Twitter Feed designs</td><td>1</td></tr>
+                <tr><td style="padding:6px 10px;">Tue</td><td>Office</td><td>Commute: WhatsApp notes (WebSocket, delivery, offline). Evening: draw architecture</td><td>2</td></tr>
+                <tr style="background:var(--green-light);"><td style="padding:6px 10px;"><strong>Wed</strong></td><td><strong>LEAVE</strong></td><td>HLD — WhatsApp + Uber (full design from scratch, timed 40 min each)</td><td>5</td></tr>
+                <tr style="background:#fafafa;"><td style="padding:6px 10px;">Thu</td><td>WFH</td><td>HLD — Notification System + Instagram</td><td>3.5</td></tr>
+                <tr><td style="padding:6px 10px;">Fri</td><td>WFH</td><td>HLD — Rate Limiter + Distributed Cache</td><td>3.5</td></tr>
+                <tr style="background:#fafafa;"><td style="padding:6px 10px;">Sat</td><td>Weekend</td><td>HLD practice — pick 2 systems, design from memory in 40 min each</td><td>5</td></tr>
+                <tr><td style="padding:6px 10px;">Sun</td><td>Weekend</td><td>Revise all HLD — practice explaining out loud, re-draw weak ones</td><td>3</td></tr>
       </tbody></table>
 
-      <!-- PHASE 4: INTERVIEW READINESS -->
-    <h3 style="color:var(--red); border-bottom:2px solid var(--red-light); padding-bottom:6px; margin-bottom:12px;">Phase 4 — Interview Readiness (May 20 → May 23)</h3>
+      <!-- WEEK 7 -->
+    <h3 style="color:var(--red); border-bottom:2px solid var(--red-light); padding-bottom:6px; margin-bottom:12px;">Week 7 (May 19–25): Full Revision + Mock Interviews</h3>
 
       <table style="width:100%; border-collapse:collapse; font-size:0.92em; margin-bottom:24px;">
         <tbody><tr style="background:var(--red); color:white;">
-          <th style="padding:8px 10px; text-align:left; width:50px;">Day</th>
-          <th style="padding:8px 10px; text-align:left; width:120px;">Date</th>
+          <th style="padding:8px 10px; text-align:left; width:100px;">Day</th>
+          <th style="padding:8px 10px; text-align:left; width:80px;">Type</th>
           <th style="padding:8px 10px; text-align:left;">Focus</th>
-          <th style="padding:8px 10px; text-align:left;">Details</th>
+          <th style="padding:8px 10px; text-align:left; width:50px;">Hrs</th>
         </tr>
-                <tr style="background:#fafafa;"><td style="padding:6px 10px;">50</td><td>May 20 (Wed)</td><td><strong>DSA Weak Areas</strong></td><td>Re-solve problems you struggled with</td></tr>
-                <tr><td style="padding:6px 10px;">51</td><td>May 21 (Thu)</td><td><strong>Full Mock Interview</strong></td><td>DSA (45m) + LLD (45m) + HLD (45m)</td></tr>
-                <tr style="background:#fafafa;"><td style="padding:6px 10px;">52</td><td>May 22 (Fri)</td><td><strong>Full Mock Interview</strong></td><td>Different problems, same format</td></tr>
-                <tr><td style="padding:6px 10px;">53</td><td>May 23 (Sat)</td><td><strong>Final Revision</strong></td><td>Pattern cheat sheets, common mistakes, confidence boost</td></tr>
+                <tr style="background:#fafafa;"><td style="padding:6px 10px;">Mon</td><td>Office</td><td>Commute: revise DSA patterns (decision trees from notes)</td><td>1</td></tr>
+                <tr><td style="padding:6px 10px;">Tue</td><td>Office</td><td>Commute: revise LLD + HLD tradeoffs. Evening: 1 timed problem</td><td>2</td></tr>
+                <tr style="background:var(--green-light);"><td style="padding:6px 10px;"><strong>Wed</strong></td><td><strong>LEAVE</strong></td><td>Mock interview: 1 DSA + 1 LLD + 1 HLD (timed, full simulation)</td><td>5</td></tr>
+                <tr style="background:#fafafa;"><td style="padding:6px 10px;">Thu</td><td>WFH</td><td>Retry all problems you got wrong / struggled with</td><td>3.5</td></tr>
+                <tr><td style="padding:6px 10px;">Fri</td><td>WFH</td><td>Mock: random 2 LC mediums in 40 min each + 1 HLD from memory</td><td>3.5</td></tr>
+                <tr style="background:var(--yellow-light);"><td style="padding:6px 10px;">Sat–Sun</td><td>Weekend</td><td>Save 2–3 leaves here if interview is next week. Weak areas + rest</td><td>6</td></tr>
       </tbody></table>
 
       <!-- KEY RULES -->
       <div style="background:var(--yellow-light); border-radius:10px; padding:16px 20px; border-left:4px solid var(--yellow);">
         <strong style="color:var(--yellow);">Key Rules</strong><br>
-        <strong>1.</strong> Don't just read — solve. Aim for 2–3 problems on Day 1 + 2 timed re-solves on Day 2 for each topic.<br>
-        <strong>2.</strong> Time yourself. Medium in 20 min, Hard in 35 min. Stuck 15 min? Read solution, understand, re-solve next day.<br>
-        <strong>3.</strong> DP gets 5 focused days — it's the hardest and most asked.<br>
-        <strong>4.</strong> Trees get 4 days and Graphs get 5 days — highest pattern variety.<br>
-        <strong>5.</strong> Revision days are non-negotiable — spaced repetition makes patterns stick.
+        <strong>1.</strong> Commute = passive review only. Read notes on phone, no coding.<br>
+        <strong>2.</strong> WFH mornings are sacred. Solve before Slack gets busy.<br>
+        <strong>3.</strong> Saturday = hardest topic of the week. Fresh mind, most time.<br>
+        <strong>4.</strong> Sunday = lighter revision. Prevents burnout, solidifies memory.<br>
+        <strong>5.</strong> DP gets 2 full weeks — highest-weight interview topic.<br>
+        <strong>6.</strong> HLD starts passively in Week 4 commutes — 3.5 weeks total exposure.<br>
+        <strong>7.</strong> Stuck 15 min? Read solution, understand, re-solve next day. Don't spiral.
       </div>
 
             <!-- AI ADD-ON TRACK -->
@@ -556,12 +621,12 @@ th.cb-col, td.cb-col { text-align: center; width: 40px; }
         <span class="card-num">05</span>
         <span class="card-label">Data Structures</span>
         <h3>Stack &amp; Monotonic Stack</h3>
-      <div class="card-progress">5 / 14 solved</div><div class="progress-bar-wrap"><div class="progress-bar-fill" style="width: 35.7143%;"></div></div></div>
+      <div class="card-progress">12 / 14 solved</div><div class="progress-bar-wrap"><div class="progress-bar-fill" style="width: 85.7143%;"></div></div></div>
       <div class="card" onclick="showTopic('linked-list')" style="--card-color: #E67E22">
         <span class="card-num">06</span>
         <span class="card-label">Data Structures</span>
         <h3>Linked List</h3>
-      <div class="card-progress">0 / 14 solved</div><div class="progress-bar-wrap"><div class="progress-bar-fill" style="width:0%"></div></div></div>
+      <div class="card-progress">3 / 14 solved</div><div class="progress-bar-wrap"><div class="progress-bar-fill" style="width: 21.4286%;"></div></div></div>
       <div class="card" onclick="showTopic('backtracking')" style="--card-color: #E74C3C">
         <span class="card-num">07</span>
         <span class="card-label">Recursion</span>
@@ -571,7 +636,7 @@ th.cb-col, td.cb-col { text-align: center; width: 40px; }
         <span class="card-num">08</span>
         <span class="card-label">Trees</span>
         <h3>Trees &amp; BST</h3>
-      <div class="card-progress">0 / 16 solved</div><div class="progress-bar-wrap"><div class="progress-bar-fill" style="width:0%"></div></div></div>
+      <div class="card-progress">11 / 16 solved</div><div class="progress-bar-wrap"><div class="progress-bar-fill" style="width: 68.75%;"></div></div></div>
       <div class="card" onclick="showTopic('heaps')" style="--card-color: #27AE60">
         <span class="card-num">09</span>
         <span class="card-label">Trees</span>
@@ -4201,10 +4266,10 @@ stack.isEmpty();    // check empty
 
 
 <!-- ============================================ -->
-<h2 class="page-break">Section 3: Pattern Recognition &amp; Intuition Building</h2>
+<h2 class="page-break collapsed">Section 3: Pattern Recognition &amp; Intuition Building</h2>
 
 <!-- Pattern 1 -->
-<div class="section-content"><div class="section-content"><div class="pattern-header">Pattern 1: Basic Stack (Matching / Validation)</div><div class="how-to-arrive">
+<div class="section-content collapsed"><div class="section-content"><div class="pattern-header">Pattern 1: Basic Stack (Matching / Validation)</div><div class="how-to-arrive">
     <strong>How to Arrive at This:</strong> Ask yourself: "Am I matching things in a nested or last-opened-first-closed manner?" Matching opening/closing brackets, nested structures, undo operations — the LIFO property is the natural fit.
 </div><blockquote><strong>Analogy:</strong> Russian nesting dolls (matryoshka). You open the outermost first, but the last doll you opened is the first one you close. Exactly LIFO.</blockquote><p><span class="signal-words">valid</span> <span class="signal-words">balanced</span> <span class="signal-words">matching</span> <span class="signal-words">nested</span></p><h4><a href="https://leetcode.com/problems/valid-parentheses/" target="_blank">Valid Parentheses (LC 20)</a> - Easy</h4><pre><code>public boolean isValid(String s) {
     Deque&lt;Character&gt; stack = new ArrayDeque&lt;&gt;();
@@ -4256,8 +4321,11 @@ stack.isEmpty();    // check empty
     }
     return result;
 }</code></pre><div class="tip-box">
-<strong>Hack: Right-to-left iteration for "next greater" can be simpler.</strong><br>
-The left-to-right approach (above) resolves answers at pop time. An alternative: iterate right-to-left, maintaining a stack of elements seen so far. For each element, pop everything smaller (they can't be anyone's answer). The stack top IS the next greater element. The answer is filled directly — no reversal needed. Both are O(n), pick whichever clicks for you.
+<strong>Right-to-left intuition for "next greater":</strong><br>
+Add every element from right to the stack. For the current element, the stack top is the answer — unless it's <strong>less than or equal</strong> to current. Pop such tops: they can't be the answer for current <strong>or any future element</strong> (because current is both closer and bigger, permanently blocking them). The stack naturally ends up <strong>monotonically decreasing</strong> because smaller elements get popped before they can stay.<br><br>
+<strong>Stack type cheat sheet:</strong><br>
+<strong>Next Greater</strong> → <strong>decreasing stack</strong> (pop smaller/equal, greater elements survive as candidate answers)<br>
+<strong>Next Smaller</strong> → <strong>increasing stack</strong> (pop larger/equal, smaller elements survive as candidate answers)
 </div><h4><a href="https://leetcode.com/problems/daily-temperatures/" target="_blank">Daily Temperatures (LC 739)</a> - Medium</h4><p>"How many days until warmer?" = Next Greater but return <strong>distance</strong>, not value.</p>
 <div class="side-by-side">
 <div>
@@ -4421,24 +4489,60 @@ The left-to-right approach (above) resolves answers at pop time. An alternative:
     3. This is "previous smaller" + "next smaller" = two monotonic stack passes!<br>
     4. Or a <strong>single pass</strong>: when a bar is popped, current = right boundary, new top = left boundary.<br>
     5. <strong>Width = right - left - 1. Area = height × width.</strong>
-</div><blockquote><strong>Analogy:</strong> Each histogram bar is a person who can "stretch" their arms left and right until meeting someone shorter. The rectangle = height × arm span. Monotonic stack computes this arm span efficiently.</blockquote><p><span class="signal-words">largest rectangle</span> <span class="signal-words">maximum area</span> <span class="signal-words">trapped water</span> <span class="signal-words">subarray min/max contribution</span></p><h4><a href="https://leetcode.com/problems/largest-rectangle-in-histogram/" target="_blank">Largest Rectangle in Histogram (LC 84)</a> - Hard</h4><pre><code>public int largestRectangleArea(int[] heights) {
-    int n = heights.length;
-    int maxArea = 0;
+</div><blockquote><strong>Analogy:</strong> Each histogram bar is a person who can "stretch" their arms left and right until meeting someone shorter. The rectangle = height × arm span. Monotonic stack computes this arm span efficiently.</blockquote><p><span class="signal-words">largest rectangle</span> <span class="signal-words">maximum area</span> <span class="signal-words">trapped water</span> <span class="signal-words">subarray min/max contribution</span></p><h4><a href="https://leetcode.com/problems/largest-rectangle-in-histogram/" target="_blank">Largest Rectangle in Histogram (LC 84)</a> - Hard</h4>
+<div class="side-by-side">
+<div>
+<h5 style="margin: 0 0 8px 0; text-align: center;">Sentinel trick (i &lt;= n)</h5>
+<pre><code>public int largestRectangleArea(int[] heights) {
+    int n = heights.length, maxArea = 0;
     Deque&lt;Integer&gt; stack = new ArrayDeque&lt;&gt;();
 
     for (int i = 0; i &lt;= n; i++) {
-        int currentHeight = (i == n) ? 0 : heights[i]; // sentinel at end
-
-        while (!stack.isEmpty() &amp;&amp; heights[stack.peek()] &gt; currentHeight) {
+        int h = (i == n) ? 0 : heights[i];
+        while (!stack.isEmpty() &amp;&amp;
+          heights[stack.peek()] &gt; h) {
             int height = heights[stack.pop()];
-            // Right boundary = i, Left boundary = new top (or -1)
-            int width = stack.isEmpty() ? i : (i - stack.peek() - 1);
+            int width = stack.isEmpty()
+              ? i : (i - stack.peek() - 1);
             maxArea = Math.max(maxArea, height * width);
         }
         stack.push(i);
     }
     return maxArea;
-}</code></pre><div class="walkthrough">
+}</code></pre>
+</div>
+<div>
+<h5 style="margin: 0 0 8px 0; text-align: center;">Explicit cleanup loop</h5>
+<pre><code>public int largestRectangleArea(int[] heights) {
+    int n = heights.length, maxArea = 0;
+    Deque&lt;Integer&gt; stack = new ArrayDeque&lt;&gt;();
+
+    for (int i = 0; i &lt; n; i++) {
+        while (!stack.isEmpty() &amp;&amp;
+          heights[i] &lt; heights[stack.peek()]) {
+            int element = stack.pop();
+            int nextSmallerEle = i;
+            int prevSmallerEle = stack.isEmpty()
+              ? -1 : stack.peek();
+            int width = nextSmallerEle - prevSmallerEle - 1;
+            maxArea = Math.max(maxArea,
+              heights[element] * width);
+        }
+        stack.push(i);
+    }
+    while (!stack.isEmpty()) {
+        int element = stack.pop();
+        int nextSmallerEle = n;
+        int prevSmallerEle = stack.isEmpty()
+          ? -1 : stack.peek();
+        int width = nextSmallerEle - prevSmallerEle - 1;
+        maxArea = Math.max(maxArea,
+          heights[element] * width);
+    }
+    return maxArea;
+}</code></pre>
+</div>
+</div><div class="walkthrough">
 <strong>Walkthrough for heights = [2, 1, 5, 6, 2, 3]:</strong>
 <table>
     <tbody><tr><th>i</th><th>Height</th><th>Action</th><th>Stack</th><th>maxArea</th></tr>
@@ -4515,7 +4619,11 @@ The left-to-right approach (above) resolves answers at pop time. An alternative:
     StringBuilder sb = new StringBuilder();
     while (!stack.isEmpty()) sb.append(stack.pop());
     return sb.reverse().toString();
-}</code></pre><h4><a href="https://leetcode.com/problems/decode-string/" target="_blank">Decode String (LC 394)</a> - Medium</h4><pre><code>public String decodeString(String s) {
+}</code></pre><h4><a href="https://leetcode.com/problems/decode-string/" target="_blank">Decode String (LC 394)</a> - Medium</h4>
+<div class="side-by-side">
+<div>
+<h5 style="margin: 0 0 8px 0; text-align: center;">Two stacks (counts + strings)</h5>
+<pre><code>public String decodeString(String s) {
     Deque&lt;StringBuilder&gt; stringStack = new ArrayDeque&lt;&gt;();
     Deque&lt;Integer&gt; countStack = new ArrayDeque&lt;&gt;();
     StringBuilder current = new StringBuilder();
@@ -4532,14 +4640,53 @@ The left-to-right approach (above) resolves answers at pop time. An alternative:
         } else if (c == ']') {
             int count = countStack.pop();
             StringBuilder prev = stringStack.pop();
-            for (int i = 0; i &lt; count; i++) prev.append(current);
+            for (int i = 0; i &lt; count; i++)
+                prev.append(current);
             current = prev;
         } else {
             current.append(c);
         }
     }
     return current.toString();
-}</code></pre><h4><a href="https://leetcode.com/problems/simplify-path/" target="_blank">Simplify Path (LC 71)</a> - Medium</h4><pre><code>public String simplifyPath(String path) {
+}</code></pre>
+</div>
+<div>
+<h5 style="margin: 0 0 8px 0; text-align: center;">Single string stack</h5>
+<div class="how-to-arrive" style="font-size:0.88em; margin-bottom:8px;">
+<strong>Approach:</strong><br>
+1. <strong>Push</strong> every char as a string until <code>]</code><br>
+2. <strong>On <code>]</code>:</strong> Pop &amp; prepend (<code>insert(0)</code>) until <code>[</code> to collect content. Pop <code>[</code>. Pop digits to build number. Repeat content that many times. <strong>Push result back</strong> as single token.<br>
+3. <strong>After loop:</strong> Pop all remaining, prepend to result.<br>
+<strong>Key:</strong> Always <strong>prepend</strong> when popping — never append+reverse — because multi-char decoded tokens would get their internals reversed.
+</div>
+<pre><code>public String decodeString(String s) {
+    Deque&lt;String&gt; stack = new ArrayDeque&lt;&gt;();
+    for (char ch : s.toCharArray()) {
+        if (ch != ']') {
+            stack.push(ch + "");
+        } else {
+            StringBuilder sb = new StringBuilder();
+            while (!stack.peek().equals("["))
+                sb.insert(0, stack.pop());
+            stack.pop(); // remove "["
+            String num = "";
+            while (!stack.isEmpty() &amp;&amp;
+              Character.isDigit(stack.peek().charAt(0)))
+                num = stack.pop() + num;
+            int n = Integer.parseInt(num);
+            StringBuilder temp = new StringBuilder();
+            for (int i = 0; i &lt; n; i++)
+                temp.append(sb);
+            stack.push(temp.toString());
+        }
+    }
+    StringBuilder result = new StringBuilder();
+    while (!stack.isEmpty())
+        result.insert(0, stack.pop());
+    return result.toString();
+}</code></pre>
+</div>
+</div><h4><a href="https://leetcode.com/problems/simplify-path/" target="_blank">Simplify Path (LC 71)</a> - Medium</h4><pre><code>public String simplifyPath(String path) {
     Deque&lt;String&gt; stack = new ArrayDeque&lt;&gt;();
     for (String part : path.split("/")) {
         if (part.equals("..")) {
@@ -4664,9 +4811,9 @@ The left-to-right approach (above) resolves answers at pop time. An alternative:
 
 
 <!-- ============================================ -->
-<h2 class="page-break">Section 4: Code Templates (Copy-Paste Ready)</h2>
+<h2 class="page-break collapsed">Section 4: Code Templates (Copy-Paste Ready)</h2>
 
-<div class="section-content"><div class="section-content"><h3>Template 1: Next Greater Element</h3>
+<div class="section-content collapsed"><div class="section-content"><h3>Template 1: Next Greater Element</h3>
 <div class="side-by-side">
 <div>
 <h5 style="margin: 0 0 8px 0; text-align: center;">Left to Right (resolve at pop time)</h5>
@@ -4837,23 +4984,23 @@ while (!stack.isEmpty()) result += stack.pop();</code></pre></div></div>
 </tbody></table></div></div>
 
 <!-- ============================================ -->
-<h2 class="page-break">Section 9: Must-Solve Problems</h2>
+<h2 class="page-break collapsed">Section 9: Must-Solve Problems</h2>
 
-<div class="section-content"><div class="section-content"><table>
+<div class="section-content collapsed"><div class="section-content"><table>
     <tbody><tr><th class="cb-col">✔</th><th>#</th><th>Problem</th><th>Diff</th><th>Pattern</th><th>Hint</th></tr>
     <tr class="solved"><td class="cb-col"><input type="checkbox" class="solved-cb" data-key="stack_1"></td><td>1</td><td><a href="https://leetcode.com/problems/valid-parentheses/" target="_blank">Valid Parentheses (LC 20)</a></td><td>Easy</td><td>P1</td><td>Push open, pop and match on close</td></tr>
     <tr class="solved"><td class="cb-col"><input type="checkbox" class="solved-cb" data-key="stack_2"></td><td>2</td><td><a href="https://leetcode.com/problems/min-stack/" target="_blank">Min Stack (LC 155)</a></td><td>Med</td><td>P1</td><td>Parallel min-tracking stack</td></tr>
     <tr class="solved"><td class="cb-col"><input type="checkbox" class="solved-cb" data-key="stack_3"></td><td>3</td><td><a href="https://leetcode.com/problems/daily-temperatures/" target="_blank">Daily Temperatures (LC 739)</a></td><td>Med</td><td>P2</td><td>Next greater, return index difference</td></tr>
     <tr class="solved"><td class="cb-col"><input type="checkbox" class="solved-cb" data-key="stack_4"></td><td>4</td><td><a href="https://leetcode.com/problems/next-greater-element-i/" target="_blank">Next Greater Element I (LC 496)</a></td><td>Easy</td><td>P2</td><td>HashMap + monotonic stack on nums2</td></tr>
     <tr class="solved"><td class="cb-col"><input type="checkbox" class="solved-cb" data-key="stack_5"></td><td>5</td><td><a href="https://leetcode.com/problems/next-greater-element-ii/" target="_blank">Next Greater Element II (LC 503)</a></td><td>Med</td><td>P2</td><td>Circular = iterate 2*n with i%n</td></tr>
-    <tr><td class="cb-col"><input type="checkbox" class="solved-cb" data-key="stack_6"></td><td>6</td><td><a href="https://leetcode.com/problems/online-stock-span/" target="_blank">Online Stock Span (LC 901)</a></td><td>Med</td><td>P3</td><td>Previous greater, accumulate spans</td></tr>
-    <tr><td class="cb-col"><input type="checkbox" class="solved-cb" data-key="stack_7"></td><td>7</td><td><a href="https://leetcode.com/problems/evaluate-reverse-polish-notation/" target="_blank">Eval Reverse Polish (LC 150)</a></td><td>Med</td><td>P4</td><td>Push nums, pop two on operator</td></tr>
+    <tr class="solved"><td class="cb-col"><input type="checkbox" class="solved-cb" data-key="stack_6"></td><td>6</td><td><a href="https://leetcode.com/problems/online-stock-span/" target="_blank">Online Stock Span (LC 901)</a></td><td>Med</td><td>P3</td><td>Previous greater, accumulate spans</td></tr>
+    <tr class="solved"><td class="cb-col"><input type="checkbox" class="solved-cb" data-key="stack_7"></td><td>7</td><td><a href="https://leetcode.com/problems/evaluate-reverse-polish-notation/" target="_blank">Eval Reverse Polish (LC 150)</a></td><td>Med</td><td>P4</td><td>Push nums, pop two on operator</td></tr>
     <tr><td class="cb-col"><input type="checkbox" class="solved-cb" data-key="stack_8"></td><td>8</td><td><a href="https://leetcode.com/problems/basic-calculator-ii/" target="_blank">Basic Calculator II (LC 227)</a></td><td>Med</td><td>P4</td><td>Handle */ immediately, defer +-</td></tr>
-    <tr><td class="cb-col"><input type="checkbox" class="solved-cb" data-key="stack_9"></td><td>9</td><td><a href="https://leetcode.com/problems/largest-rectangle-in-histogram/" target="_blank">Largest Rectangle (LC 84)</a></td><td>Hard</td><td>P5</td><td>Width = right - left - 1, sentinel at end</td></tr>
-    <tr><td class="cb-col"><input type="checkbox" class="solved-cb" data-key="stack_10"></td><td>10</td><td><a href="https://leetcode.com/problems/trapping-rain-water/" target="_blank">Trapping Rain Water (LC 42)</a></td><td>Hard</td><td>P5</td><td>Decreasing stack, water layer by layer</td></tr>
-    <tr><td class="cb-col"><input type="checkbox" class="solved-cb" data-key="stack_11"></td><td>11</td><td><a href="https://leetcode.com/problems/sum-of-subarray-minimums/" target="_blank">Sum of Subarray Mins (LC 907)</a></td><td>Med</td><td>P5</td><td>Contribution = val × left × right</td></tr>
-    <tr><td class="cb-col"><input type="checkbox" class="solved-cb" data-key="stack_12"></td><td>12</td><td><a href="https://leetcode.com/problems/remove-all-adjacent-duplicates-in-string/" target="_blank">Remove Adj Duplicates (LC 1047)</a></td><td>Easy</td><td>P6</td><td>Pop if top == current, else push</td></tr>
-    <tr><td class="cb-col"><input type="checkbox" class="solved-cb" data-key="stack_13"></td><td>13</td><td><a href="https://leetcode.com/problems/decode-string/" target="_blank">Decode String (LC 394)</a></td><td>Med</td><td>P6</td><td>Two stacks: counts + strings</td></tr>
+    <tr class="solved"><td class="cb-col"><input type="checkbox" class="solved-cb" data-key="stack_9"></td><td>9</td><td><a href="https://leetcode.com/problems/largest-rectangle-in-histogram/" target="_blank">Largest Rectangle (LC 84)</a></td><td>Hard</td><td>P5</td><td>Width = right - left - 1, sentinel at end</td></tr>
+    <tr class="solved"><td class="cb-col"><input type="checkbox" class="solved-cb" data-key="stack_10"></td><td>10</td><td><a href="https://leetcode.com/problems/trapping-rain-water/" target="_blank">Trapping Rain Water (LC 42)</a></td><td>Hard</td><td>P5</td><td>Decreasing stack, water layer by layer</td></tr>
+    <tr class="solved"><td class="cb-col"><input type="checkbox" class="solved-cb" data-key="stack_11"></td><td>11</td><td><a href="https://leetcode.com/problems/sum-of-subarray-minimums/" target="_blank">Sum of Subarray Mins (LC 907)</a></td><td>Med</td><td>P5</td><td>Contribution = val × left × right</td></tr>
+    <tr class="solved"><td class="cb-col"><input type="checkbox" class="solved-cb" data-key="stack_12"></td><td>12</td><td><a href="https://leetcode.com/problems/remove-all-adjacent-duplicates-in-string/" target="_blank">Remove Adj Duplicates (LC 1047)</a></td><td>Easy</td><td>P6</td><td>Pop if top == current, else push</td></tr>
+    <tr class="solved"><td class="cb-col"><input type="checkbox" class="solved-cb" data-key="stack_13"></td><td>13</td><td><a href="https://leetcode.com/problems/decode-string/" target="_blank">Decode String (LC 394)</a></td><td>Med</td><td>P6</td><td>Two stacks: counts + strings</td></tr>
     <tr><td class="cb-col"><input type="checkbox" class="solved-cb" data-key="stack_14"></td><td>14</td><td><a href="https://leetcode.com/problems/asteroid-collision/" target="_blank">Asteroid Collision (LC 735)</a></td><td>Med</td><td>P1+6</td><td>Stack simulation: positive right, negative left</td></tr>
 </tbody></table><h3>Suggested Solving Order</h3><p><strong>Week 1 (Foundations):</strong> Problems 1, 4, 12, 2<br>
 <strong>Week 2 (Core Monotonic):</strong> Problems 3, 5, 6, 7<br>
@@ -4974,26 +5121,42 @@ list.addFirst(1);  list.addLast(2);  list.removeFirst();  list.removeLast();</co
     <strong>Interview tip:</strong> In 95% of interview problems, interviewers want you to manipulate node pointers directly with a custom ListNode class. Use built-in LinkedList only when you need a Deque/Queue in a larger problem.
 </div><h3>Sentinel / Dummy Node Technique</h3><div class="how-to-arrive">
     <strong>WHY it works:</strong> The dummy node guarantees that every real node (including the original head) has a predecessor. This makes deletion logic <strong>UNIFORM</strong> for all nodes — no special case for the head. The dummy absorbs the edge case.
-</div><pre><code>// WITHOUT dummy (ugly edge cases for head)
-ListNode deleteValue(ListNode head, int val) {
-    while (head != null &amp;&amp; head.val == val) head = head.next; // Special handling!
+</div><div class="side-by-side">
+<div>
+<h5 style="margin: 0 0 8px 0; text-align: center;">Without dummy (ugly edge cases)</h5>
+<pre><code>ListNode deleteValue(ListNode head, int val) {
+    // Special handling for head!
+    while (head != null &amp;&amp; head.val == val)
+        head = head.next;
     if (head == null) return null;
-    ListNode curr = head;
-    while (curr.next != null) { ... }
-    return head;
-}
 
-// WITH dummy (clean, uniform logic)
-ListNode deleteValue(ListNode head, int val) {
+    ListNode curr = head;
+    while (curr.next != null) {
+        if (curr.next.val == val)
+            curr.next = curr.next.next;
+        else
+            curr = curr.next;
+    }
+    return head;
+}</code></pre>
+</div>
+<div>
+<h5 style="margin: 0 0 8px 0; text-align: center;">With dummy (clean, uniform)</h5>
+<pre><code>ListNode deleteValue(ListNode head, int val) {
     ListNode dummy = new ListNode(0);
     dummy.next = head;
+
     ListNode curr = dummy;
     while (curr.next != null) {
-        if (curr.next.val == val) curr.next = curr.next.next;
-        else curr = curr.next;
+        if (curr.next.val == val)
+            curr.next = curr.next.next;
+        else
+            curr = curr.next;
     }
-    return dummy.next;  // The real head
-}</code></pre></div></div>
+    return dummy.next; // The real head
+}</code></pre>
+</div>
+</div></div></div>
 
 
 
@@ -5033,7 +5196,12 @@ ListNode deleteValue(ListNode head, int val) {
 }</code></pre><div class="tip-box">
 <strong>Hack: Null check order matters — <code>fast != null &amp;&amp; fast.next != null</code>.</strong><br>
 Always check <code>fast != null</code> FIRST. If <code>fast</code> is null, <code>fast.next</code> throws NullPointerException. Java's short-circuit evaluation (<code>&amp;&amp;</code>) skips the second check when the first is false. Reversing the order (<code>fast.next != null &amp;&amp; fast != null</code>) crashes on lists with even length.
-</div><h4><a href="https://leetcode.com/problems/linked-list-cycle-ii/" target="_blank">Linked List Cycle II (LC 142)</a> - Medium</h4><pre><code>public ListNode detectCycle(ListNode head) {
+</div><h4><a href="https://leetcode.com/problems/linked-list-cycle-ii/" target="_blank">Linked List Cycle II (LC 142)</a> - Medium</h4><div class="tip-box">
+<strong>How to remember:</strong> "First meeting = proof of cycle, second meeting = start of cycle"<br>
+1. Run Floyd (slow = 1 step, fast = 2 steps)<br>
+2. When they meet: move one pointer to head, keep other at meeting point<br>
+3. Move both 1 step at a time — where they meet = cycle start
+</div><pre><code>public ListNode detectCycle(ListNode head) {
     ListNode slow = head, fast = head;
     while (fast != null &amp;&amp; fast.next != null) {
         slow = slow.next;
@@ -5647,12 +5815,12 @@ while (fast != null &amp;&amp; fast.next != null)</code></pre>
 
 <div class="section-content collapsed"><div class="section-content"><table>
     <tbody><tr><th class="cb-col">✔</th><th>#</th><th>Problem</th><th>Diff</th><th>Pattern</th><th>Hint</th></tr>
-    <tr><td class="cb-col"><input type="checkbox" class="solved-cb" data-key="linked-list_1"></td><td>1</td><td><a href="https://leetcode.com/problems/reverse-linked-list/" target="_blank">Reverse Linked List (LC 206)</a></td><td>Easy</td><td>P2</td><td>Three pointers: prev, curr, next</td></tr>
-    <tr><td class="cb-col"><input type="checkbox" class="solved-cb" data-key="linked-list_2"></td><td>2</td><td><a href="https://leetcode.com/problems/linked-list-cycle/" target="_blank">Linked List Cycle (LC 141)</a></td><td>Easy</td><td>P1</td><td>Fast 2x, slow 1x. Meet = cycle</td></tr>
+    <tr class=""><td class="cb-col"><input type="checkbox" class="solved-cb" data-key="linked-list_1"></td><td>1</td><td><a href="https://leetcode.com/problems/reverse-linked-list/" target="_blank">Reverse Linked List (LC 206)</a></td><td>Easy</td><td>P2</td><td>Three pointers: prev, curr, next</td></tr>
+    <tr class="solved"><td class="cb-col"><input type="checkbox" class="solved-cb" data-key="linked-list_2"></td><td>2</td><td><a href="https://leetcode.com/problems/linked-list-cycle/" target="_blank">Linked List Cycle (LC 141)</a></td><td>Easy</td><td>P1</td><td>Fast 2x, slow 1x. Meet = cycle</td></tr>
     <tr><td class="cb-col"><input type="checkbox" class="solved-cb" data-key="linked-list_3"></td><td>3</td><td><a href="https://leetcode.com/problems/merge-two-sorted-lists/" target="_blank">Merge Two Sorted Lists (LC 21)</a></td><td>Easy</td><td>P3</td><td>Dummy head + compare smaller</td></tr>
-    <tr><td class="cb-col"><input type="checkbox" class="solved-cb" data-key="linked-list_4"></td><td>4</td><td><a href="https://leetcode.com/problems/middle-of-the-linked-list/" target="_blank">Middle of Linked List (LC 876)</a></td><td>Easy</td><td>P1</td><td>Fast reaches end, slow = middle</td></tr>
+    <tr class="solved"><td class="cb-col"><input type="checkbox" class="solved-cb" data-key="linked-list_4"></td><td>4</td><td><a href="https://leetcode.com/problems/middle-of-the-linked-list/" target="_blank">Middle of Linked List (LC 876)</a></td><td>Easy</td><td>P1</td><td>Fast reaches end, slow = middle</td></tr>
     <tr><td class="cb-col"><input type="checkbox" class="solved-cb" data-key="linked-list_5"></td><td>5</td><td><a href="https://leetcode.com/problems/remove-nth-node-from-end-of-list/" target="_blank">Remove Nth From End (LC 19)</a></td><td>Med</td><td>P1+5</td><td>n+1 gap + dummy node</td></tr>
-    <tr><td class="cb-col"><input type="checkbox" class="solved-cb" data-key="linked-list_6"></td><td>6</td><td><a href="https://leetcode.com/problems/linked-list-cycle-ii/" target="_blank">Linked List Cycle II (LC 142)</a></td><td>Med</td><td>P1</td><td>After meeting, reset to head. Both speed 1.</td></tr>
+    <tr class="solved"><td class="cb-col"><input type="checkbox" class="solved-cb" data-key="linked-list_6"></td><td>6</td><td><a href="https://leetcode.com/problems/linked-list-cycle-ii/" target="_blank">Linked List Cycle II (LC 142)</a></td><td>Med</td><td>P1</td><td>After meeting, reset to head. Both speed 1.</td></tr>
     <tr><td class="cb-col"><input type="checkbox" class="solved-cb" data-key="linked-list_7"></td><td>7</td><td><a href="https://leetcode.com/problems/reverse-linked-list-ii/" target="_blank">Reverse Linked List II (LC 92)</a></td><td>Med</td><td>P2+5</td><td>Reverse sublist, reconnect ends</td></tr>
     <tr><td class="cb-col"><input type="checkbox" class="solved-cb" data-key="linked-list_8"></td><td>8</td><td><a href="https://leetcode.com/problems/palindrome-linked-list/" target="_blank">Palindrome Linked List (LC 234)</a></td><td>Easy</td><td>P1+2</td><td>Find middle, reverse half, compare</td></tr>
     <tr><td class="cb-col"><input type="checkbox" class="solved-cb" data-key="linked-list_9"></td><td>9</td><td><a href="https://leetcode.com/problems/odd-even-linked-list/" target="_blank">Odd Even Linked List (LC 328)</a></td><td>Med</td><td>P4</td><td>Two chains, connect at end</td></tr>
@@ -6486,7 +6654,7 @@ PERMUTATIONS: &nbsp;loop i = 0..n &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;used[] &nbsp;&nb
       <button class="back-btn" onclick="showCategory('dsa')">← Back to DSA Topics</button>
     </div>
   </div>
-  <div class="topic-page" id="page-trees-bst">
+  <div class="topic-page active" id="page-trees-bst">
     <div class="topic-header">
       <button class="back-btn" onclick="showCategory('dsa')">← Back to DSA Topics</button>
       <span class="topic-number">08 / 18</span>
@@ -6647,21 +6815,57 @@ private void inorder(TreeNode node, int k) {
     inorder(node.left, k);
     if (++count == k) { result = node.val; return; }
     inorder(node.right, k);
-}</code></pre><h4><a href="https://leetcode.com/problems/delete-node-in-a-bst/" target="_blank">Delete Node in BST (LC 450)</a> - Medium</h4><p>Three cases: leaf (remove), one child (replace), two children (replace with inorder successor).</p><pre><code>public TreeNode deleteNode(TreeNode root, int key) {
+}</code></pre><h4><a href="https://leetcode.com/problems/delete-node-in-a-bst/" target="_blank">Delete Node in BST (LC 450)</a> - Medium</h4>
+<div class="side-by-side">
+<div>
+<h5 style="margin: 0 0 8px 0; text-align: center;">Copy value approach</h5>
+<pre><code>public TreeNode deleteNode(TreeNode root, int key) {
     if (root == null) return null;
-    if (key &lt; root.val) root.left = deleteNode(root.left, key);
-    else if (key &gt; root.val) root.right = deleteNode(root.right, key);
+    if (key &lt; root.val)
+        root.left = deleteNode(root.left, key);
+    else if (key &gt; root.val)
+        root.right = deleteNode(root.right, key);
     else {
         if (root.left == null) return root.right;
         if (root.right == null) return root.left;
-        // Two children: find inorder successor
+        // Copy successor's value, delete successor
         TreeNode succ = root.right;
         while (succ.left != null) succ = succ.left;
         root.val = succ.val;
         root.right = deleteNode(root.right, succ.val);
     }
     return root;
-}</code></pre><div class="pattern-header">Pattern 4: Lowest Common Ancestor (LCA)</div><div class="how-to-arrive">
+}</code></pre>
+</div>
+<div>
+<h5 style="margin: 0 0 8px 0; text-align: center;">Restructure approach</h5>
+<pre><code>public TreeNode deleteNode(TreeNode root, int key) {
+    if (root == null) return null;
+    if (key &lt; root.val)
+        root.left = deleteNode(root.left, key);
+    else if (key &gt; root.val)
+        root.right = deleteNode(root.right, key);
+    else {
+        if (root.left == null) return root.right;
+        if (root.right == null) return root.left;
+        // Attach left subtree to bottom-left of right
+        TreeNode leftNode = root.left;
+        TreeNode rightNode = root.right;
+        while (rightNode.left != null)
+            rightNode = rightNode.left;
+        rightNode.left = leftNode;
+        root = root.right;
+    }
+    return root;
+}</code></pre>
+</div>
+</div>
+<div class="tip-box">
+<strong>Why no parent tracking?</strong> <code>root.left = deleteNode(root.left, key)</code> <strong>is</strong> the parent-child link management. Parent says "my child is whatever you return."<br>
+<strong>When key not found:</strong> returns same node unchanged — assignment is a no-op.<br>
+<strong>When key found:</strong> Leaf → return <code>null</code>. One child → return the other. Two children → copy value approach overwrites value and deletes successor; restructure approach hangs entire left subtree to bottom-left of right subtree and returns right child.<br>
+<strong>Same pattern as invertTree:</strong> return value carries the rewiring info back up.
+</div><div class="pattern-header">Pattern 4: Lowest Common Ancestor (LCA)</div><div class="how-to-arrive">
     <strong>How to Arrive at This:</strong><br>
     <strong>BST:</strong> Both &lt; current? Go left. Both &gt; current? Go right. They split? Current IS the LCA.<br>
     <strong>General BT:</strong> Recurse both sides. Non-null from both = current is LCA.
@@ -6998,23 +7202,23 @@ for (int i = 0; i &lt; size; i++) { ... }</code></pre>
 </tbody></table></div></div>
 
 <!-- ============================================ -->
-<h2 class="page-break collapsed">Section 9: Must-Solve Problems</h2>
+<h2 class="page-break">Section 9: Must-Solve Problems</h2>
 
-<div class="section-content collapsed"><div class="section-content"><h3>Tier 1: Foundation</h3><table>
+<div class="section-content"><div class="section-content"><h3>Tier 1: Foundation</h3><table>
     <tbody><tr><th class="cb-col">✔</th><th>#</th><th>Problem</th><th>Diff</th><th>Pattern</th><th>Key Idea</th></tr>
-    <tr><td class="cb-col"><input type="checkbox" class="solved-cb" data-key="trees-bst_1"></td><td>1</td><td><a href="https://leetcode.com/problems/maximum-depth-of-binary-tree/" target="_blank">Max Depth (LC 104)</a></td><td>Easy</td><td>P1</td><td><code>1 + max(left, right)</code></td></tr>
-    <tr><td class="cb-col"><input type="checkbox" class="solved-cb" data-key="trees-bst_2"></td><td>2</td><td><a href="https://leetcode.com/problems/same-tree/" target="_blank">Same Tree (LC 100)</a></td><td>Easy</td><td>P1</td><td>Both null=true, values equal + recurse</td></tr>
-    <tr><td class="cb-col"><input type="checkbox" class="solved-cb" data-key="trees-bst_3"></td><td>3</td><td><a href="https://leetcode.com/problems/invert-binary-tree/" target="_blank">Invert BT (LC 226)</a></td><td>Easy</td><td>P1</td><td>Swap left/right, recurse both</td></tr>
-    <tr><td class="cb-col"><input type="checkbox" class="solved-cb" data-key="trees-bst_4"></td><td>4</td><td><a href="https://leetcode.com/problems/symmetric-tree/" target="_blank">Symmetric Tree (LC 101)</a></td><td>Easy</td><td>P1</td><td>Mirror: left.left with right.right</td></tr>
-    <tr><td class="cb-col"><input type="checkbox" class="solved-cb" data-key="trees-bst_5"></td><td>5</td><td><a href="https://leetcode.com/problems/subtree-of-another-tree/" target="_blank">Subtree of Another (LC 572)</a></td><td>Easy</td><td>P1</td><td>At each node, check Same Tree</td></tr>
+    <tr class="solved"><td class="cb-col"><input type="checkbox" class="solved-cb" data-key="trees-bst_1"></td><td>1</td><td><a href="https://leetcode.com/problems/maximum-depth-of-binary-tree/" target="_blank">Max Depth (LC 104)</a></td><td>Easy</td><td>P1</td><td><code>1 + max(left, right)</code></td></tr>
+    <tr class="solved"><td class="cb-col"><input type="checkbox" class="solved-cb" data-key="trees-bst_2"></td><td>2</td><td><a href="https://leetcode.com/problems/same-tree/" target="_blank">Same Tree (LC 100)</a></td><td>Easy</td><td>P1</td><td>Both null=true, values equal + recurse</td></tr>
+    <tr class="solved"><td class="cb-col"><input type="checkbox" class="solved-cb" data-key="trees-bst_3"></td><td>3</td><td><a href="https://leetcode.com/problems/invert-binary-tree/" target="_blank">Invert BT (LC 226)</a></td><td>Easy</td><td>P1</td><td>Swap left/right, recurse both</td></tr>
+    <tr class="solved"><td class="cb-col"><input type="checkbox" class="solved-cb" data-key="trees-bst_4"></td><td>4</td><td><a href="https://leetcode.com/problems/symmetric-tree/" target="_blank">Symmetric Tree (LC 101)</a></td><td>Easy</td><td>P1</td><td>Mirror: left.left with right.right</td></tr>
+    <tr class="solved"><td class="cb-col"><input type="checkbox" class="solved-cb" data-key="trees-bst_5"></td><td>5</td><td><a href="https://leetcode.com/problems/subtree-of-another-tree/" target="_blank">Subtree of Another (LC 572)</a></td><td>Easy</td><td>P1</td><td>At each node, check Same Tree</td></tr>
 </tbody></table><h3>Tier 2: Core Interview</h3><table>
     <tbody><tr><th class="cb-col">✔</th><th>#</th><th>Problem</th><th>Diff</th><th>Pattern</th><th>Key Idea</th></tr>
-    <tr><td class="cb-col"><input type="checkbox" class="solved-cb" data-key="trees-bst_6"></td><td>6</td><td><a href="https://leetcode.com/problems/binary-tree-level-order-traversal/" target="_blank">Level Order (LC 102)</a></td><td>Med</td><td>P2</td><td>BFS + <code>size = queue.size()</code></td></tr>
-    <tr><td class="cb-col"><input type="checkbox" class="solved-cb" data-key="trees-bst_7"></td><td>7</td><td><a href="https://leetcode.com/problems/binary-tree-right-side-view/" target="_blank">Right Side View (LC 199)</a></td><td>Med</td><td>P2</td><td>BFS, last element per level</td></tr>
-    <tr><td class="cb-col"><input type="checkbox" class="solved-cb" data-key="trees-bst_8"></td><td>8</td><td><a href="https://leetcode.com/problems/validate-binary-search-tree/" target="_blank">Validate BST (LC 98)</a></td><td>Med</td><td>P3</td><td>Min/max range narrowing</td></tr>
-    <tr><td class="cb-col"><input type="checkbox" class="solved-cb" data-key="trees-bst_9"></td><td>9</td><td><a href="https://leetcode.com/problems/kth-smallest-element-in-a-bst/" target="_blank">Kth Smallest (LC 230)</a></td><td>Med</td><td>P3</td><td>Inorder, count to k</td></tr>
-    <tr><td class="cb-col"><input type="checkbox" class="solved-cb" data-key="trees-bst_10"></td><td>10</td><td><a href="https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-search-tree/" target="_blank">LCA of BST (LC 235)</a></td><td>Med</td><td>P4</td><td>Follow the split point</td></tr>
-    <tr><td class="cb-col"><input type="checkbox" class="solved-cb" data-key="trees-bst_11"></td><td>11</td><td><a href="https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-tree/" target="_blank">LCA of BT (LC 236)</a></td><td>Med</td><td>P4</td><td>Non-null from both sides = LCA</td></tr>
+    <tr class="solved"><td class="cb-col"><input type="checkbox" class="solved-cb" data-key="trees-bst_6"></td><td>6</td><td><a href="https://leetcode.com/problems/binary-tree-level-order-traversal/" target="_blank">Level Order (LC 102)</a></td><td>Med</td><td>P2</td><td>BFS + <code>size = queue.size()</code></td></tr>
+    <tr class="solved"><td class="cb-col"><input type="checkbox" class="solved-cb" data-key="trees-bst_7"></td><td>7</td><td><a href="https://leetcode.com/problems/binary-tree-right-side-view/" target="_blank">Right Side View (LC 199)</a></td><td>Med</td><td>P2</td><td>BFS, last element per level</td></tr>
+    <tr class="solved"><td class="cb-col"><input type="checkbox" class="solved-cb" data-key="trees-bst_8"></td><td>8</td><td><a href="https://leetcode.com/problems/validate-binary-search-tree/" target="_blank">Validate BST (LC 98)</a></td><td>Med</td><td>P3</td><td>Min/max range narrowing</td></tr>
+    <tr class="solved"><td class="cb-col"><input type="checkbox" class="solved-cb" data-key="trees-bst_9"></td><td>9</td><td><a href="https://leetcode.com/problems/kth-smallest-element-in-a-bst/" target="_blank">Kth Smallest (LC 230)</a></td><td>Med</td><td>P3</td><td>Inorder, count to k</td></tr>
+    <tr class="solved"><td class="cb-col"><input type="checkbox" class="solved-cb" data-key="trees-bst_10"></td><td>10</td><td><a href="https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-search-tree/" target="_blank">LCA of BST (LC 235)</a></td><td>Med</td><td>P4</td><td>Follow the split point</td></tr>
+    <tr class="solved"><td class="cb-col"><input type="checkbox" class="solved-cb" data-key="trees-bst_11"></td><td>11</td><td><a href="https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-tree/" target="_blank">LCA of BT (LC 236)</a></td><td>Med</td><td>P4</td><td>Non-null from both sides = LCA</td></tr>
 </tbody></table><h3>Tier 3: Advanced SDE 2</h3><table>
     <tbody><tr><th class="cb-col">✔</th><th>#</th><th>Problem</th><th>Diff</th><th>Pattern</th><th>Key Idea</th></tr>
     <tr><td class="cb-col"><input type="checkbox" class="solved-cb" data-key="trees-bst_12"></td><td>12</td><td><a href="https://leetcode.com/problems/construct-binary-tree-from-preorder-and-inorder-traversal/" target="_blank">Build from Pre+In (LC 105)</a></td><td>Med</td><td>P5</td><td>Preorder=root, inorder splits L/R</td></tr>
