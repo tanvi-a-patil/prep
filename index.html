@@ -52,11 +52,19 @@
   "trees-bst_6": true,
   "trees-bst_7": true,
   "trees-bst_10": true,
-  "trees-bst_11": true
+  "trees-bst_11": true,
+  "trees-bst_13": true,
+  "trees-bst_15": true,
+  "backtracking_1": true,
+  "backtracking_2": true,
+  "backtracking_3": true,
+  "backtracking_4": true,
+  "backtracking_5": true
 }</script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SDE 2 Interview Prep — DSA, LLD, HLD</title>
     <style>
+.highlight { background-color: #FDFD96; padding: 1px 4px; border-radius: 3px; font-weight: bold; }
 :root {
   --primary: #6C3483; --primary-light: #F5EEF8;
   --green: #27AE60; --green-light: #EAFAF1;
@@ -631,12 +639,12 @@ th.cb-col, td.cb-col { text-align: center; width: 40px; }
         <span class="card-num">07</span>
         <span class="card-label">Recursion</span>
         <h3>Recursion &amp; Backtracking</h3>
-      <div class="card-progress">0 / 14 solved</div><div class="progress-bar-wrap"><div class="progress-bar-fill" style="width:0%"></div></div></div>
+      <div class="card-progress">5 / 14 solved</div><div class="progress-bar-wrap"><div class="progress-bar-fill" style="width: 35.7143%;"></div></div></div>
       <div class="card" onclick="showTopic('trees-bst')" style="--card-color: #27AE60">
         <span class="card-num">08</span>
         <span class="card-label">Trees</span>
         <h3>Trees &amp; BST</h3>
-      <div class="card-progress">11 / 16 solved</div><div class="progress-bar-wrap"><div class="progress-bar-fill" style="width: 68.75%;"></div></div></div>
+      <div class="card-progress">13 / 16 solved</div><div class="progress-bar-wrap"><div class="progress-bar-fill" style="width: 81.25%;"></div></div></div>
       <div class="card" onclick="showTopic('heaps')" style="--card-color: #27AE60">
         <span class="card-num">09</span>
         <span class="card-label">Trees</span>
@@ -5887,7 +5895,7 @@ Problem mentions...<br>
       <button class="back-btn" onclick="showCategory('dsa')">← Back to DSA Topics</button>
     </div>
   </div>
-  <div class="topic-page" id="page-backtracking">
+  <div class="topic-page active" id="page-backtracking">
     <div class="topic-header">
       <button class="back-btn" onclick="showCategory('dsa')">← Back to DSA Topics</button>
       <span class="topic-number">07 / 18</span>
@@ -5963,31 +5971,61 @@ Problem mentions...<br>
 
 
 <!-- ============================================ -->
-<h2 class="page-break collapsed">Section 3: Pattern Recognition &amp; Intuition Building</h2>
+<h2 class="page-break">Section 3: Pattern Recognition &amp; Intuition Building</h2>
 
 <!-- Pattern 1 -->
-<div class="section-content collapsed"><div class="section-content"><div class="pattern-header">Pattern 1: Subsets / Power Set</div><div class="how-to-arrive">
+<div class="section-content"><div class="section-content"><div class="pattern-header">Pattern 1: Subsets / Power Set</div><div class="how-to-arrive">
     <strong>How to Arrive at This:</strong> "For each element, I have exactly TWO choices: include or exclude. Making this binary choice for n elements gives 2^n subsets. Classic recursion tree where each level = one element's decision."
-</div><blockquote><strong>Analogy:</strong> Packing for a trip with n items. Each item: put in suitcase or leave it. Different combinations = subsets.</blockquote><p><span class="signal-words">all subsets</span> <span class="signal-words">power set</span> <span class="signal-words">all subsequences</span> <span class="signal-words">all combinations of any length</span></p><h4><a href="https://leetcode.com/problems/subsets/" target="_blank">Subsets (LC 78)</a> - Medium</h4><pre><code>class Solution {
+</div><blockquote><strong>Analogy:</strong> Packing for a trip with n items. Each item: put in suitcase or leave it. Different combinations = subsets.</blockquote><p><span class="signal-words">all subsets</span> <span class="signal-words">power set</span> <span class="signal-words">all subsequences</span> <span class="signal-words">all combinations of any length</span></p><h4><a href="https://leetcode.com/problems/subsets/" target="_blank">Subsets (LC 78)</a> - Medium</h4>
+<div class="side-by-side">
+<div><strong>Loop-based (iterate over choices)</strong><pre><code>class Solution {
     public List&lt;List&lt;Integer&gt;&gt; subsets(int[] nums) {
         List&lt;List&lt;Integer&gt;&gt; result = new ArrayList&lt;&gt;();
         backtrack(nums, 0, new ArrayList&lt;&gt;(), result);
         return result;
     }
 
-    private void backtrack(int[] nums, int start, List&lt;Integer&gt; current,
-                           List&lt;List&lt;Integer&gt;&gt; result) {
-        result.add(new ArrayList&lt;&gt;(current));  // Every node is a valid subset
+    private void backtrack(int[] nums, int start,
+            List&lt;Integer&gt; current,
+            List&lt;List&lt;Integer&gt;&gt; result) {
+        result.add(<span class="highlight">new ArrayList&lt;&gt;(current)</span>);
+        // ^ Every node is a valid subset
 
         for (int i = start; i &lt; nums.length; i++) {
-            current.add(nums[i]);                    // CHOOSE
-            backtrack(nums, i + 1, current, result); // EXPLORE (i+1, not start+1!)
-            current.remove(current.size() - 1);      // UNCHOOSE
+            current.add(nums[i]);              // CHOOSE
+            backtrack(nums, i + 1, current, result);
+            current.remove(current.size() - 1);// UNCHOOSE
         }
     }
-}</code></pre><h4><a href="https://leetcode.com/problems/subsets-ii/" target="_blank">Subsets II (LC 90)</a> - Medium (with duplicates)</h4><div class="important-note">
+}</code></pre></div>
+<div><strong>Pick / Not-Pick (binary decision)</strong><pre><code>class Solution {
+    List&lt;List&lt;Integer&gt;&gt; result = new ArrayList&lt;&gt;();
+
+    public List&lt;List&lt;Integer&gt;&gt; subsets(int[] nums) {
+        dfs(nums, 0, new ArrayList&lt;&gt;());
+        return result;
+    }
+
+    public void dfs(int[] nums, int index,
+                    List&lt;Integer&gt; list) {
+        if (index == nums.length) {
+            result.add(new ArrayList&lt;&gt;(list));
+            return;          // Leaf = valid subset
+        }
+
+        list.add(nums[index]);               // 1️⃣ PICK
+        dfs(nums, index + 1, list);
+
+        list.remove(list.size() - 1);        // Backtrack
+
+        dfs(nums, index + 1, list);          // 2️⃣ NOT PICK
+    }
+}</code></pre></div>
+</div><h4><a href="https://leetcode.com/problems/subsets-ii/" target="_blank">Subsets II (LC 90)</a> - Medium (with duplicates)</h4><div class="important-note">
     <strong>Handling duplicates:</strong> (1) Sort the array first. (2) Skip duplicates at same level: <code>if (i &gt; start &amp;&amp; nums[i] == nums[i-1]) continue;</code>
-</div><pre><code>class Solution {
+</div>
+<div class="side-by-side">
+<div><strong>Loop-based (skip dups at same level)</strong><pre><code>class Solution {
     public List&lt;List&lt;Integer&gt;&gt; subsetsWithDup(int[] nums) {
         Arrays.sort(nums);  // MUST sort first!
         List&lt;List&lt;Integer&gt;&gt; result = new ArrayList&lt;&gt;();
@@ -5995,70 +6033,242 @@ Problem mentions...<br>
         return result;
     }
 
-    private void backtrack(int[] nums, int start, List&lt;Integer&gt; current,
-                           List&lt;List&lt;Integer&gt;&gt; result) {
+    private void backtrack(int[] nums, int start,
+            List&lt;Integer&gt; current,
+            List&lt;List&lt;Integer&gt;&gt; result) {
         result.add(new ArrayList&lt;&gt;(current));
         for (int i = start; i &lt; nums.length; i++) {
-            if (i &gt; start &amp;&amp; nums[i] == nums[i - 1]) continue; // Skip dups at same level
+            if (i &gt; start &amp;&amp; nums[i] == nums[i - 1])
+                continue;       // Skip dups at same level
             current.add(nums[i]);
             backtrack(nums, i + 1, current, result);
             current.remove(current.size() - 1);
         }
     }
-}</code></pre><p><strong>Why <code>i &gt; start</code> not <code>i &gt; 0</code>?</strong> We only skip duplicates at the <strong>same recursion level</strong>. Using same value at different depths is fine (e.g., [2,2] is valid).</p><div class="pattern-header">Pattern 2: Combinations (Choose k from n)</div><div class="how-to-arrive">
+}</code></pre>
+<p><strong>Why <code>i &gt; start</code> not <code>i &gt; 0</code>?</strong> We only skip duplicates at the <strong>same recursion level</strong>. Using same value at different depths is fine (e.g., [2,2] is valid).</p></div>
+<div><strong>Pick / Not-Pick (skip dups on NOT PICK)</strong><pre><code>class Solution {
+    List&lt;List&lt;Integer&gt;&gt; result = new ArrayList&lt;&gt;();
+
+    public List&lt;List&lt;Integer&gt;&gt; subsetsWithDup(int[] nums) {
+        Arrays.sort(nums);  // MUST sort first!
+        dfs(nums, 0, new ArrayList&lt;&gt;());
+        return result;
+    }
+
+    public void dfs(int[] nums, int index,
+                    List&lt;Integer&gt; list) {
+        if (index == nums.length) {
+            result.add(new ArrayList&lt;&gt;(list));
+            return;
+        }
+
+        list.add(nums[index]);               // 1️⃣ PICK
+        dfs(nums, index + 1, list);
+
+        list.remove(list.size() - 1);        // Backtrack
+
+        while (index + 1 &lt; nums.length
+               &amp;&amp; nums[index] == nums[index + 1]) {
+            index++;                         // Skip all dups
+        }
+        dfs(nums, index + 1, list);          // 2️⃣ NOT PICK
+    }
+}</code></pre>
+<p><strong>Why skip dups on NOT PICK?</strong> If you skip <code>nums[i]</code> but pick <code>nums[i+1]</code> (same value), it's identical to picking <code>nums[i]</code> and skipping <code>nums[i+1]</code> — duplicate subset!</p></div>
+</div><div class="pattern-header">Pattern 2: Combinations (Choose k from n)</div><div class="how-to-arrive">
     <strong>How to Arrive at This:</strong> "Like subsets but with a length constraint. Stop when <code>current.size() == k</code>. Prune when remaining elements can't fill remaining slots."
-</div><blockquote><strong>Analogy:</strong> You have n people and need exactly k for a project. Go through each person: include or skip. Already picked k? Stop. Not enough people left? Stop early (pruning).</blockquote><p><span class="signal-words">combinations of size k</span> <span class="signal-words">choose k elements</span> <span class="signal-words">combination sum</span> <span class="signal-words">k numbers that sum to target</span></p><h4><a href="https://leetcode.com/problems/combinations/" target="_blank">Combinations (LC 77)</a> - Medium</h4><pre><code>class Solution {
+</div><blockquote><strong>Analogy:</strong> You have n people and need exactly k for a project. Go through each person: include or skip. Already picked k? Stop. Not enough people left? Stop early (pruning).</blockquote><p><span class="signal-words">combinations of size k</span> <span class="signal-words">choose k elements</span> <span class="signal-words">combination sum</span> <span class="signal-words">k numbers that sum to target</span></p><h4><a href="https://leetcode.com/problems/combinations/" target="_blank">Combinations (LC 77)</a> - Medium</h4>
+<div class="side-by-side">
+<div><strong>Loop-based (iterate over choices)</strong><pre><code>class Solution {
     public List&lt;List&lt;Integer&gt;&gt; combine(int n, int k) {
         List&lt;List&lt;Integer&gt;&gt; result = new ArrayList&lt;&gt;();
         backtrack(n, k, 1, new ArrayList&lt;&gt;(), result);
         return result;
     }
 
-    private void backtrack(int n, int k, int start, List&lt;Integer&gt; current,
-                           List&lt;List&lt;Integer&gt;&gt; result) {
+    private void backtrack(int n, int k, int start,
+            List&lt;Integer&gt; current,
+            List&lt;List&lt;Integer&gt;&gt; result) {
         if (current.size() == k) {
             result.add(new ArrayList&lt;&gt;(current));
             return;
         }
-        // Pruning: need (k - current.size()) more, only (n - i + 1) available
-        for (int i = start; i &lt;= n - (k - current.size()) + 1; i++) {
+        // Pruning: need (k-current.size()) more,
+        // only (n-i+1) available
+        for (int i = start;
+             i &lt;= n - (k - current.size()) + 1; i++) {
             current.add(i);
             backtrack(n, k, i + 1, current, result);
             current.remove(current.size() - 1);
         }
     }
-}</code></pre><h4><a href="https://leetcode.com/problems/combination-sum/" target="_blank">Combination Sum (LC 39)</a> - Medium (reuse allowed)</h4><pre><code>class Solution {
-    public List&lt;List&lt;Integer&gt;&gt; combinationSum(int[] candidates, int target) {
-        List&lt;List&lt;Integer&gt;&gt; result = new ArrayList&lt;&gt;();
-        Arrays.sort(candidates);
-        backtrack(candidates, target, 0, new ArrayList&lt;&gt;(), result);
+}</code></pre></div>
+<div><strong>Pick / Not-Pick (binary decision)</strong><pre><code>class Solution {
+    List&lt;List&lt;Integer&gt;&gt; result = new ArrayList&lt;&gt;();
+
+    public List&lt;List&lt;Integer&gt;&gt; combine(int n, int k) {
+        getCombinations(n, k, 1, new ArrayList&lt;&gt;());
         return result;
     }
 
-    private void backtrack(int[] candidates, int remaining, int start,
-                           List&lt;Integer&gt; current, List&lt;List&lt;Integer&gt;&gt; result) {
-        if (remaining == 0) { result.add(new ArrayList&lt;&gt;(current)); return; }
+    void getCombinations(int n, int k, int i,
+                         List&lt;Integer&gt; current) {
+        if (current.size() == k) {
+            result.add(new ArrayList&lt;&gt;(current));
+            return;
+        }
+        if (i &gt; n) return;                  // No more numbers
+        // Pruning: not enough numbers left
+        if (current.size() + (n - i + 1) &lt; k) return;
 
-        for (int i = start; i &lt; candidates.length; i++) {
-            if (candidates[i] &gt; remaining) break;  // Pruning (sorted)
+        current.add(i);                     // 1️⃣ PICK
+        getCombinations(n, k, i + 1, current);
+
+        current.remove(current.size() - 1); // Backtrack
+
+        getCombinations(n, k, i + 1, current); // 2️⃣ NOT PICK
+    }
+}</code></pre></div>
+</div><h4><a href="https://leetcode.com/problems/combination-sum/" target="_blank">Combination Sum (LC 39)</a> - Medium (reuse allowed)</h4>
+<div class="side-by-side">
+<div><strong>Loop-based (iterate over choices)</strong><pre><code>class Solution {
+    public List&lt;List&lt;Integer&gt;&gt; combinationSum(
+            int[] candidates, int target) {
+        List&lt;List&lt;Integer&gt;&gt; result = new ArrayList&lt;&gt;();
+        Arrays.sort(candidates);
+        backtrack(candidates, target, 0,
+            new ArrayList&lt;&gt;(), result);
+        return result;
+    }
+
+    private void backtrack(int[] candidates,
+            int remaining, int start,
+            List&lt;Integer&gt; current,
+            List&lt;List&lt;Integer&gt;&gt; result) {
+        if (remaining == 0) {
+            result.add(new ArrayList&lt;&gt;(current));
+            return;
+        }
+        for (int i = start;
+             i &lt; candidates.length; i++) {
+            if (candidates[i] &gt; remaining) break;
             current.add(candidates[i]);
-            backtrack(candidates, remaining - candidates[i], i, current, result); // i, NOT i+1
+            backtrack(candidates,
+                remaining - candidates[i],
+                i, current, result); // i, NOT i+1
             current.remove(current.size() - 1);
         }
     }
-}</code></pre><h4><a href="https://leetcode.com/problems/combination-sum-ii/" target="_blank">Combination Sum II (LC 40)</a> - Medium (no reuse, skip dups)</h4><pre><code>private void backtrack(int[] candidates, int remaining, int start,
-                       List&lt;Integer&gt; current, List&lt;List&lt;Integer&gt;&gt; result) {
-    if (remaining == 0) { result.add(new ArrayList&lt;&gt;(current)); return; }
+}</code></pre></div>
+<div><strong>Pick / Not-Pick (binary decision)</strong><pre><code>class Solution {
+    List&lt;List&lt;Integer&gt;&gt; result = new ArrayList&lt;&gt;();
 
-    for (int i = start; i &lt; candidates.length; i++) {
+    public List&lt;List&lt;Integer&gt;&gt; combinationSum(
+            int[] candidates, int target) {
+        Arrays.sort(candidates);
+        dfs(candidates, target, 0, 0,
+            new ArrayList&lt;&gt;());
+        return result;
+    }
+
+    void dfs(int[] candidates, int target,
+             int sum, int index,
+             List&lt;Integer&gt; current) {
+        if (sum == target) {
+            result.add(new ArrayList&lt;&gt;(current));
+            return;
+        }
+        if (index &gt;= candidates.length
+            || sum &gt; target) return;
+        if (candidates[index] &gt; target - sum)
+            return;                    // Pruning
+
+        // 1️⃣ PICK (can reuse → same index)
+        current.add(candidates[index]);
+        dfs(candidates, target,
+            sum + candidates[index],
+            index, current);           // index, NOT index+1
+
+        // Backtrack
+        current.remove(current.size() - 1);
+
+        // 2️⃣ NOT PICK (move to next)
+        dfs(candidates, target, sum,
+            index + 1, current);
+    }
+}</code></pre></div>
+</div><h4><a href="https://leetcode.com/problems/combination-sum-ii/" target="_blank">Combination Sum II (LC 40)</a> - Medium (no reuse, skip dups)</h4>
+<div class="side-by-side">
+<div><strong>Loop-based (skip dups at same level)</strong><pre><code>private void backtrack(int[] candidates,
+        int remaining, int start,
+        List&lt;Integer&gt; current,
+        List&lt;List&lt;Integer&gt;&gt; result) {
+    if (remaining == 0) {
+        result.add(new ArrayList&lt;&gt;(current));
+        return;
+    }
+
+    for (int i = start;
+         i &lt; candidates.length; i++) {
         if (candidates[i] &gt; remaining) break;
-        if (i &gt; start &amp;&amp; candidates[i] == candidates[i - 1]) continue; // Skip dups
+        if (i &gt; start
+            &amp;&amp; candidates[i] == candidates[i - 1])
+            continue;          // Skip dups
 
         current.add(candidates[i]);
-        backtrack(candidates, remaining - candidates[i], i + 1, current, result); // i+1
+        backtrack(candidates,
+            remaining - candidates[i],
+            i + 1, current, result);   // i+1
         current.remove(current.size() - 1);
     }
-}</code></pre><h4>Combination Variants Summary</h4><table>
+}</code></pre></div>
+<div><strong>Pick / Not-Pick (skip dups on NOT PICK)</strong><pre><code>class Solution {
+    List&lt;List&lt;Integer&gt;&gt; result = new ArrayList&lt;&gt;();
+
+    public List&lt;List&lt;Integer&gt;&gt; combinationSum2(
+            int[] candidates, int target) {
+        Arrays.sort(candidates);
+        dfs(candidates, target, 0, 0,
+            new ArrayList&lt;&gt;());
+        return result;
+    }
+
+    void dfs(int[] candidates, int target,
+             int sum, int index,
+             List&lt;Integer&gt; current) {
+        if (sum == target) {
+            result.add(new ArrayList&lt;&gt;(current));
+            return;
+        }
+        if (index &gt;= candidates.length
+            || sum &gt; target) return;
+        if (candidates[index] &gt; target) return;
+
+        // 1️⃣ PICK
+        current.add(candidates[index]);
+        dfs(candidates, target,
+            sum + candidates[index],
+            index + 1, current);
+
+        // Backtrack
+        current.remove(current.size() - 1);
+
+        // 2️⃣ NOT PICK — skip ALL copies
+        while (index + 1 &lt; candidates.length
+            &amp;&amp; candidates[index]
+               == candidates[index + 1]) {
+            index++;
+        }
+        dfs(candidates, target, sum,
+            index + 1, current);
+    }
+}</code></pre></div>
+</div>
+<div class="important-note"><strong>Why skip on NOT PICK?</strong> Rule: <em>"If you don't want a value, you don't want ANY copy of it at this position."</em><br>
+For <code>[1,1,2], target=2</code>: If you skip the first 1 but pick the second 1, you get <code>[1]</code> — identical to picking the first 1 and skipping the second. The array doesn't care <em>which</em> 1 you picked. So NOT PICK must skip all copies.<br>
+PICK branch is unaffected — picking the first 1 still lets the second 1 decide for itself, so <code>[1,1]</code> is still reachable via PICK→PICK.<br>
+<strong>⚠️ Don't use <code>result.contains(current)</code></strong> to handle dups — it's O(k × result.size()) per check and causes TLE.</div><h4>Combination Variants Summary</h4><table>
     <tbody><tr><th>Problem</th><th>Can Reuse?</th><th>Has Duplicates?</th><th>Next index</th><th>Extra step</th></tr>
     <tr><td>Combination Sum (39)</td><td>Yes</td><td>No</td><td><code>i</code></td><td>—</td></tr>
     <tr><td>Combination Sum II (40)</td><td>No</td><td>Yes</td><td><code>i + 1</code></td><td>Sort + skip dups</td></tr>
@@ -6565,15 +6775,15 @@ DFS on Trees/Graphs &nbsp;&nbsp;&nbsp;&nbsp; Constraint Satisfaction
 
 
 <!-- ============================================ -->
-<h2 class="page-break collapsed">Section 9: Must-Solve Problems</h2>
+<h2 class="page-break">Section 9: Must-Solve Problems</h2>
 
-<div class="section-content collapsed"><div class="section-content"><table>
+<div class="section-content"><div class="section-content"><table>
     <tbody><tr><th class="cb-col">✔</th><th>#</th><th>Problem</th><th>Diff</th><th>Pattern</th><th>Hint</th></tr>
-    <tr><td class="cb-col"><input type="checkbox" class="solved-cb" data-key="backtracking_1"></td><td>1</td><td><a href="https://leetcode.com/problems/subsets/" target="_blank">Subsets (LC 78)</a></td><td>Med</td><td>P1</td><td>Collect at every node</td></tr>
-    <tr><td class="cb-col"><input type="checkbox" class="solved-cb" data-key="backtracking_2"></td><td>2</td><td><a href="https://leetcode.com/problems/subsets-ii/" target="_blank">Subsets II (LC 90)</a></td><td>Med</td><td>P1</td><td>Sort + skip dups at same level</td></tr>
-    <tr><td class="cb-col"><input type="checkbox" class="solved-cb" data-key="backtracking_3"></td><td>3</td><td><a href="https://leetcode.com/problems/combinations/" target="_blank">Combinations (LC 77)</a></td><td>Med</td><td>P2</td><td>Subsets with size constraint + prune</td></tr>
-    <tr><td class="cb-col"><input type="checkbox" class="solved-cb" data-key="backtracking_4"></td><td>4</td><td><a href="https://leetcode.com/problems/combination-sum/" target="_blank">Combination Sum (LC 39)</a></td><td>Med</td><td>P2</td><td>Pass <code>i</code> not <code>i+1</code> (reuse)</td></tr>
-    <tr><td class="cb-col"><input type="checkbox" class="solved-cb" data-key="backtracking_5"></td><td>5</td><td><a href="https://leetcode.com/problems/combination-sum-ii/" target="_blank">Combination Sum II (LC 40)</a></td><td>Med</td><td>P2</td><td>Pass <code>i+1</code>, sort + skip dups</td></tr>
+    <tr class="solved"><td class="cb-col"><input type="checkbox" class="solved-cb" data-key="backtracking_1"></td><td>1</td><td><a href="https://leetcode.com/problems/subsets/" target="_blank">Subsets (LC 78)</a></td><td>Med</td><td>P1</td><td>Collect at every node</td></tr>
+    <tr class="solved"><td class="cb-col"><input type="checkbox" class="solved-cb" data-key="backtracking_2"></td><td>2</td><td><a href="https://leetcode.com/problems/subsets-ii/" target="_blank">Subsets II (LC 90)</a></td><td>Med</td><td>P1</td><td>Sort + skip dups at same level</td></tr>
+    <tr class="solved"><td class="cb-col"><input type="checkbox" class="solved-cb" data-key="backtracking_3"></td><td>3</td><td><a href="https://leetcode.com/problems/combinations/" target="_blank">Combinations (LC 77)</a></td><td>Med</td><td>P2</td><td>Subsets with size constraint + prune</td></tr>
+    <tr class="solved"><td class="cb-col"><input type="checkbox" class="solved-cb" data-key="backtracking_4"></td><td>4</td><td><a href="https://leetcode.com/problems/combination-sum/" target="_blank">Combination Sum (LC 39)</a></td><td>Med</td><td>P2</td><td>Pass <code>i</code> not <code>i+1</code> (reuse)</td></tr>
+    <tr class="solved"><td class="cb-col"><input type="checkbox" class="solved-cb" data-key="backtracking_5"></td><td>5</td><td><a href="https://leetcode.com/problems/combination-sum-ii/" target="_blank">Combination Sum II (LC 40)</a></td><td>Med</td><td>P2</td><td>Pass <code>i+1</code>, sort + skip dups</td></tr>
     <tr><td class="cb-col"><input type="checkbox" class="solved-cb" data-key="backtracking_6"></td><td>6</td><td><a href="https://leetcode.com/problems/permutations/" target="_blank">Permutations (LC 46)</a></td><td>Med</td><td>P3</td><td><code>used[]</code> array, loop from 0</td></tr>
     <tr><td class="cb-col"><input type="checkbox" class="solved-cb" data-key="backtracking_7"></td><td>7</td><td><a href="https://leetcode.com/problems/permutations-ii/" target="_blank">Permutations II (LC 47)</a></td><td>Med</td><td>P3</td><td>Sort + <code>!used[i-1]</code> skip</td></tr>
     <tr><td class="cb-col"><input type="checkbox" class="solved-cb" data-key="backtracking_8"></td><td>8</td><td><a href="https://leetcode.com/problems/word-search/" target="_blank">Word Search (LC 79)</a></td><td>Med</td><td>P4</td><td>Mark '#', 4 dirs, restore</td></tr>
@@ -6654,7 +6864,7 @@ PERMUTATIONS: &nbsp;loop i = 0..n &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;used[] &nbsp;&nb
       <button class="back-btn" onclick="showCategory('dsa')">← Back to DSA Topics</button>
     </div>
   </div>
-  <div class="topic-page active" id="page-trees-bst">
+  <div class="topic-page" id="page-trees-bst">
     <div class="topic-header">
       <button class="back-btn" onclick="showCategory('dsa')">← Back to DSA Topics</button>
       <span class="topic-number">08 / 18</span>
@@ -6936,9 +7146,17 @@ For duplicate subtree detection (<a href="https://leetcode.com/problems/find-dup
     <strong>How to Arrive at This:</strong><br>
     <strong>Root-to-leaf paths:</strong> Top-down DFS, pass accumulated state down.<br>
     <strong>Any-to-any paths:</strong> At each node, compute best path THROUGH this node (both children) → update global max. But RETURN only single-branch gain to parent (can't fork).
-</div><blockquote><strong>Analogy:</strong> At a hiking junction: "best VIEW from here" considers BOTH trails (global answer). "Best trail FROM here to the mountaintop (parent)" can only pick ONE trail — you can't walk both at once.</blockquote><div class="important-note">
+</div><blockquote><strong>Analogy:</strong> At a hiking junction: "best VIEW from here" considers BOTH trails (global answer). "Best trail FROM here to the mountaintop (parent)" can only pick ONE trail — you can't walk both at once.</blockquote>
+<div class="important-note">
     <strong>The key insight:</strong> What you RETURN to parent (single branch) is DIFFERENT from what might be the ANSWER (both branches). Use a global variable for the answer.
-</div><p><span class="signal-words">diameter</span> <span class="signal-words">max path sum</span> <span class="signal-words">path sum</span> <span class="signal-words">all paths</span> <span class="signal-words">longest path</span></p><h4><a href="https://leetcode.com/problems/diameter-of-binary-tree/" target="_blank">Diameter of Binary Tree (LC 543)</a> - Easy</h4><pre><code>private int maxDiameter = 0;
+</div><p><span class="signal-words">diameter</span> <span class="signal-words">max path sum</span> <span class="signal-words">path sum</span> <span class="signal-words">all paths</span> <span class="signal-words">longest path</span></p><h4><a href="https://leetcode.com/problems/diameter-of-binary-tree/" target="_blank">Diameter of Binary Tree (LC 543)</a> - Easy</h4>
+<p>The diameter of a binary tree is the <b>length of the longest path between any two nodes.</b><br>
+The path may or may not pass through the root
+Length = number of edges (not nodes)</p>
+<div class="important-note">
+	<strong>Key Insight:</strong> At any node: The longest path through that node = height(left subtree) + height(right subtree)<br>
+</div>
+<pre><code>private int maxDiameter = 0;
 
 public int diameterOfBinaryTree(TreeNode root) {
     height(root);
@@ -7146,9 +7364,11 @@ private int dfs(TreeNode node) {
 <!-- ============================================ -->
 <h2 class="collapsed">Section 6: Edge Cases &amp; Common Mistakes</h2>
 
-<div class="section-content collapsed"><div class="section-content"><div class="edge-cases">
+<div class="section-content collapsed"><div class="section-content">
+<div class="edge-cases">
     <strong>Edge Cases:</strong> Null root, single node, skewed tree (linked list), BST with duplicates, negative values in path sums, integer overflow (use <code>long</code>).
-</div><div class="mistake-box">
+</div>
+<div class="mistake-box">
     <strong>Bug: BST validation checking only parent-child</strong>
 <pre><code>// WRONG: only checks immediate children
 if (node.left != null &amp;&amp; node.left.val &gt;= node.val) return false;
@@ -7170,7 +7390,13 @@ for (int i = 0; i &lt; queue.size(); i++) { ... }
 // CORRECT: capture first
 int size = queue.size();
 for (int i = 0; i &lt; size; i++) { ... }</code></pre>
-</div></div></div>
+</div>
+<div class="mistake-box">
+    <strong>Bug: Diameter of a binary tree<br></strong>
+	Counting nodes instead of edges<br>
+	Assuming diameter always passes through root
+</div>
+</div></div>
 
 
 
@@ -7202,9 +7428,9 @@ for (int i = 0; i &lt; size; i++) { ... }</code></pre>
 </tbody></table></div></div>
 
 <!-- ============================================ -->
-<h2 class="page-break">Section 9: Must-Solve Problems</h2>
+<h2 class="page-break collapsed">Section 9: Must-Solve Problems</h2>
 
-<div class="section-content"><div class="section-content"><h3>Tier 1: Foundation</h3><table>
+<div class="section-content collapsed"><div class="section-content"><h3>Tier 1: Foundation</h3><table>
     <tbody><tr><th class="cb-col">✔</th><th>#</th><th>Problem</th><th>Diff</th><th>Pattern</th><th>Key Idea</th></tr>
     <tr class="solved"><td class="cb-col"><input type="checkbox" class="solved-cb" data-key="trees-bst_1"></td><td>1</td><td><a href="https://leetcode.com/problems/maximum-depth-of-binary-tree/" target="_blank">Max Depth (LC 104)</a></td><td>Easy</td><td>P1</td><td><code>1 + max(left, right)</code></td></tr>
     <tr class="solved"><td class="cb-col"><input type="checkbox" class="solved-cb" data-key="trees-bst_2"></td><td>2</td><td><a href="https://leetcode.com/problems/same-tree/" target="_blank">Same Tree (LC 100)</a></td><td>Easy</td><td>P1</td><td>Both null=true, values equal + recurse</td></tr>
@@ -7222,9 +7448,9 @@ for (int i = 0; i &lt; size; i++) { ... }</code></pre>
 </tbody></table><h3>Tier 3: Advanced SDE 2</h3><table>
     <tbody><tr><th class="cb-col">✔</th><th>#</th><th>Problem</th><th>Diff</th><th>Pattern</th><th>Key Idea</th></tr>
     <tr><td class="cb-col"><input type="checkbox" class="solved-cb" data-key="trees-bst_12"></td><td>12</td><td><a href="https://leetcode.com/problems/construct-binary-tree-from-preorder-and-inorder-traversal/" target="_blank">Build from Pre+In (LC 105)</a></td><td>Med</td><td>P5</td><td>Preorder=root, inorder splits L/R</td></tr>
-    <tr><td class="cb-col"><input type="checkbox" class="solved-cb" data-key="trees-bst_13"></td><td>13</td><td><a href="https://leetcode.com/problems/diameter-of-binary-tree/" target="_blank">Diameter (LC 543)</a></td><td>Easy</td><td>P6/7</td><td>Global: left+right. Return: 1+max</td></tr>
+    <tr class="solved"><td class="cb-col"><input type="checkbox" class="solved-cb" data-key="trees-bst_13"></td><td>13</td><td><a href="https://leetcode.com/problems/diameter-of-binary-tree/" target="_blank">Diameter (LC 543)</a></td><td>Easy</td><td>P6/7</td><td>Global: left+right. Return: 1+max</td></tr>
     <tr><td class="cb-col"><input type="checkbox" class="solved-cb" data-key="trees-bst_14"></td><td>14</td><td><a href="https://leetcode.com/problems/path-sum-ii/" target="_blank">Path Sum II (LC 113)</a></td><td>Med</td><td>P6</td><td>Top-down + backtrack path list</td></tr>
-    <tr><td class="cb-col"><input type="checkbox" class="solved-cb" data-key="trees-bst_15"></td><td>15</td><td><a href="https://leetcode.com/problems/binary-tree-maximum-path-sum/" target="_blank">Max Path Sum (LC 124)</a></td><td>Hard</td><td>P6/7</td><td>Global: val+leftGain+rightGain</td></tr>
+    <tr class="solved"><td class="cb-col"><input type="checkbox" class="solved-cb" data-key="trees-bst_15"></td><td>15</td><td><a href="https://leetcode.com/problems/binary-tree-maximum-path-sum/" target="_blank">Max Path Sum (LC 124)</a></td><td>Hard</td><td>P6/7</td><td>Global: val+leftGain+rightGain</td></tr>
     <tr><td class="cb-col"><input type="checkbox" class="solved-cb" data-key="trees-bst_16"></td><td>16</td><td><a href="https://leetcode.com/problems/serialize-and-deserialize-binary-tree/" target="_blank">Serialize/Deserialize (LC 297)</a></td><td>Hard</td><td>P5</td><td>Preorder + null markers + queue</td></tr>
 </tbody></table><h3>Suggested Order</h3><p><strong>Week 1:</strong> Problems 1-5 (recursive confidence)<br>
 <strong>Week 2:</strong> Problems 6-9 (BFS + BST)<br>
