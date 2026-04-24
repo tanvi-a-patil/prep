@@ -16666,18 +16666,21 @@ function markUnsaved() {
 
 var fileHandle = null; // File System Access API handle (persists within session)
 
-function buildSaveHtml() {
-  var json = JSON.stringify(progressData, null, 2);
-  var html = document.documentElement.outerHTML;
-  var regex = /(<script id="dsa-progress-data" type="application\/json">)([\s\S]*?)(<\/script>)/;
-  html = html.replace(regex, '$1' + json + '$3');
+var progressRegex = /(<script id="dsa-progress-data" type="application\/json">)([\s\S]*?)(<\/script>)/;
 
+function patchProgressJson(html) {
+  var json = JSON.stringify(progressData, null, 2);
+  return html.replace(progressRegex, '$1' + json + '$3');
+}
+
+function buildSaveHtmlFromDom() {
+  var html = document.documentElement.outerHTML;
+  html = patchProgressJson(html);
   // Remove runtime artifacts — reset to clean super-home state
   html = html.replace(/class="super-home"]*"/g, 'class="super-home"');
   html = html.replace(/class="category-page"]*"/g, 'class="category-page"');
   html = html.replace(/class="topic-page"]*"/g, 'class="topic-page"');
   html = html.replace(/id="save-btn"[^>]*class="[^"]*"/g, 'id="save-btn" onclick="saveFile()" class=""');
-
   return '<!DOCTYPE html>\n<html lang="en">' + html.substring(html.indexOf('<head>'));
 }
 
@@ -16690,8 +16693,6 @@ function showSaved() {
 }
 
 async function saveFile() {
-  var content = buildSaveHtml();
-
   // Try File System Access API (Chrome/Edge) — saves in-place, no download
   if (window.showSaveFilePicker) {
     try {
@@ -16701,6 +16702,22 @@ async function saveFile() {
           types: [{ description: 'HTML File', accept: { 'text/html': ['.html'] } }]
         });
       }
+
+      // Read current file from disk, patch only the progress JSON.
+      // This preserves any external edits (e.g. code changes) instead of
+      // overwriting with the browser's stale DOM serialization.
+      var file = await fileHandle.getFile();
+      var diskHtml = await file.text();
+
+      // Safety: only use disk content if it looks valid
+      var content;
+      if (diskHtml.length > 0 && progressRegex.test(diskHtml)) {
+        content = patchProgressJson(diskHtml);
+      } else {
+        // Disk read was empty or missing marker — fall back to DOM
+        content = buildSaveHtmlFromDom();
+      }
+
       var writable = await fileHandle.createWritable();
       await writable.write(content);
       await writable.close();
@@ -16714,6 +16731,7 @@ async function saveFile() {
   }
 
   // Fallback: download method (Firefox/Safari or if API fails)
+  var content = buildSaveHtmlFromDom();
   var blob = new Blob([content], { type: 'text/html' });
   var a = document.createElement('a');
   a.href = URL.createObjectURL(blob);
