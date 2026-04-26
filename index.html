@@ -59,7 +59,14 @@
   "backtracking_2": true,
   "backtracking_3": true,
   "backtracking_4": true,
-  "backtracking_5": true
+  "backtracking_5": true,
+  "backtracking_6": true,
+  "backtracking_7": true,
+  "backtracking_8": true,
+  "backtracking_9": true,
+  "backtracking_10": true,
+  "backtracking_11": true,
+  "backtracking_13": true
 }</script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SDE 2 Interview Prep — DSA, LLD, HLD</title>
@@ -639,7 +646,7 @@ th.cb-col, td.cb-col { text-align: center; width: 40px; }
         <span class="card-num">07</span>
         <span class="card-label">Recursion</span>
         <h3>Recursion &amp; Backtracking</h3>
-      <div class="card-progress">5 / 14 solved</div><div class="progress-bar-wrap"><div class="progress-bar-fill" style="width: 35.7143%;"></div></div></div>
+      <div class="card-progress">12 / 14 solved</div><div class="progress-bar-wrap"><div class="progress-bar-fill" style="width: 85.7143%;"></div></div></div>
       <div class="card" onclick="showTopic('trees-bst')" style="--card-color: #27AE60">
         <span class="card-num">08</span>
         <span class="card-label">Trees</span>
@@ -5971,10 +5978,10 @@ Problem mentions...<br>
 
 
 <!-- ============================================ -->
-<h2 class="page-break">Section 3: Pattern Recognition &amp; Intuition Building</h2>
+<h2 class="page-break collapsed">Section 3: Pattern Recognition &amp; Intuition Building</h2>
 
 <!-- Pattern 1 -->
-<div class="section-content"><div class="section-content"><div class="pattern-header">Pattern 1: Subsets / Power Set</div><div class="how-to-arrive">
+<div class="section-content collapsed"><div class="section-content"><div class="pattern-header">Pattern 1: Subsets / Power Set</div><div class="how-to-arrive">
     <strong>How to Arrive at This:</strong> "For each element, I have exactly TWO choices: include or exclude. Making this binary choice for n elements gives 2^n subsets. Classic recursion tree where each level = one element's decision."
 </div><blockquote><strong>Analogy:</strong> Packing for a trip with n items. Each item: put in suitcase or leave it. Different combinations = subsets.</blockquote><p><span class="signal-words">all subsets</span> <span class="signal-words">power set</span> <span class="signal-words">all subsequences</span> <span class="signal-words">all combinations of any length</span></p><h4><a href="https://leetcode.com/problems/subsets/" target="_blank">Subsets (LC 78)</a> - Medium</h4>
 <div class="side-by-side">
@@ -6275,7 +6282,26 @@ PICK branch is unaffected — picking the first 1 still lets the second 1 decide
     <tr><td>Combinations (77)</td><td>No</td><td>No</td><td><code>i + 1</code></td><td>—</td></tr>
 </tbody></table><div class="pattern-header page-break">Pattern 3: Permutations</div><div class="how-to-arrive">
     <strong>How to Arrive at This:</strong> "Permutations are about <strong>ordering</strong>. Position matters. For position 1: pick any of n. For position 2: any of remaining (n-1). This gives n! permutations. Use a <code>boolean[] used</code> array."
-</div><blockquote><strong>Analogy:</strong> n books and n slots on a shelf. For first slot, pick any book. For second, pick from remaining. Each different arrangement = permutation.</blockquote><p><span class="signal-words">all permutations</span> <span class="signal-words">all arrangements</span> <span class="signal-words">all orderings</span> <span class="signal-words">rearrange</span></p><h4><a href="https://leetcode.com/problems/permutations/" target="_blank">Permutations (LC 46)</a> - Medium</h4><pre><code>class Solution {
+</div><blockquote><strong>Analogy:</strong> n books and n slots on a shelf. For first slot, pick any book. For second, pick from remaining. Each different arrangement = permutation.</blockquote><p><span class="signal-words">all permutations</span> <span class="signal-words">all arrangements</span> <span class="signal-words">all orderings</span> <span class="signal-words">rearrange</span></p>
+<details style="background: var(--blue-light); border-left: 4px solid var(--blue); border-radius: 0 8px 8px 0; margin: 15px 0; padding: 15px 20px;">
+<summary style="cursor: pointer; font-weight: bold; color: var(--blue); font-size: 1.05em;">Why no Pick/Not-Pick for Permutations?</summary>
+<p><strong>Combinations:</strong> "Should I include this element?" — binary yes/no per element. Two branches:</p>
+<pre><code>PICK element at index → recurse(index + 1)
+NOT PICK             → recurse(index + 1)</code></pre>
+<p><strong>Permutations:</strong> "Which element goes in this position?" — try <strong>every unused element</strong> for the current position. The loop already covers all choices:</p>
+<pre><code>for each element i:
+    if not used → place it here, recurse, undo</code></pre>
+<p>The loop with <code>used[]</code> replaces the two branches. When <code>i=0</code> is used and <code>i=1</code> is skipped by <code>used[i]</code>, that's effectively "not picking" 0 for this position and "picking" 1 instead.</p>
+<p><strong>Why Pick/Not-Pick doesn't work:</strong> In combinations, skipping element 2 means it's gone forever. In permutations, skipping element 2 for position 1 doesn't mean you skip it — you might place it at position 2 or 3. Every element <strong>must</strong> appear exactly once, just in different positions.</p>
+<table>
+<tbody><tr><th></th><th>Combinations</th><th>Permutations</th></tr>
+<tr><td><strong>Question</strong></td><td>Include or not?</td><td>Which goes here?</td></tr>
+<tr><td><strong>Order matters?</strong></td><td>No</td><td>Yes</td></tr>
+<tr><td><strong>Approach</strong></td><td>Pick/Not-Pick OR loop from <code>start</code></td><td>Loop from <code>0</code> with <code>used[]</code></td></tr>
+<tr><td><strong>Each element</strong></td><td>Can be skipped entirely</td><td>Must appear somewhere</td></tr>
+</tbody></table>
+</details>
+<h4><a href="https://leetcode.com/problems/permutations/" target="_blank">Permutations (LC 46)</a> - Medium</h4><pre><code>class Solution {
     public List&lt;List&lt;Integer&gt;&gt; permute(int[] nums) {
         List&lt;List&lt;Integer&gt;&gt; result = new ArrayList&lt;&gt;();
         boolean[] used = new boolean[nums.length];
@@ -6298,7 +6324,35 @@ PICK branch is unaffected — picking the first 1 still lets the second 1 decide
             used[i] = false;
         }
     }
-}</code></pre><h4><a href="https://leetcode.com/problems/permutations-ii/" target="_blank">Permutations II (LC 47)</a> - Medium (with duplicates)</h4><pre><code>private void backtrack(int[] nums, boolean[] used, List&lt;Integer&gt; current,
+}</code></pre><h4><a href="https://leetcode.com/problems/permutations-ii/" target="_blank">Permutations II (LC 47)</a> - Medium (with duplicates)</h4>
+<details style="background: var(--blue-light); border-left: 4px solid var(--blue); border-radius: 0 8px 8px 0; margin: 15px 0; padding: 15px 20px;">
+<summary style="cursor: pointer; font-weight: bold; color: var(--blue); font-size: 1.05em;">Why <code>!used[i-1]</code> skips duplicates</summary>
+<p>The line: <code>if (i &gt; 0 &amp;&amp; nums[i] == nums[i-1] &amp;&amp; !used[i-1]) continue;</code></p>
+<p><strong>What each part means:</strong></p>
+<ul>
+<li><code>nums[i] == nums[i-1]</code> — current element is a duplicate of the previous</li>
+<li><code>!used[i-1]</code> — the previous duplicate is <strong>not currently placed</strong> (was backtracked or skipped)</li>
+</ul>
+<p><strong>The rule:</strong> Among a group of duplicates, always pick them <strong>left to right in order</strong>. If the one before you isn't placed yet, you can't be placed either.</p>
+<p><strong>Trace with <code>[1₁, 1₂, 2]</code>:</strong></p>
+<pre><code>Position 0: i=0 → try 1₁, explore, backtrack (used[0]=false)
+            i=1 → 1₂ same value, used[0]=false → SKIP!
+                   1₁ already had its turn at this position
+
+Position 0: 1₁ (used[0]=true)
+  Position 1: 1₂ → OK! used[0]=true means 1₁ is at
+              a different position, not backtracked</code></pre>
+<p><strong>Why we can firmly say it had its turn:</strong> Array is sorted + loop goes left to right (<code>i=0,1,2...</code>). So <code>nums[i-1]</code> is always encountered <strong>before</strong> <code>nums[i]</code> in the same loop. If <code>nums[i-1]</code> is not used, it was either:</p>
+<ol>
+<li>Tried at this position and backtracked, OR</li>
+<li>Itself skipped by the same rule (an earlier duplicate was tried)</li>
+</ol>
+<p>Either way, trying <code>nums[i]</code> (same value) here would be redundant.</p>
+<pre><code>✅ 1₁ → 1₂ → 1₃    (left to right order)
+❌ 1₂ → 1₁ → 1₃    (out of order — duplicate)
+❌ 1₃ → 1₁ → 1₂    (out of order — duplicate)</code></pre>
+</details>
+<pre><code>private void backtrack(int[] nums, boolean[] used, List&lt;Integer&gt; current,
                        List&lt;List&lt;Integer&gt;&gt; result) {
     if (current.size() == nums.length) {
         result.add(new ArrayList&lt;&gt;(current));
@@ -6348,7 +6402,34 @@ PICK branch is unaffected — picking the first 1 still lets the second 1 decide
         board[r][c] = original;      // UNCHOOSE: unmark
         return false;
     }
-}</code></pre><h4><a href="https://leetcode.com/problems/n-queens/" target="_blank">N-Queens (LC 51)</a> - Hard</h4><pre><code>class Solution {
+}</code></pre><h4><a href="https://leetcode.com/problems/n-queens/" target="_blank">N-Queens (LC 51)</a> - Hard</h4>
+<div class="mistake-box">
+<strong>Common mistakes to avoid:</strong>
+<ol>
+<li><strong>Don't treat it as grid DFS.</strong> This is NOT about moving up/down/left/right from a cell. It's about placing one queen <strong>per row</strong>. Go row by row — <code>backtrack(board, row + 1)</code>. No direction array needed.</li>
+<li><strong>Don't loop over all cells as starting points.</strong> A double for-loop trying every cell creates massive duplication. Instead, recurse row by row and only loop over <strong>columns</strong> within each row.</li>
+<li><strong>Don't forget diagonal checks.</strong> Queens attack on rows, columns, AND diagonals. Check column + upper-left diagonal + upper-right diagonal. Only check <strong>above</strong> current row since no queens are placed below yet.</li>
+</ol>
+</div>
+<details style="background: var(--blue-light); border-left: 4px solid var(--blue); border-radius: 0 8px 8px 0; margin: 15px 0; padding: 15px 20px;">
+<summary style="cursor: pointer; font-weight: bold; color: var(--blue); font-size: 1.05em;">How recursion inside the for-loop works (N-Queens trace)</summary>
+<p><code>findQueen(board, row+1)</code> doesn't skip remaining columns — it <strong>goes deeper</strong> (explores what happens if we place the queen here). When that recursive call finishes and backtracks, the loop continues to <code>j+1</code> and tries the next column.</p>
+<pre><code>findQueen(board, row=0):
+    j=0: valid? place Q at (0,0), call findQueen(row=1)
+         findQueen returns, UNCHOOSE → board[0][0] = '.'
+    j=1: valid? place Q at (0,1), call findQueen(row=1)
+         findQueen returns, UNCHOOSE → board[0][1] = '.'
+    j=2: valid? place Q at (0,2), call findQueen(row=1)
+         ...</code></pre>
+<p>This is the standard <strong>CHOOSE-EXPLORE-UNCHOOSE</strong> pattern:</p>
+<pre><code>for (int j = 0; j &lt; board.length; j++) {
+    if (!isValidQueenPlacement(board, row, j)) continue;
+    board[row][j] = 'Q';           // CHOOSE column j for this row
+    findQueen(board, row + 1);     // EXPLORE: what happens with this choice?
+    board[row][j] = '.';           // UNCHOOSE: try next column
+}</code></pre>
+</details>
+<pre><code>class Solution {
     public List&lt;List&lt;String&gt;&gt; solveNQueens(int n) {
         List&lt;List&lt;String&gt;&gt; result = new ArrayList&lt;&gt;();
         char[][] board = new char[n][n];
@@ -6382,7 +6463,26 @@ PICK branch is unaffected — picking the first 1 still lets the second 1 decide
             if (board[i][j] == 'Q') return false;
         return true;
     }
-}</code></pre><h4><a href="https://leetcode.com/problems/sudoku-solver/" target="_blank">Sudoku Solver (LC 37)</a> - Hard</h4><pre><code>class Solution {
+}</code></pre><h4><a href="https://leetcode.com/problems/sudoku-solver/" target="_blank">Sudoku Solver (LC 37)</a> - Hard</h4>
+<details style="background: var(--blue-light); border-left: 4px solid var(--blue); border-radius: 0 8px 8px 0; margin: 15px 0; padding: 15px 20px;">
+<summary style="cursor: pointer; font-weight: bold; color: var(--blue); font-size: 1.05em;">How to decide the approach for any backtracking problem</summary>
+<p>Ask these questions in order:</p>
+<table>
+<tbody><tr><th>Question</th><th>Subsets/Combos</th><th>Permutations</th><th>N-Queens</th><th>Sudoku</th></tr>
+<tr><td><strong>What am I placing?</strong></td><td>Elements (include/exclude)</td><td>All elements in order</td><td>Queens, one per row</td><td>Digits 1-9</td></tr>
+<tr><td><strong>Where?</strong></td><td>Next index</td><td>Next position</td><td>Next row, try each col</td><td>Next empty cell</td></tr>
+<tr><td><strong>Constraints?</strong></td><td>Size k, target sum, etc.</td><td>Each used once</td><td>Col + diagonals</td><td>Row + col + 3x3 box</td></tr>
+<tr><td><strong>When done?</strong></td><td>Collected all/enough</td><td>All elements placed</td><td>All rows filled</td><td>No empty cells left</td></tr>
+<tr><td><strong>One or all solutions?</strong></td><td>All → <code>void</code></td><td>All → <code>void</code></td><td>All → <code>void</code></td><td>One → <code>return boolean</code></td></tr>
+</tbody></table>
+<p><strong>Why Sudoku returns <code>boolean</code>:</strong> There's exactly one solution. Once found, stop everything:</p>
+<pre><code>if (solve(board)) return true;   // Found solution → stop immediately
+board[i][j] = '.';               // Didn't work → undo, try next digit
+...
+return false;  // No digit 1-9 worked → dead end, tell caller to backtrack</code></pre>
+<p>The <code>return false</code> after the digit loop is the key line — it means "I tried all 9 digits for this cell, none worked, this path is a dead end."</p>
+</details>
+<pre><code>class Solution {
     public void solveSudoku(char[][] board) { solve(board); }
 
     private boolean solve(char[][] board) {
@@ -6410,7 +6510,44 @@ PICK branch is unaffected — picking the first 1 still lets the second 1 decide
         }
         return true;
     }
-}</code></pre><div class="pattern-header page-break">Pattern 5: Partition / Split String</div><div class="how-to-arrive">
+}</code></pre>
+<details style="background: var(--blue-light); border-left: 4px solid var(--blue); border-radius: 0 8px 8px 0; margin: 15px 0; padding: 15px 20px;">
+<summary style="cursor: pointer; font-weight: bold; color: var(--blue); font-size: 1.05em;">How the 3x3 box check works: <code>board[3*(row/3)+i/3][3*(col/3)+i%3]</code></summary>
+<p><strong>Step 1: Find top-left corner of the box</strong> (integer division truncates)</p>
+<pre><code>int boxRow = 3 * (row / 3);
+int boxCol = 3 * (col / 3);
+
+Cell (4,7) → box starts at (3,6)
+Cell (8,2) → box starts at (6,0)</code></pre>
+<p><strong>Step 2: Loop i = 0 to 8, map to 3x3 offsets</strong></p>
+<pre><code>i:    0  1  2  3  4  5  6  7  8
+i/3:  0  0  0  1  1  1  2  2  2   ← row offset
+i%3:  0  1  2  0  1  2  0  1  2   ← col offset
+
+Visits: (0,0)(0,1)(0,2)(1,0)(1,1)(1,2)(2,0)(2,1)(2,2)</code></pre>
+<p><strong>Combined:</strong> For cell (4,7), box starts at (3,6). Checks:</p>
+<pre><code>(3,6) (3,7) (3,8)
+(4,6) (4,7) (4,8)
+(5,6) (5,7) (5,8)   ← all 9 cells in the box</code></pre>
+</details>
+<div class="how-to-arrive">
+<strong>Logic in plain words:</strong>
+<ol>
+<li>Scan the board cell by cell (left to right, top to bottom)</li>
+<li>Skip filled cells</li>
+<li>When you find an empty cell:
+    <ul>
+    <li>Try digits 1 through 9</li>
+    <li>For each digit, check: is it valid in this row, column, and 3x3 box?</li>
+    <li>If valid → place it, recurse (solve the rest). If recursion returns true → solved, return true. If false → wrong digit, undo, try next</li>
+    <li>If no digit (1-9) worked → return false (dead end, tell caller to backtrack)</li>
+    </ul>
+</li>
+<li>If the loop finishes without finding any empty cell → board is full → return true</li>
+</ol>
+<strong>Key insight:</strong> We don't pick which cell to fill — the double for-loop finds the <strong>next empty cell</strong> for us. We only decide <strong>which digit</strong> goes there. If no digit works, we tell the caller "your earlier choice was wrong" by returning <code>false</code>.
+</div>
+<div class="pattern-header page-break">Pattern 5: Partition / Split String</div><div class="how-to-arrive">
     <strong>How to Arrive at This:</strong> "At each position, try ALL possible cuts (substrings). If the cut is valid (palindrome, valid IP, etc.), take it and recurse on the remainder."
 </div><blockquote><strong>Analogy:</strong> Cutting a rope into pieces. At any point, cut at various positions. Each cut gives one piece + remaining rope. Keep cutting until nothing's left. If all pieces satisfy the constraint, it's a valid partitioning.</blockquote><p><span class="signal-words">palindrome partitioning</span> <span class="signal-words">split into parts</span> <span class="signal-words">restore IP</span> <span class="signal-words">break string into</span></p><h4><a href="https://leetcode.com/problems/palindrome-partitioning/" target="_blank">Palindrome Partitioning (LC 131)</a> - Medium</h4><pre><code>class Solution {
     public List&lt;List&lt;String&gt;&gt; partition(String s) {
@@ -6501,7 +6638,30 @@ PICK branch is unaffected — picking the first 1 still lets the second 1 decide
     }
 }</code></pre><div class="tip-box">
     <strong>Two rules for valid parentheses:</strong> (1) Add <code>(</code> if <code>open &lt; n</code>. (2) Add <code>)</code> if <code>close &lt; open</code>.
-</div><h4><a href="https://leetcode.com/problems/letter-case-permutation/" target="_blank">Letter Case Permutation (LC 784)</a> - Medium</h4><pre><code>private void backtrack(char[] chars, int index, List&lt;String&gt; result) {
+</div>
+<details style="background: var(--blue-light); border-left: 4px solid var(--blue); border-radius: 0 8px 8px 0; margin: 15px 0; padding: 15px 20px;">
+<summary style="cursor: pointer; font-weight: bold; color: var(--blue); font-size: 1.05em;">Three things that make this problem different</summary>
+<p><strong>1. Why no need to unpick (with String approach):</strong></p>
+<p>Strings are <strong>immutable</strong> in Java. <code>current + "("</code> creates a new string — <code>current</code> itself is unchanged. Backtracking is free:</p>
+<pre><code>// String (immutable) — no undo needed
+backtrack(current + "(", left - 1, right);  // new string, current unchanged
+backtrack(current + ")", left, right - 1);  // current still the same
+
+// StringBuilder (mutable) — MUST undo
+sb.append('(');
+backtrack(n, open + 1, close, sb, result);
+sb.deleteCharAt(sb.length() - 1);  // must unpick</code></pre>
+<p><strong>Rule:</strong> Mutable state (List, array, StringBuilder) → must unpick. Immutable state (String) → backtracking is free.</p>
+<p><strong>2. Why no stack needed to validate:</strong></p>
+<p>A stack checks if the <strong>final</strong> string is valid. But we're <strong>building</strong> the string character by character — we can enforce validity as we go using just two counters (<code>open</code> and <code>close</code>). If we never break the rules, the result is guaranteed valid. No need to check after the fact.</p>
+<p><strong>3. Why just two if-conditions are enough:</strong></p>
+<p>At each step, there are only 2 possible characters: <code>(</code> or <code>)</code>. Each has one rule:</p>
+<ul>
+<li><code>open &lt; n</code> → still have <code>(</code> left to place → allowed to add <code>(</code></li>
+<li><code>close &lt; open</code> → more <code>(</code> have been placed than <code>)</code> → allowed to add <code>)</code></li>
+</ul>
+<p>These two conditions <strong>guarantee</strong> we never have more <code>)</code> than <code>(</code> at any point (no invalid prefix), and we use exactly <code>n</code> of each (correct length). No other validation needed.</p>
+</details><h4><a href="https://leetcode.com/problems/letter-case-permutation/" target="_blank">Letter Case Permutation (LC 784)</a> - Medium</h4><pre><code>private void backtrack(char[] chars, int index, List&lt;String&gt; result) {
     if (index == chars.length) { result.add(new String(chars)); return; }
 
     if (Character.isLetter(chars[index])) {
@@ -6732,6 +6892,43 @@ backtrack(nums, start + 1, current, result);
 
 // CORRECT: advance past the element we just chose
 backtrack(nums, i + 1, current, result);</code></pre>
+</div><div class="mistake-box">
+    <strong>Bug #5: Using result.contains() for dedup</strong>
+<pre><code>// WRONG: O(k × result.size()) per check — causes TLE
+if (!result.contains(current))
+    result.add(new ArrayList&lt;&gt;(current));
+
+// CORRECT: skip duplicates structurally
+// Subsets/Combos (Pick/Not-Pick): skip all dups on NOT PICK
+while (index + 1 &lt; nums.length &amp;&amp; nums[index] == nums[index + 1]) index++;
+// Subsets/Combos (loop): skip dups at same level
+if (i &gt; start &amp;&amp; nums[i] == nums[i - 1]) continue;</code></pre>
+</div><div class="mistake-box">
+    <strong>Bug #6: Missing return after base case</strong>
+<pre><code>// WRONG: falls through, causes ArrayIndexOutOfBoundsException
+if (row == board.length) {
+    result.add(buildResult(board));
+}
+// code below still runs with row == board.length!
+
+// CORRECT: always return after base case
+if (row == board.length) {
+    result.add(buildResult(board));
+    return;
+}</code></pre>
+</div><div class="mistake-box">
+    <strong>Bug #7: Forgetting pruning in combinations</strong>
+<pre><code>// Without pruning: explores hopeless branches
+// With pruning: if remaining numbers can't fill k slots, stop early
+if (current.size() + (n - i + 1) &lt; k) return;</code></pre>
+</div><div class="important-note">
+    <strong>Key Design Decisions:</strong>
+    <ul>
+        <li><strong>Pick/Not-Pick vs Loop:</strong> Both work for subsets/combinations. Pick/Not-Pick maps to "include or exclude" binary tree. Loop maps to "iterate over remaining choices."</li>
+        <li><strong>Permutations can't use Pick/Not-Pick:</strong> Every element must appear — question is "which goes at this position?", not "include or not?". Use loop from 0 with <code>used[]</code> array.</li>
+        <li><strong><code>!used[i-1]</code> for permutation dups:</strong> Enforces left-to-right ordering among duplicates. If previous dup is free (backtracked), it already had its turn at this position — skip.</li>
+        <li><strong>N-Queens is not grid DFS:</strong> Go row by row, loop columns per row, check column + both upper diagonals. No direction array needed.</li>
+    </ul>
 </div></div></div>
 
 
@@ -6784,14 +6981,14 @@ DFS on Trees/Graphs &nbsp;&nbsp;&nbsp;&nbsp; Constraint Satisfaction
     <tr class="solved"><td class="cb-col"><input type="checkbox" class="solved-cb" data-key="backtracking_3"></td><td>3</td><td><a href="https://leetcode.com/problems/combinations/" target="_blank">Combinations (LC 77)</a></td><td>Med</td><td>P2</td><td>Subsets with size constraint + prune</td></tr>
     <tr class="solved"><td class="cb-col"><input type="checkbox" class="solved-cb" data-key="backtracking_4"></td><td>4</td><td><a href="https://leetcode.com/problems/combination-sum/" target="_blank">Combination Sum (LC 39)</a></td><td>Med</td><td>P2</td><td>Pass <code>i</code> not <code>i+1</code> (reuse)</td></tr>
     <tr class="solved"><td class="cb-col"><input type="checkbox" class="solved-cb" data-key="backtracking_5"></td><td>5</td><td><a href="https://leetcode.com/problems/combination-sum-ii/" target="_blank">Combination Sum II (LC 40)</a></td><td>Med</td><td>P2</td><td>Pass <code>i+1</code>, sort + skip dups</td></tr>
-    <tr><td class="cb-col"><input type="checkbox" class="solved-cb" data-key="backtracking_6"></td><td>6</td><td><a href="https://leetcode.com/problems/permutations/" target="_blank">Permutations (LC 46)</a></td><td>Med</td><td>P3</td><td><code>used[]</code> array, loop from 0</td></tr>
-    <tr><td class="cb-col"><input type="checkbox" class="solved-cb" data-key="backtracking_7"></td><td>7</td><td><a href="https://leetcode.com/problems/permutations-ii/" target="_blank">Permutations II (LC 47)</a></td><td>Med</td><td>P3</td><td>Sort + <code>!used[i-1]</code> skip</td></tr>
-    <tr><td class="cb-col"><input type="checkbox" class="solved-cb" data-key="backtracking_8"></td><td>8</td><td><a href="https://leetcode.com/problems/word-search/" target="_blank">Word Search (LC 79)</a></td><td>Med</td><td>P4</td><td>Mark '#', 4 dirs, restore</td></tr>
-    <tr><td class="cb-col"><input type="checkbox" class="solved-cb" data-key="backtracking_9"></td><td>9</td><td><a href="https://leetcode.com/problems/n-queens/" target="_blank">N-Queens (LC 51)</a></td><td>Hard</td><td>P4</td><td>Row by row, check col + diagonals</td></tr>
-    <tr><td class="cb-col"><input type="checkbox" class="solved-cb" data-key="backtracking_10"></td><td>10</td><td><a href="https://leetcode.com/problems/sudoku-solver/" target="_blank">Sudoku Solver (LC 37)</a></td><td>Hard</td><td>P4</td><td>Find empty, try 1-9, validate, backtrack</td></tr>
-    <tr><td class="cb-col"><input type="checkbox" class="solved-cb" data-key="backtracking_11"></td><td>11</td><td><a href="https://leetcode.com/problems/palindrome-partitioning/" target="_blank">Palindrome Partition (LC 131)</a></td><td>Med</td><td>P5</td><td>Try all cuts, keep if palindrome</td></tr>
+    <tr class="solved"><td class="cb-col"><input type="checkbox" class="solved-cb" data-key="backtracking_6"></td><td>6</td><td><a href="https://leetcode.com/problems/permutations/" target="_blank">Permutations (LC 46)</a></td><td>Med</td><td>P3</td><td><code>used[]</code> array, loop from 0</td></tr>
+    <tr class="solved"><td class="cb-col"><input type="checkbox" class="solved-cb" data-key="backtracking_7"></td><td>7</td><td><a href="https://leetcode.com/problems/permutations-ii/" target="_blank">Permutations II (LC 47)</a></td><td>Med</td><td>P3</td><td>Sort + <code>!used[i-1]</code> skip</td></tr>
+    <tr class="solved"><td class="cb-col"><input type="checkbox" class="solved-cb" data-key="backtracking_8"></td><td>8</td><td><a href="https://leetcode.com/problems/word-search/" target="_blank">Word Search (LC 79)</a></td><td>Med</td><td>P4</td><td>Mark '#', 4 dirs, restore</td></tr>
+    <tr class="solved"><td class="cb-col"><input type="checkbox" class="solved-cb" data-key="backtracking_9"></td><td>9</td><td><a href="https://leetcode.com/problems/n-queens/" target="_blank">N-Queens (LC 51)</a></td><td>Hard</td><td>P4</td><td>Row by row, check col + diagonals</td></tr>
+    <tr class="solved"><td class="cb-col"><input type="checkbox" class="solved-cb" data-key="backtracking_10"></td><td>10</td><td><a href="https://leetcode.com/problems/sudoku-solver/" target="_blank">Sudoku Solver (LC 37)</a></td><td>Hard</td><td>P4</td><td>Find empty, try 1-9, validate, backtrack</td></tr>
+    <tr class="solved"><td class="cb-col"><input type="checkbox" class="solved-cb" data-key="backtracking_11"></td><td>11</td><td><a href="https://leetcode.com/problems/palindrome-partitioning/" target="_blank">Palindrome Partition (LC 131)</a></td><td>Med</td><td>P5</td><td>Try all cuts, keep if palindrome</td></tr>
     <tr><td class="cb-col"><input type="checkbox" class="solved-cb" data-key="backtracking_12"></td><td>12</td><td><a href="https://leetcode.com/problems/restore-ip-addresses/" target="_blank">Restore IP Addresses (LC 93)</a></td><td>Med</td><td>P5</td><td>Cuts of len 1-3, no leading 0, ≤255</td></tr>
-    <tr><td class="cb-col"><input type="checkbox" class="solved-cb" data-key="backtracking_13"></td><td>13</td><td><a href="https://leetcode.com/problems/generate-parentheses/" target="_blank">Generate Parentheses (LC 22)</a></td><td>Med</td><td>P6</td><td><code>(</code> if open&lt;n, <code>)</code> if close&lt;open</td></tr>
+    <tr class="solved"><td class="cb-col"><input type="checkbox" class="solved-cb" data-key="backtracking_13"></td><td>13</td><td><a href="https://leetcode.com/problems/generate-parentheses/" target="_blank">Generate Parentheses (LC 22)</a></td><td>Med</td><td>P6</td><td><code>(</code> if open&lt;n, <code>)</code> if close&lt;open</td></tr>
     <tr><td class="cb-col"><input type="checkbox" class="solved-cb" data-key="backtracking_14"></td><td>14</td><td><a href="https://leetcode.com/problems/letter-combinations-of-a-phone-number/" target="_blank">Letter Combos of Phone (LC 17)</a></td><td>Med</td><td>P5/6</td><td>Map digit to letters, try each</td></tr>
 </tbody></table><h3>Recommended Solving Order</h3><p><strong>Week 1 (Foundations):</strong> LC 78, 46, 77, 22 — one per pattern, simplest versions<br>
 <strong>Week 2 (Duplicates &amp; Constraints):</strong> LC 90, 47, 39, 40, 17<br>
