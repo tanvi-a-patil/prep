@@ -66,7 +66,13 @@
   "backtracking_9": true,
   "backtracking_10": true,
   "backtracking_11": true,
-  "backtracking_13": true
+  "backtracking_13": true,
+  "graphs-bfs-dfs_1": true,
+  "graphs-bfs-dfs_2": true,
+  "graphs-bfs-dfs_4": true,
+  "graphs-bfs-dfs_3": true,
+  "graphs-bfs-dfs_6": true,
+  "graphs-bfs-dfs_7": true
 }</script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SDE 2 Interview Prep — DSA, LLD, HLD</title>
@@ -310,7 +316,7 @@ th.cb-col, td.cb-col { text-align: center; width: 40px; }
 }
 </style>
 </head>
-<body>
+<body data-new-gr-c-s-check-loaded="14.1286.0" data-gr-ext-installed="">
 <button id="save-btn" onclick="saveFile()" class="">Save Progress</button>
 
 <!-- ===== SUPER HOME ===== -->
@@ -661,7 +667,7 @@ th.cb-col, td.cb-col { text-align: center; width: 40px; }
         <span class="card-num">10</span>
         <span class="card-label">Graphs</span>
         <h3>Graphs (BFS/DFS)</h3>
-      <div class="card-progress">0 / 15 solved</div><div class="progress-bar-wrap"><div class="progress-bar-fill" style="width:0%"></div></div></div>
+      <div class="card-progress">6 / 15 solved</div><div class="progress-bar-wrap"><div class="progress-bar-fill" style="width: 40%;"></div></div></div>
       <div class="card" onclick="showTopic('graphs-advanced')" style="--card-color: #8E44AD">
         <span class="card-num">11</span>
         <span class="card-label">Graphs</span>
@@ -5902,7 +5908,7 @@ Problem mentions...<br>
       <button class="back-btn" onclick="showCategory('dsa')">← Back to DSA Topics</button>
     </div>
   </div>
-  <div class="topic-page active" id="page-backtracking">
+  <div class="topic-page" id="page-backtracking">
     <div class="topic-header">
       <button class="back-btn" onclick="showCategory('dsa')">← Back to DSA Topics</button>
       <span class="topic-number">07 / 18</span>
@@ -6972,9 +6978,9 @@ DFS on Trees/Graphs &nbsp;&nbsp;&nbsp;&nbsp; Constraint Satisfaction
 
 
 <!-- ============================================ -->
-<h2 class="page-break">Section 9: Must-Solve Problems</h2>
+<h2 class="page-break collapsed">Section 9: Must-Solve Problems</h2>
 
-<div class="section-content"><div class="section-content"><table>
+<div class="section-content collapsed"><div class="section-content"><table>
     <tbody><tr><th class="cb-col">✔</th><th>#</th><th>Problem</th><th>Diff</th><th>Pattern</th><th>Hint</th></tr>
     <tr class="solved"><td class="cb-col"><input type="checkbox" class="solved-cb" data-key="backtracking_1"></td><td>1</td><td><a href="https://leetcode.com/problems/subsets/" target="_blank">Subsets (LC 78)</a></td><td>Med</td><td>P1</td><td>Collect at every node</td></tr>
     <tr class="solved"><td class="cb-col"><input type="checkbox" class="solved-cb" data-key="backtracking_2"></td><td>2</td><td><a href="https://leetcode.com/problems/subsets-ii/" target="_blank">Subsets II (LC 90)</a></td><td>Med</td><td>P1</td><td>Sort + skip dups at same level</td></tr>
@@ -8508,7 +8514,7 @@ Multi:    (a, b) -&gt; a[0] != b[0] ? a[0] - b[0] : a[1] - b[1]</code></pre>
       <button class="back-btn" onclick="showCategory('dsa')">← Back to DSA Topics</button>
     </div>
   </div>
-  <div class="topic-page" id="page-graphs-bfs-dfs">
+  <div class="topic-page active" id="page-graphs-bfs-dfs">
     <div class="topic-header">
       <button class="back-btn" onclick="showCategory('dsa')">← Back to DSA Topics</button>
       <span class="topic-number">10 / 18</span>
@@ -8619,7 +8625,150 @@ Map&lt;Integer, List&lt;Integer&gt;&gt; buildGraph(int[][] edges, boolean direct
 
 <!-- ============================================ -->
 <h2 class="collapsed">Section 3: Pattern Recognition Framework</h2>
-<div class="section-content collapsed"><div class="section-content"><p>Six patterns cover ~95% of graph interview problems.</p><div class="pattern-header">Pattern 1: BFS/DFS on Grid (Matrix Traversal)</div><p><strong>When to use:</strong> Any problem involving a 2D grid — traverse, count regions, find paths.</p><div class="how-to-arrive">
+<div class="section-content collapsed"><div class="section-content"><p>Six patterns cover ~95% of graph interview problems.</p>
+<div class="mistake-box">
+<strong>BFS Rule #1: Mark visited when ENQUEUING, not when DEQUEUING</strong>
+<pre><code>// WRONG: same node added to queue many times → TLE
+int node = queue.poll();
+visited[node] = true;          // too late!
+
+// CORRECT: mark immediately when adding
+if (!visited[neighbor]) {
+    visited[neighbor] = true;  // prevents duplicate queue entries
+    queue.add(neighbor);
+}</code></pre>
+</div>
+<h4><a href="https://leetcode.com/problems/find-if-path-exists-in-graph/" target="_blank">Find if Path Exists (LC 1971)</a> - Easy</h4>
+<pre><code>class Solution {
+    public boolean validPath(int n, int[][] edges, int source, int destination) {
+        Map&lt;Integer, List&lt;Integer&gt;&gt; graph = new HashMap&lt;&gt;();
+        for (int i = 0; i &lt; n; i++) graph.put(i, new ArrayList&lt;&gt;());
+        for (int[] e : edges) {
+            graph.get(e[0]).add(e[1]);
+            graph.get(e[1]).add(e[0]);
+        }
+
+        boolean[] visited = new boolean[n];
+        Queue&lt;Integer&gt; queue = new LinkedList&lt;&gt;();
+        queue.add(source);
+        visited[source] = true;            // mark BEFORE enqueuing
+
+        while (!queue.isEmpty()) {
+            int node = queue.poll();
+            if (node == destination) return true;
+            for (int neighbor : graph.get(node)) {
+                if (!visited[neighbor]) {
+                    visited[neighbor] = true;  // mark when enqueuing
+                    queue.add(neighbor);
+                }
+            }
+        }
+        return false;
+    }
+}</code></pre>
+<div class="tip-box"><strong>BFS can answer three variants of this problem:</strong></div>
+<div class="side-by-side">
+<div><strong>Shortest distance</strong>
+<p>Track distance. <code>dist[]</code> replaces <code>visited[]</code> — <code>-1</code> means unvisited.</p>
+<pre><code>int[] dist = new int[n];
+Arrays.fill(dist, -1);
+dist[source] = 0;
+queue.add(source);
+
+while (!queue.isEmpty()) {
+    int node = queue.poll();
+    if (node == destination)
+        return dist[node];
+    for (int nb : graph.get(node)) {
+        if (dist[nb] == -1) {
+            dist[nb] = dist[node] + 1;
+            queue.add(nb);
+        }
+    }
+}
+return -1;  // unreachable</code></pre></div>
+<div><strong>Actual shortest path</strong>
+<p>Track parent. Walk backwards from destination to source.</p>
+<pre><code>int[] parent = new int[n];
+Arrays.fill(parent, -1);
+parent[source] = source;
+queue.add(source);
+
+while (!queue.isEmpty()) {
+    int node = queue.poll();
+    if (node == destination) {
+        List&lt;Integer&gt; path = new ArrayList&lt;&gt;();
+        int curr = destination;
+        while (curr != source) {
+            path.add(curr);
+            curr = parent[curr];
+        }
+        path.add(source);
+        Collections.reverse(path);
+        return path;
+    }
+    for (int nb : graph.get(node)) {
+        if (parent[nb] == -1) {
+            parent[nb] = node;
+            queue.add(nb);
+        }
+    }
+}
+return new ArrayList&lt;&gt;();</code></pre></div>
+</div>
+<div class="pattern-header">BFS vs DFS on Adjacency List (Basics)</div>
+<div class="how-to-arrive">
+<strong>BFS</strong> — explores level by level (uses Queue). Best for <strong>shortest path</strong> in unweighted graphs.<br>
+<strong>DFS</strong> — explores as deep as possible before backtracking (uses Stack or recursion). Best for <strong>exploring/counting components</strong>.
+</div>
+<div class="side-by-side">
+<div><strong>BFS (iterative — Queue)</strong>
+<pre><code>void bfs(Map&lt;Integer, List&lt;Integer&gt;&gt; graph,
+         int start, boolean[] visited) {
+    Queue&lt;Integer&gt; queue = new LinkedList&lt;&gt;();
+    queue.add(start);
+    visited[start] = true;
+
+    while (!queue.isEmpty()) {
+        int node = queue.poll();
+        // process node
+        for (int nb : graph.get(node)) {
+            if (!visited[nb]) {
+                visited[nb] = true;
+                queue.add(nb);
+            }
+        }
+    }
+}</code></pre></div>
+<div><strong>DFS (recursive)</strong>
+<pre><code>void dfs(Map&lt;Integer, List&lt;Integer&gt;&gt; graph,
+         int node, boolean[] visited) {
+    visited[node] = true;
+    // process node
+    for (int nb : graph.get(node)) {
+        if (!visited[nb]) {
+            dfs(graph, nb, visited);
+        }
+    }
+}
+
+
+
+
+// DFS iterative (Stack) — same idea:
+// replace Queue with Stack,
+// queue.add → stack.push,
+// queue.poll → stack.pop</code></pre></div>
+</div>
+<div class="tip-box">
+<strong>When to use which?</strong>
+<ul>
+<li><strong>BFS:</strong> shortest path, level-order, minimum steps</li>
+<li><strong>DFS:</strong> detect cycles, count components, topological sort, path existence</li>
+<li>Both are O(V + E) time, O(V) space</li>
+</ul>
+</div>
+<div class="pattern-header">Pattern 1: BFS/DFS on Grid (Matrix Traversal)</div><p><strong>When to use:</strong> Any problem involving a 2D grid — traverse, count regions, find paths.</p><div class="how-to-arrive">
     <strong>How to arrive at this:</strong>
     <ol>
         <li>You see a 2D grid/matrix in the input</li>
@@ -8630,7 +8779,16 @@ Map&lt;Integer, List&lt;Integer&gt;&gt; buildGraph(int[][] edges, boolean direct
 </div><blockquote><strong>Analogy:</strong> Spilling water on a tiled floor. Water spreads to adjacent tiles. BFS = water spreading outward in rings. DFS = water rushing down a narrow channel before spreading sideways.</blockquote><div class="tip-box">
     <strong>The 4-directional movement template (memorize):</strong>
     <code>int[][] dirs = {{0,1},{0,-1},{1,0},{-1,0}};</code>
-</div><h4>DFS on Grid — Number of Islands (<a href="https://leetcode.com/problems/number-of-islands/" target="_blank">LC 200</a>)</h4><pre><code>int numIslands(char[][] grid) {
+</div><h4>DFS on Grid — Number of Islands (<a href="https://leetcode.com/problems/number-of-islands/" target="_blank">LC 200</a>)</h4>
+<div class="how-to-arrive">
+<strong>Idea:</strong> Scan every cell. When you find a <code>'1'</code> (unvisited land), call DFS to <strong>sink the entire island</strong> (mark all connected <code>'1'</code>s as <code>'0'</code>). Count that as one island. Next <code>'1'</code> found in the scan is guaranteed to be a different island.
+<pre><code>Grid:        After DFS(0,0):     After DFS(0,3):     After DFS(2,2):
+1 1 0 0 1    0 0 0 0 1           0 0 0 0 0           0 0 0 0 0
+1 1 0 0 1    0 0 0 0 1           0 0 0 0 0           0 0 0 0 0
+0 0 1 0 0    0 0 1 0 0           0 0 1 0 0           0 0 0 0 0
+count = 1    count = 2           count = 3 → answer</code></pre>
+</div>
+<pre><code>int numIslands(char[][] grid) {
     int R = grid.length, C = grid[0].length;
     int count = 0;
     for (int r = 0; r &lt; R; r++) {
@@ -8688,7 +8846,49 @@ void dfs(char[][] grid, int r, int c) {
         <li>BFS explores level by level. Level 0 = start, Level 1 = 1 step away...</li>
         <li>The <strong>first</strong> time BFS reaches a node is the <strong>shortest</strong> path to it</li>
     </ol>
-</div><blockquote><strong>Analogy:</strong> Dropping a stone in a pond. Ripples spread outward in circles. Each circle = one step. The first ripple to reach the edge = shortest distance. That's BFS.</blockquote><h4>Multi-Source BFS — Rotting Oranges (<a href="https://leetcode.com/problems/rotting-oranges/" target="_blank">LC 994</a>)</h4><pre><code>int orangesRotting(int[][] grid) {
+</div><blockquote><strong>Analogy:</strong> Dropping a stone in a pond. Ripples spread outward in circles. Each circle = one step. The first ripple to reach the edge = shortest distance. That's BFS.</blockquote><h4>Multi-Source BFS — Rotting Oranges (<a href="https://leetcode.com/problems/rotting-oranges/" target="_blank">LC 994</a>)</h4>
+<details style="background: var(--blue-light); border-left: 4px solid var(--blue); border-radius: 0 8px 8px 0; margin: 15px 0; padding: 15px 20px;">
+<summary style="cursor: pointer; font-weight: bold; color: var(--blue); font-size: 1.05em;">Why Multi-Source BFS? Steps &amp; Trace</summary>
+<p><strong>Why BFS, not DFS?</strong> Each rotten orange spreads to neighbors <strong>simultaneously</strong> in 1 minute. That's level-by-level expansion — exactly what BFS does. DFS would go deep into one path first, which doesn't model simultaneous spreading.</p>
+<p><strong>Why multi-source?</strong> Multiple rotten oranges spread at the same time. Start BFS with ALL of them in the queue — not just one.</p>
+<p><strong>Steps:</strong></p>
+<ol>
+<li>Find ALL rotten oranges (2s) → add them ALL to queue. Also count fresh oranges.</li>
+<li>If no fresh oranges → return 0 (nothing to rot)</li>
+<li>BFS level by level. Each level = 1 minute:
+    <ul>
+    <li>For each rotten orange in current level → rot all 4 fresh neighbors (mark as 2), add to queue, decrement fresh count</li>
+    <li>After processing a level → time++</li>
+    </ul>
+</li>
+<li>If fresh &gt; 0 → return -1 (some unreachable). Else → return time - 1</li>
+</ol>
+<p><strong>How do we know a level is done?</strong> The <code>size</code> variable captures the queue size <strong>before</strong> processing starts. That's your level boundary:</p>
+<pre><code>while (!queue.isEmpty()) {
+    int size = queue.size();  // snapshot: how many nodes in THIS level
+    for (int k = 0; k &lt; size; k++) {  // process exactly that many
+        int[] cell = queue.poll();
+        // ... rot neighbors, add NEW rotten to queue
+    }
+    // loop finished → this level is done
+    time++;
+}</code></pre>
+<p>New nodes added during the inner loop belong to the <strong>next level</strong> — they won't be processed in this iteration because the for-loop only runs <code>size</code> times. This <code>size = queue.size()</code> trick is the standard pattern for any level-by-level BFS (also used in binary tree level-order traversal).</p>
+<p><strong>Only increment time if something rotted:</strong> The last BFS level may find no fresh neighbors — that shouldn't count as a minute. Use a <code>boolean rotted</code> flag per level:</p>
+<pre><code>boolean rotted = false;
+for (int k = 0; k &lt; size; k++) {
+    // ... if a fresh neighbor was rotted:
+    rotted = true;
+}
+if (rotted) time++;  // only count if work was done</code></pre>
+<p><strong>Visual trace:</strong></p>
+<pre><code>Start:       Min 1:       Min 2:       Min 3:       Min 4:
+2 1 1        2 2 1        2 2 2        2 2 2        2 2 2
+1 1 0        2 1 0        2 2 0        2 2 0        2 2 0
+0 1 1        0 1 1        0 1 1        0 2 1        0 2 2
+                                                    fresh=0 → return 4</code></pre>
+</details>
+<pre><code>int orangesRotting(int[][] grid) {
     int R = grid.length, C = grid[0].length;
     Queue&lt;int[]&gt; queue = new LinkedList&lt;&gt;();
     int fresh = 0;
@@ -8751,7 +8951,19 @@ void dfs(int[][] isConnected, boolean[] visited, int node) {
             dfs(isConnected, visited, neighbor);
         }
     }
-}</code></pre><p><strong>Classic problems:</strong> <a href="https://leetcode.com/problems/number-of-islands/">LC 200</a>, <a href="https://leetcode.com/problems/number-of-provinces/">LC 547</a>, <a href="https://leetcode.com/problems/graph-valid-tree/">LC 261</a></p><div class="pattern-header">Pattern 4: Cycle Detection (DFS)</div><p><strong>When to use:</strong> "Can you finish all courses?", "Is there a cycle?", deadlock detection.</p><div class="how-to-arrive">
+}</code></pre>
+<div class="important-note">
+<strong>LC 547 vs LC 200 — Same algorithm, different input:</strong>
+<table>
+<tbody><tr><th></th><th>Number of Islands (LC 200)</th><th>Number of Provinces (LC 547)</th></tr>
+<tr><td><strong>Input</strong></td><td>2D grid of <code>'1'</code> and <code>'0'</code></td><td>Adjacency matrix <code>n x n</code></td></tr>
+<tr><td><strong>Nodes</strong></td><td>Each cell is a node</td><td>Each row/col index is a node</td></tr>
+<tr><td><strong>Neighbors</strong></td><td>4-directional (up/down/left/right)</td><td><code>isConnected[i][j] == 1</code></td></tr>
+<tr><td><strong>Mark visited</strong></td><td><code>grid[r][c] = '0'</code> (in-place)</td><td><code>visited[i] = true</code></td></tr>
+</tbody></table>
+<strong>Trap:</strong> Don't treat the adjacency matrix like a grid and do 4-directional DFS. Row <code>i</code> lists all of node <code>i</code>'s connections — it's a graph, not a grid.
+</div>
+<p><strong>Classic problems:</strong> <a href="https://leetcode.com/problems/number-of-islands/">LC 200</a>, <a href="https://leetcode.com/problems/number-of-provinces/">LC 547</a>, <a href="https://leetcode.com/problems/graph-valid-tree/">LC 261</a></p><div class="pattern-header">Pattern 4: Cycle Detection (DFS)</div><p><strong>When to use:</strong> "Can you finish all courses?", "Is there a cycle?", deadlock detection.</p><div class="how-to-arrive">
     <strong>How to arrive at this:</strong>
     <ol>
         <li>Problem involves <strong>dependencies</strong> or asks if ordering is possible</li>
@@ -8759,7 +8971,64 @@ void dfs(int[][] isConnected, boolean[] visited, int node) {
         <li><strong>Directed:</strong> 3-color DFS (WHITE/GRAY/BLACK)</li>
         <li><strong>Undirected:</strong> Track parent — visited + not-parent = cycle</li>
     </ol>
-</div><blockquote><strong>Analogy (Directed):</strong> Auditing a chain of managers. Follow reporting chain: A reports to B, B to C. If C reports back to A — circular dependency (cycle). "Gray" = currently being audited. Hitting gray again = cycle found.</blockquote><h4>Directed Graph — 3-Color Cycle Detection</h4><pre><code>// Course Schedule (LC 207)
+</div><blockquote><strong>Analogy (Directed):</strong> Auditing a chain of managers. Follow reporting chain: A reports to B, B to C. If C reports back to A — circular dependency (cycle). "Gray" = currently being audited. Hitting gray again = cycle found.</blockquote><h4>Directed Graph — 3-Color Cycle Detection</h4>
+<details style="background: var(--blue-light); border-left: 4px solid var(--blue); border-radius: 0 8px 8px 0; margin: 15px 0; padding: 15px 20px;">
+<summary style="cursor: pointer; font-weight: bold; color: var(--blue); font-size: 1.05em;">How 3-Color Cycle Detection works</summary>
+<p><strong>Why is Course Schedule a cycle detection problem?</strong> "Can you finish all courses?" = "Is there a cycle in the dependency graph?" If Course A requires B, B requires C, and C requires A → circular dependency → impossible to finish → cycle.</p>
+<pre><code>prerequisites = [[1,0], [2,1], [0,2]]
+Means: 0 → 1 → 2 → 0  (cycle!)
+Can you finish all courses? NO.</code></pre>
+<p><strong>Step 1: Build adjacency list from prerequisites</strong></p>
+<pre><code>// prerequisites = [[1,0], [2,1], [0,2]]
+// to take course 1, you need course 0 → edge: 0 → 1
+
+for (int[] pre : prerequisites)
+    graph.get(pre[1]).add(pre[0]);  // pre[1] → pre[0]
+
+// Result:
+// 0 → [1]
+// 1 → [2]
+// 2 → [0]</code></pre>
+<p><strong>Step 2: Run 3-color DFS on each unvisited node</strong></p>
+<pre><code>int[] color = new int[numCourses];  // all start WHITE (0)
+
+for (int i = 0; i &lt; numCourses; i++)
+    if (color[i] == 0 &amp;&amp; hasCycle(graph, color, i))
+        return false;  // cycle found → can't finish
+return true;           // no cycle → can finish</code></pre>
+<p>Each node has one of 3 states:</p>
+<ul>
+<li><strong>WHITE (0)</strong> — not yet visited</li>
+<li><strong>GRAY (1)</strong> — currently being explored (on the current DFS path)</li>
+<li><strong>BLACK (2)</strong> — fully explored (all descendants done)</li>
+</ul>
+<p><strong>The rule:</strong> If you encounter a GRAY node → it's on the current path → <strong>cycle found</strong> (back edge). If you encounter a BLACK node → it was fully explored in a previous path → <strong>no cycle</strong> (cross/forward edge).</p>
+<p><strong>Trace with A→B→C→A (cycle):</strong></p>
+<pre><code>Visit A → color A = GRAY
+  Visit B → color B = GRAY
+    Visit C → color C = GRAY
+      C points to A → A is GRAY → CYCLE!
+
+DFS path: A → B → C → A (back to gray = cycle)</code></pre>
+<p><strong>Trace with A→C, A→B→C (no cycle):</strong></p>
+<pre><code>Visit A → color A = GRAY
+  Visit B → color B = GRAY
+    Visit C → color C = GRAY
+    C has no neighbors → color C = BLACK ✓
+  B done → color B = BLACK ✓
+  Visit C → C is BLACK → skip (not a cycle!)
+A done → color A = BLACK ✓</code></pre>
+<p><strong>Lifecycle of a node:</strong> WHITE → GRAY (enter DFS) → explore all neighbors → BLACK (leave DFS). A node is GRAY only while we're inside its DFS call. Hitting GRAY = we're revisiting something on our current call stack = cycle.</p>
+<p><strong>Algorithm in plain steps:</strong></p>
+<pre><code>Enter node → mark GRAY (I'm being processed)
+    Visit each neighbor:
+        GRAY  → cycle! (back to current path)
+        BLACK → skip (already fully explored, safe)
+        WHITE → recurse deeper
+All neighbors done → mark BLACK (I'm fully done)</code></pre>
+<p><strong>Important:</strong> The main loop should NOT set colors — DFS handles the full lifecycle: WHITE → GRAY → BLACK. If you mark BLACK only in the main loop, nodes explored deep inside DFS stay GRAY and cause false cycle detection.</p>
+</details>
+<pre><code>// Course Schedule (LC 207)
 boolean canFinish(int numCourses, int[][] prerequisites) {
     List&lt;List&lt;Integer&gt;&gt; graph = new ArrayList&lt;&gt;();
     for (int i = 0; i &lt; numCourses; i++) graph.add(new ArrayList&lt;&gt;());
@@ -8783,7 +9052,149 @@ boolean hasCycle(List&lt;List&lt;Integer&gt;&gt; graph, int[] color, int node) {
     return false;
 }</code></pre><div class="tip-box">
     <strong>Why 3 colors, not 2?</strong> In directed graphs, reaching an already-visited node does NOT always mean a cycle. <code>A→B→C</code> and <code>A→C</code> — C is visited twice but no cycle. GRAY = on current path (back edge = cycle). BLACK = fully done (cross/forward edge = no cycle).
-</div><h4>Undirected Graph — Parent-Based Cycle Detection</h4><pre><code>boolean dfsCycle(List&lt;List&lt;Integer&gt;&gt; graph, boolean[] visited, int node, int parent) {
+</div><div class="important-note">
+<strong>What to update in main loop vs inside DFS:</strong>
+<ul>
+<li><strong>Counter</strong> (provinces, islands) → increment in <strong>main loop</strong>. You're counting how many times you start a new DFS.</li>
+<li><strong>Node state</strong> (colors, visited) → update <strong>inside DFS</strong>. Every node touched during DFS needs to be marked, not just the starting node.</li>
+</ul>
+The counter is about the <strong>starting points</strong>. The state is about <strong>every node touched</strong>.
+</div>
+<details style="background: var(--blue-light); border-left: 4px solid var(--blue); border-radius: 0 8px 8px 0; margin: 15px 0; padding: 15px 20px;">
+<summary style="cursor: pointer; font-weight: bold; color: var(--blue); font-size: 1.05em;">From Course Schedule I → Course Schedule II</summary>
+<p>Course Schedule I asks "can you finish?" (yes/no). Course Schedule II asks "in what order?" — return the <strong>topological order</strong>.</p>
+<p>The only change: collect nodes into a list when they turn BLACK (fully explored = all dependencies resolved):</p>
+<pre><code>// Course Schedule I (LC 207):
+colors[course] = 2;  // BLACK
+return false;
+
+// Course Schedule II (LC 210) — just add one line:
+colors[course] = 2;  // BLACK
+order.add(course);   // ← this course is ready (all prereqs done)
+return false;</code></pre>
+<p>A node turns BLACK when all its descendants are explored — meaning all courses that depend on it are already in the list. So adding it now gives <strong>reverse topological order</strong>. Reverse at the end.</p>
+</details>
+<div class="pattern-header">Topological Sort (DAG Ordering)</div><p><strong>When to use:</strong> "Order tasks with dependencies", "Can all courses be completed?", anything with prerequisites.</p><div class="how-to-arrive">
+    <strong>How to arrive at this:</strong>
+    <ol>
+        <li>You see <strong>dependencies</strong>: A must come before B</li>
+        <li>This is a DAG — if a cycle exists, no valid order</li>
+        <li>Need ordering where all dependencies come first = topological sort</li>
+        <li>Two approaches: Kahn's BFS (preferred) or DFS + reverse postorder</li>
+    </ol>
+</div><blockquote><strong>Analogy:</strong> Getting dressed. Underwear before pants, socks before shoes, shirt before jacket. These are dependencies. Topological sort finds a valid dressing order. If "pants before underwear AND underwear before pants" — that's a cycle, you're stuck!</blockquote>
+<details style="background: var(--blue-light); border-left: 4px solid var(--blue); border-radius: 0 8px 8px 0; margin: 15px 0; padding: 15px 20px;">
+<summary style="cursor: pointer; font-weight: bold; color: var(--blue); font-size: 1.05em;">Topological order vs Reverse topological order</summary>
+<p><strong>Topological order:</strong> If A depends on B, then B comes <strong>before</strong> A. Dependencies first.</p>
+<p><strong>Reverse topological order:</strong> Dependents first.</p>
+<pre><code>Dependencies: 0 → 1 → 2 (0 before 1, 1 before 2)
+
+Topological order:    [0, 1, 2]   ← dependencies first
+Reverse topo order:   [2, 1, 0]   ← dependents first</code></pre>
+<p><strong>Why DFS gives reverse order:</strong> DFS marks a node BLACK when all its descendants are done. The deepest dependency finishes first → gets added first:</p>
+<pre><code>DFS(0) → DFS(1) → DFS(2)
+  2 turns BLACK first  → added first  → [2]
+  1 turns BLACK second → added second → [2, 1]
+  0 turns BLACK last   → added last   → [2, 1, 0]
+
+Reverse topo order → reverse it → [0, 1, 2] ✅</code></pre>
+<p><strong>Kahn's (BFS) gives topological order directly</strong> — starts with indegree 0 nodes (no dependencies) and peels them off. No reversal needed.</p>
+<table>
+<tbody><tr><th></th><th>DFS-based</th><th>Kahn's (BFS)</th></tr>
+<tr><td><strong>Produces</strong></td><td>Reverse topological order</td><td>Topological order directly</td></tr>
+<tr><td><strong>Needs reversal?</strong></td><td>Yes</td><td>No</td></tr>
+<tr><td><strong>How it works</strong></td><td>Deepest dependency finishes first</td><td>No-dependency nodes processed first</td></tr>
+</tbody></table>
+</details>
+<h4>Kahn's Algorithm (BFS-based) — Preferred in Interviews</h4><pre><code>// Course Schedule II (LC 210)
+int[] findOrder(int numCourses, int[][] prerequisites) {
+    List&lt;List&lt;Integer&gt;&gt; graph = new ArrayList&lt;&gt;();
+    int[] indegree = new int[numCourses];
+    for (int i = 0; i &lt; numCourses; i++) graph.add(new ArrayList&lt;&gt;());
+
+    for (int[] pre : prerequisites) {
+        graph.get(pre[1]).add(pre[0]);
+        indegree[pre[0]]++;
+    }
+
+    // Start with all in-degree 0 nodes (no dependencies)
+    Queue&lt;Integer&gt; queue = new LinkedList&lt;&gt;();
+    for (int i = 0; i &lt; numCourses; i++)
+        if (indegree[i] == 0) queue.offer(i);
+
+    int[] order = new int[numCourses];
+    int idx = 0;
+
+    while (!queue.isEmpty()) {
+        int node = queue.poll();
+        order[idx++] = node;
+        for (int nei : graph.get(node)) {
+            if (--indegree[nei] == 0) queue.offer(nei);
+        }
+    }
+
+    return idx == numCourses ? order : new int[0]; // Empty = cycle!
+}</code></pre><div class="tip-box">
+<strong>Hack: Topological sort gives you cycle detection for free.</strong><br>
+After BFS (Kahn's), if <code>processedCount &lt; totalNodes</code>, there's a cycle. Nodes in cycles never reach indegree 0, so they're never added to the queue. No need for a separate cycle detection step — the count check at the end (<code>idx == numCourses</code> above) is the cycle check.
+</div><h4>DFS-based Topological Sort</h4>
+<details style="background: var(--blue-light); border-left: 4px solid var(--blue); border-radius: 0 8px 8px 0; margin: 15px 0; padding: 15px 20px;">
+<summary style="cursor: pointer; font-weight: bold; color: var(--blue); font-size: 1.05em;">dfsTopo vs hasCycle — and how the stack collects the order</summary>
+<p><strong>Opposite boolean — same logic, different perspective:</strong></p>
+<table>
+<tbody><tr><th></th><th>Cycle found</th><th>No cycle</th></tr>
+<tr><td><code>hasCycle</code></td><td>return <code>true</code> (bad)</td><td>return <code>false</code></td></tr>
+<tr><td><code>dfsTopo</code></td><td>return <code>false</code> (bad)</td><td>return <code>true</code></td></tr>
+</tbody></table>
+<p><strong>How the stack collects the full order:</strong> Every node gets pushed when it turns BLACK — not just the starting node. The recursion handles this.</p>
+<pre><code>Trace with 0 → 1 → 2:
+
+dfsTopo(0):
+    color[0] = GRAY
+    → dfsTopo(1):
+        color[1] = GRAY
+        → dfsTopo(2):
+            color[2] = GRAY
+            no neighbors
+            color[2] = BLACK
+            stack.push(2)        ← stack: [2]
+        color[1] = BLACK
+        stack.push(1)            ← stack: [2, 1]
+    color[0] = BLACK
+    stack.push(0)                ← stack: [2, 1, 0]
+
+Pop order: 0, 1, 2 → topological order ✅</code></pre>
+<p>Each recursive call pushes its own node when done. The stack naturally reverses — deepest node pushed first, popped last.</p>
+</details>
+<pre><code>int[] topologicalSortDFS(int n, List&lt;List&lt;Integer&gt;&gt; graph) {
+    int[] color = new int[n];
+    Deque&lt;Integer&gt; stack = new ArrayDeque&lt;&gt;();
+
+    for (int i = 0; i &lt; n; i++)
+        if (color[i] == 0 &amp;&amp; !dfsTopo(graph, color, stack, i))
+            return new int[0]; // Cycle
+
+    int[] order = new int[n];
+    for (int i = 0; i &lt; n; i++) order[i] = stack.pop();
+    return order;
+}
+
+boolean dfsTopo(List&lt;List&lt;Integer&gt;&gt; graph, int[] color, Deque&lt;Integer&gt; stack, int node) {
+    color[node] = 1; // Gray
+    for (int nei : graph.get(node)) {
+        if (color[nei] == 1) return false; // Cycle!
+        if (color[nei] == 0 &amp;&amp; !dfsTopo(graph, color, stack, nei)) return false;
+    }
+    color[node] = 2; // Black
+    stack.push(node); // Add AFTER all descendants processed
+    return true;
+}</code></pre><table>
+    <tbody><tr><th>Aspect</th><th>Kahn's (BFS)</th><th>DFS + Reverse Postorder</th></tr>
+    <tr><td>Easier to implement</td><td>Yes</td><td>Slightly harder</td></tr>
+    <tr><td>Cycle detection</td><td>Check if all nodes processed</td><td>Check for back edges (gray)</td></tr>
+    <tr><td>Preferred in interviews</td><td><strong>Yes</strong> (more intuitive)</td><td>Use when already doing DFS</td></tr>
+</tbody></table><p><strong>Classic problems:</strong> <a href="https://leetcode.com/problems/course-schedule/">LC 207</a>, <a href="https://leetcode.com/problems/course-schedule-ii/">LC 210</a>, Alien Dictionary (LC 269)</p>
+<h4>Undirected Graph — Parent-Based Cycle Detection</h4><pre><code>boolean dfsCycle(List&lt;List&lt;Integer&gt;&gt; graph, boolean[] visited, int node, int parent) {
     visited[node] = true;
     for (int nei : graph.get(node)) {
         if (!visited[nei]) {
@@ -8868,79 +9279,13 @@ boolean hasCycle(List&lt;List&lt;Integer&gt;&gt; graph, int[] color, int node) {
         level++;
     }
     return 0;
-}</code></pre><p><strong>Classic problems:</strong> <a href="https://leetcode.com/problems/word-ladder/">LC 127</a>, <a href="https://leetcode.com/problems/open-the-lock/">LC 752</a>, <a href="https://leetcode.com/problems/minimum-genetic-mutation/">LC 433</a></p><div class="pattern-header">Pattern 6: Topological Sort (DAG Ordering)</div><p><strong>When to use:</strong> "Order tasks with dependencies", "Can all courses be completed?", anything with prerequisites.</p><div class="how-to-arrive">
-    <strong>How to arrive at this:</strong>
-    <ol>
-        <li>You see <strong>dependencies</strong>: A must come before B</li>
-        <li>This is a DAG — if a cycle exists, no valid order</li>
-        <li>Need ordering where all dependencies come first = topological sort</li>
-        <li>Two approaches: Kahn's BFS (preferred) or DFS + reverse postorder</li>
-    </ol>
-</div><blockquote><strong>Analogy:</strong> Getting dressed. Underwear before pants, socks before shoes, shirt before jacket. These are dependencies. Topological sort finds a valid dressing order. If "pants before underwear AND underwear before pants" — that's a cycle, you're stuck!</blockquote><h4>Kahn's Algorithm (BFS-based) — Preferred in Interviews</h4><pre><code>// Course Schedule II (LC 210)
-int[] findOrder(int numCourses, int[][] prerequisites) {
-    List&lt;List&lt;Integer&gt;&gt; graph = new ArrayList&lt;&gt;();
-    int[] indegree = new int[numCourses];
-    for (int i = 0; i &lt; numCourses; i++) graph.add(new ArrayList&lt;&gt;());
-
-    for (int[] pre : prerequisites) {
-        graph.get(pre[1]).add(pre[0]);
-        indegree[pre[0]]++;
-    }
-
-    // Start with all in-degree 0 nodes (no dependencies)
-    Queue&lt;Integer&gt; queue = new LinkedList&lt;&gt;();
-    for (int i = 0; i &lt; numCourses; i++)
-        if (indegree[i] == 0) queue.offer(i);
-
-    int[] order = new int[numCourses];
-    int idx = 0;
-
-    while (!queue.isEmpty()) {
-        int node = queue.poll();
-        order[idx++] = node;
-        for (int nei : graph.get(node)) {
-            if (--indegree[nei] == 0) queue.offer(nei);
-        }
-    }
-
-    return idx == numCourses ? order : new int[0]; // Empty = cycle!
-}</code></pre><div class="tip-box">
-<strong>Hack: Topological sort gives you cycle detection for free.</strong><br>
-After BFS (Kahn's), if <code>processedCount &lt; totalNodes</code>, there's a cycle. Nodes in cycles never reach indegree 0, so they're never added to the queue. No need for a separate cycle detection step — the count check at the end (<code>idx == numCourses</code> above) is the cycle check.
-</div><div class="tip-box">
+}</code></pre><p><strong>Classic problems:</strong> <a href="https://leetcode.com/problems/word-ladder/">LC 127</a>, <a href="https://leetcode.com/problems/open-the-lock/">LC 752</a>, <a href="https://leetcode.com/problems/minimum-genetic-mutation/">LC 433</a></p><div class="tip-box">
 <strong>Hack: Clone Graph — create all nodes first, then wire edges.</strong><br>
 Two-pass approach avoids the "does this neighbor's clone exist yet?" problem:<br>
 Pass 1: Create a clone for every node, store in <code>HashMap&lt;Node, Node&gt;</code>.<br>
 Pass 2: For each original node, copy its neighbor list using the map.<br>
 Cleaner than single-pass with recursive/lazy creation. Less bug-prone under interview pressure.
-</div><h4>DFS-based Topological Sort</h4><pre><code>int[] topologicalSortDFS(int n, List&lt;List&lt;Integer&gt;&gt; graph) {
-    int[] color = new int[n];
-    Deque&lt;Integer&gt; stack = new ArrayDeque&lt;&gt;();
-
-    for (int i = 0; i &lt; n; i++)
-        if (color[i] == 0 &amp;&amp; !dfsTopo(graph, color, stack, i))
-            return new int[0]; // Cycle
-
-    int[] order = new int[n];
-    for (int i = 0; i &lt; n; i++) order[i] = stack.pop();
-    return order;
-}
-
-boolean dfsTopo(List&lt;List&lt;Integer&gt;&gt; graph, int[] color, Deque&lt;Integer&gt; stack, int node) {
-    color[node] = 1; // Gray
-    for (int nei : graph.get(node)) {
-        if (color[nei] == 1) return false; // Cycle!
-        if (color[nei] == 0 &amp;&amp; !dfsTopo(graph, color, stack, nei)) return false;
-    }
-    color[node] = 2; // Black
-    stack.push(node); // Add AFTER all descendants processed
-    return true;
-}</code></pre><table>
-    <tbody><tr><th>Aspect</th><th>Kahn's (BFS)</th><th>DFS + Reverse Postorder</th></tr>
-    <tr><td>Easier to implement</td><td>Yes</td><td>Slightly harder</td></tr>
-    <tr><td>Cycle detection</td><td>Check if all nodes processed</td><td>Check for back edges (gray)</td></tr>
-    <tr><td>Preferred in interviews</td><td><strong>Yes</strong> (more intuitive)</td><td>Use when already doing DFS</td></tr>
-</tbody></table><p><strong>Classic problems:</strong> <a href="https://leetcode.com/problems/course-schedule/">LC 207</a>, <a href="https://leetcode.com/problems/course-schedule-ii/">LC 210</a>, Alien Dictionary (LC 269)</p></div></div>
+</div></div></div>
 
 <!-- Pattern 1 -->
 
@@ -9296,17 +9641,17 @@ Dijkstra / Bellman-Ford → Weighted shortest paths
 
 
 <!-- ============================================ -->
-<h2 class="page-break collapsed">Section 9: Must-Solve Problems</h2>
+<h2 class="page-break">Section 9: Must-Solve Problems</h2>
 
-<div class="section-content collapsed"><div class="section-content"><h3>Solve First (Day 1-2) — Build Foundation</h3><table>
+<div class="section-content"><div class="section-content"><h3>Solve First (Day 1-2) — Build Foundation</h3><table>
     <tbody><tr><th class="cb-col">✔</th><th>#</th><th>Problem</th><th>Pattern</th><th>Difficulty</th><th>Link</th></tr>
-    <tr><td class="cb-col"><input type="checkbox" class="solved-cb" data-key="graphs-bfs-dfs_1"></td><td>1</td><td>Number of Islands</td><td>Grid DFS/BFS</td><td>Medium</td><td><a href="https://leetcode.com/problems/number-of-islands/">LC 200</a></td></tr>
-    <tr><td class="cb-col"><input type="checkbox" class="solved-cb" data-key="graphs-bfs-dfs_2"></td><td>2</td><td>Flood Fill</td><td>Grid DFS</td><td>Easy</td><td><a href="https://leetcode.com/problems/flood-fill/">LC 733</a></td></tr>
-    <tr><td class="cb-col"><input type="checkbox" class="solved-cb" data-key="graphs-bfs-dfs_3"></td><td>3</td><td>01 Matrix</td><td>Multi-source BFS</td><td>Medium</td><td><a href="https://leetcode.com/problems/01-matrix/">LC 542</a></td></tr>
-    <tr><td class="cb-col"><input type="checkbox" class="solved-cb" data-key="graphs-bfs-dfs_4"></td><td>4</td><td>Rotting Oranges</td><td>Multi-source BFS</td><td>Medium</td><td><a href="https://leetcode.com/problems/rotting-oranges/">LC 994</a></td></tr>
+    <tr class="solved"><td class="cb-col"><input type="checkbox" class="solved-cb" data-key="graphs-bfs-dfs_1"></td><td>1</td><td>Number of Islands</td><td>Grid DFS/BFS</td><td>Medium</td><td><a href="https://leetcode.com/problems/number-of-islands/">LC 200</a></td></tr>
+    <tr class="solved"><td class="cb-col"><input type="checkbox" class="solved-cb" data-key="graphs-bfs-dfs_2"></td><td>2</td><td>Flood Fill</td><td>Grid DFS</td><td>Easy</td><td><a href="https://leetcode.com/problems/flood-fill/">LC 733</a></td></tr>
+    <tr class="solved"><td class="cb-col"><input type="checkbox" class="solved-cb" data-key="graphs-bfs-dfs_3"></td><td>3</td><td>01 Matrix</td><td>Multi-source BFS</td><td>Medium</td><td><a href="https://leetcode.com/problems/01-matrix/">LC 542</a></td></tr>
+    <tr class="solved"><td class="cb-col"><input type="checkbox" class="solved-cb" data-key="graphs-bfs-dfs_4"></td><td>4</td><td>Rotting Oranges</td><td>Multi-source BFS</td><td>Medium</td><td><a href="https://leetcode.com/problems/rotting-oranges/">LC 994</a></td></tr>
     <tr><td class="cb-col"><input type="checkbox" class="solved-cb" data-key="graphs-bfs-dfs_5"></td><td>5</td><td>Clone Graph</td><td>DFS + HashMap</td><td>Medium</td><td><a href="https://leetcode.com/problems/clone-graph/">LC 133</a></td></tr>
-    <tr><td class="cb-col"><input type="checkbox" class="solved-cb" data-key="graphs-bfs-dfs_6"></td><td>6</td><td>Number of Provinces</td><td>DFS Components</td><td>Medium</td><td><a href="https://leetcode.com/problems/number-of-provinces/">LC 547</a></td></tr>
-    <tr><td class="cb-col"><input type="checkbox" class="solved-cb" data-key="graphs-bfs-dfs_7"></td><td>7</td><td>Course Schedule</td><td>Cycle Detection</td><td>Medium</td><td><a href="https://leetcode.com/problems/course-schedule/">LC 207</a></td></tr>
+    <tr class="solved"><td class="cb-col"><input type="checkbox" class="solved-cb" data-key="graphs-bfs-dfs_6"></td><td>6</td><td>Number of Provinces</td><td>DFS Components</td><td>Medium</td><td><a href="https://leetcode.com/problems/number-of-provinces/">LC 547</a></td></tr>
+    <tr class="solved"><td class="cb-col"><input type="checkbox" class="solved-cb" data-key="graphs-bfs-dfs_7"></td><td>7</td><td>Course Schedule</td><td>Cycle Detection</td><td>Medium</td><td><a href="https://leetcode.com/problems/course-schedule/">LC 207</a></td></tr>
     <tr><td class="cb-col"><input type="checkbox" class="solved-cb" data-key="graphs-bfs-dfs_8"></td><td>8</td><td>Course Schedule II</td><td>Topological Sort</td><td>Medium</td><td><a href="https://leetcode.com/problems/course-schedule-ii/">LC 210</a></td></tr>
 </tbody></table><h3>Solve After (Day 3-4) — Strengthen Patterns</h3><table>
     <tbody><tr><th class="cb-col">✔</th><th>#</th><th>Problem</th><th>Pattern</th><th>Difficulty</th><th>Link</th></tr>
@@ -17065,4 +17410,4 @@ document.addEventListener('keydown', function(e) {
 </script>
 
 
-</body></html>
+<grammarly-desktop-integration data-grammarly-shadow-root="true"></grammarly-desktop-integration></body></html>
