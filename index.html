@@ -72,7 +72,9 @@
   "graphs-bfs-dfs_4": true,
   "graphs-bfs-dfs_3": true,
   "graphs-bfs-dfs_6": true,
-  "graphs-bfs-dfs_7": true
+  "graphs-bfs-dfs_7": true,
+  "graphs-bfs-dfs_8": true,
+  "graphs-bfs-dfs_11": true
 }</script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SDE 2 Interview Prep — DSA, LLD, HLD</title>
@@ -667,7 +669,7 @@ th.cb-col, td.cb-col { text-align: center; width: 40px; }
         <span class="card-num">10</span>
         <span class="card-label">Graphs</span>
         <h3>Graphs (BFS/DFS)</h3>
-      <div class="card-progress">6 / 15 solved</div><div class="progress-bar-wrap"><div class="progress-bar-fill" style="width: 40%;"></div></div></div>
+      <div class="card-progress">8 / 15 solved</div><div class="progress-bar-wrap"><div class="progress-bar-fill" style="width: 53.3333%;"></div></div></div>
       <div class="card" onclick="showTopic('graphs-advanced')" style="--card-color: #8E44AD">
         <span class="card-num">11</span>
         <span class="card-label">Graphs</span>
@@ -8624,8 +8626,8 @@ Map&lt;Integer, List&lt;Integer&gt;&gt; buildGraph(int[][] edges, boolean direct
 
 
 <!-- ============================================ -->
-<h2 class="collapsed">Section 3: Pattern Recognition Framework</h2>
-<div class="section-content collapsed"><div class="section-content"><p>Six patterns cover ~95% of graph interview problems.</p>
+<h2 class="">Section 3: Pattern Recognition Framework</h2>
+<div class="section-content"><div class="section-content"><p>Six patterns cover ~95% of graph interview problems.</p>
 <div class="mistake-box">
 <strong>BFS Rule #1: Mark visited when ENQUEUING, not when DEQUEUING</strong>
 <pre><code>// WRONG: same node added to queue many times → TLE
@@ -9106,15 +9108,37 @@ Reverse topo order → reverse it → [0, 1, 2] ✅</code></pre>
 <tr><td><strong>How it works</strong></td><td>Deepest dependency finishes first</td><td>No-dependency nodes processed first</td></tr>
 </tbody></table>
 </details>
-<h4>Kahn's Algorithm (BFS-based) — Preferred in Interviews</h4><pre><code>// Course Schedule II (LC 210)
+<h4>Kahn's Algorithm (BFS-based) — Preferred in Interviews</h4>
+<details style="background: var(--blue-light); border-left: 4px solid var(--blue); border-radius: 0 8px 8px 0; margin: 15px 0; padding: 15px 20px;">
+<summary style="cursor: pointer; font-weight: bold; color: var(--blue); font-size: 1.05em;">How Kahn's Algorithm works (indegree approach)</summary>
+<p><strong>Indegree</strong> = how many prerequisites a course has (how many edges point TO it). A course with indegree 0 has no unfinished prerequisites — it's ready to take.</p>
+<p><strong>Idea:</strong> Take all indegree-0 courses, reduce indegree of dependent courses, repeat.</p>
+<pre><code>Graph: X → Y → Z
+Indegree: X=0, Y=1, Z=1
+
+Step 1: X has 0 → take X, add to order
+        X → Y, so Y's indegree drops to 0
+
+Step 2: Y has 0 → take Y, add to order
+        Y → Z, so Z's indegree drops to 0
+
+Step 3: Z has 0 → take Z, add to order
+
+Order: [X, Y, Z] ✅ — no reversal needed!</code></pre>
+<p><strong>Why it's BFS:</strong> Start with ALL indegree-0 nodes in the queue (like multi-source BFS). Processing a node may make new nodes indegree 0 → enqueue them. Level by level expansion.</p>
+<p><strong>Cycle detection for free:</strong> Nodes in a cycle never reach indegree 0 — they're never enqueued. If <code>idx &lt; numCourses</code> at the end → cycle exists → return empty array.</p>
+</details>
+<pre><code>// Course Schedule II (LC 210)
 int[] findOrder(int numCourses, int[][] prerequisites) {
     List&lt;List&lt;Integer&gt;&gt; graph = new ArrayList&lt;&gt;();
     int[] indegree = new int[numCourses];
     for (int i = 0; i &lt; numCourses; i++) graph.add(new ArrayList&lt;&gt;());
 
+    // [3,1],[3,2] → to take course 3, finish 1 and 2 first
+    // adjList: 1→3, 2→3 (from 1 we can go to 3, from 2 we can go to 3)
     for (int[] pre : prerequisites) {
-        graph.get(pre[1]).add(pre[0]);
-        indegree[pre[0]]++;
+        graph.get(pre[1]).add(pre[0]);  // prereq → dependent
+        indegree[pre[0]]++;            // course 3 needs 2 prereqs → indegree=2
     }
 
     // Start with all in-degree 0 nodes (no dependencies)
@@ -9129,7 +9153,8 @@ int[] findOrder(int numCourses, int[][] prerequisites) {
         int node = queue.poll();
         order[idx++] = node;
         for (int nei : graph.get(node)) {
-            if (--indegree[nei] == 0) queue.offer(nei);
+            indegree[nei]--;                    // one prerequisite done
+            if (indegree[nei] == 0) queue.offer(nei); // all done? enqueue
         }
     }
 
@@ -9165,6 +9190,35 @@ dfsTopo(0):
 
 Pop order: 0, 1, 2 → topological order ✅</code></pre>
 <p>Each recursive call pushes its own node when done. The stack naturally reverses — deepest node pushed first, popped last.</p>
+<p><strong>Order doesn't depend on which node you start from:</strong></p>
+<pre><code>Graph: X → Y → Z
+
+Start from X:              Start from Z:
+DFS(X):                    DFS(Z):
+  → DFS(Y):                 no outgoing edges
+      → DFS(Z):              BLACK → push Z
+          BLACK → push Z   Main loop: Y
+      BLACK → push Y         DFS(Y):
+  BLACK → push X               visits Z (BLACK, skip)
+                                BLACK → push Y
+                             Main loop: X
+                               DFS(X):
+                                 visits Y (BLACK, skip)
+                                 BLACK → push X
+
+Stack: [Z, Y, X]          Stack: [Z, Y, X]
+Pop:   [X, Y, Z] ✅       Pop:   [X, Y, Z] ✅   same!</code></pre>
+<p><strong>Rule:</strong> A node is only pushed after ALL its descendants are pushed. This guarantee holds regardless of which node the main loop visits first.</p>
+<p><strong>The main for-loop doesn't decide the order</strong> — it just ensures disconnected nodes get processed. Even with multiple components, order is correct:</p>
+<pre><code>Component 1: A → B → C    Component 2: X → Y
+
+Loop starts with A:        Loop starts with X:
+DFS(A) → push C, B, A     DFS(X) → push Y, X
+DFS(X) → push Y, X        DFS(A) → push C, B, A
+
+Pop: [X,Y,A,B,C] ✅       Pop: [A,B,C,X,Y] ✅
+Both valid! No dependency between components.</code></pre>
+<p>Topological order isn't unique — multiple valid orderings exist. Within-component order is always correct. The for-loop order just determines which valid ordering you get.</p>
 </details>
 <pre><code>int[] topologicalSortDFS(int n, List&lt;List&lt;Integer&gt;&gt; graph) {
     int[] color = new int[n];
@@ -9212,7 +9266,34 @@ boolean dfsTopo(List&lt;List&lt;Integer&gt;&gt; graph, int[] color, Deque&lt;Int
         <li>States = nodes. Transitions = edges. Now it's a graph!</li>
         <li>"Shortest transformation" = BFS on this implicit graph</li>
     </ol>
-</div><blockquote><strong>Analogy:</strong> Combination lock with 4 wheels (0-9). Current combo = state. Each wheel turn = transition. BFS from "0000" to target = minimum turns. Graph has 10,000 nodes — you generate neighbors on-the-fly, never build it explicitly.</blockquote><h4>Open the Lock (<a href="https://leetcode.com/problems/open-the-lock/" target="_blank">LC 752</a>)</h4><pre><code>int openLock(String[] deadends, String target) {
+</div><blockquote><strong>Analogy:</strong> Combination lock with 4 wheels (0-9). Current combo = state. Each wheel turn = transition. BFS from "0000" to target = minimum turns. Graph has 10,000 nodes — you generate neighbors on-the-fly, never build it explicitly.</blockquote><h4>Open the Lock (<a href="https://leetcode.com/problems/open-the-lock/" target="_blank">LC 752</a>)</h4>
+<details style="background: var(--blue-light); border-left: 4px solid var(--blue); border-radius: 0 8px 8px 0; margin: 15px 0; padding: 15px 20px;">
+<summary style="cursor: pointer; font-weight: bold; color: var(--blue); font-size: 1.05em;">How to think about this problem</summary>
+<p><strong>Why it's a graph:</strong></p>
+<ul>
+<li>Each combination is a <strong>node</strong> (10,000 possible: "0000" to "9999")</li>
+<li>Each wheel turn is an <strong>edge</strong> (8 neighbors per node: 4 wheels × 2 directions)</li>
+<li>"Minimum turns" = <strong>shortest path</strong> = BFS</li>
+</ul>
+<p><strong>Steps:</strong></p>
+<ol>
+<li>Start with "0000" in the queue</li>
+<li>For each combination, generate all 8 neighbors (turn each of 4 wheels up or down)</li>
+<li>Skip deadends and already-visited combinations</li>
+<li>First time you reach the target = minimum turns</li>
+</ol>
+<pre><code>"0000" → turn wheel 0 up → "1000"
+       → turn wheel 0 down → "9000" (wraps: 0-1 = 9)
+       → turn wheel 1 up → "0100"
+       → turn wheel 1 down → "0900"
+       ... 8 neighbors total (4 wheels × 2 directions)
+
+BFS level 0: "0000"
+BFS level 1: "1000","9000","0100","0900","0010","0090","0001","0009"
+BFS level 2: ... keeps expanding until target is reached</code></pre>
+<p>You never build the full graph — neighbors are generated <strong>on the fly</strong>. That's why this is an <strong>implicit graph</strong>.</p>
+</details>
+<pre><code>int openLock(String[] deadends, String target) {
     Set&lt;String&gt; dead = new HashSet&lt;&gt;(Arrays.asList(deadends));
     Set&lt;String&gt; visited = new HashSet&lt;&gt;();
     if (dead.contains("0000")) return -1;
@@ -9248,7 +9329,15 @@ boolean dfsTopo(List&lt;List&lt;Integer&gt;&gt; graph, int[] color, Deque&lt;Int
         steps++;
     }
     return -1;
-}</code></pre><h4>Word Ladder (<a href="https://leetcode.com/problems/word-ladder/" target="_blank">LC 127</a>)</h4><pre><code>int ladderLength(String beginWord, String endWord, List&lt;String&gt; wordList) {
+}</code></pre><div class="important-note">
+<strong>Why <code>steps++</code> is after the for-loop, not inside it:</strong> All 8 neighbors are <strong>one step away</strong> from the current combination — one turn of one wheel = one step. They're all at the same BFS level. The inner for-loop processes all nodes at step N, generates neighbors for step N+1, then <code>steps++</code> moves to the next level. Incrementing per neighbor would wrongly count "0000"→"1000" as step 1 and "0000"→"9000" as step 2, but both are just one turn from "0000".
+</div><div class="important-note">
+<strong>Why HashSets for this problem:</strong>
+<ul>
+<li><strong>Deadends → HashSet:</strong> <code>dead.contains()</code> is called for every neighbor of every node. <code>ArrayList.contains()</code> is O(n) per check → TLE on large inputs. <code>HashSet.contains()</code> is O(1). Rule: whenever you need repeated <code>.contains()</code> checks, convert to HashSet.</li>
+<li><strong>Visited → HashSet:</strong> Nodes are strings ("0000", "1234"), not integers. Can't index a <code>boolean[]</code> with a string. HashSet gives O(1) lookup by key. Use <code>boolean[]</code> when nodes are integers (0 to n-1), HashSet when nodes are strings/objects.</li>
+</ul>
+</div><h4>Word Ladder (<a href="https://leetcode.com/problems/word-ladder/" target="_blank">LC 127</a>)</h4><pre><code>int ladderLength(String beginWord, String endWord, List&lt;String&gt; wordList) {
     Set&lt;String&gt; wordSet = new HashSet&lt;&gt;(wordList);
     if (!wordSet.contains(endWord)) return 0;
 
@@ -9652,12 +9741,12 @@ Dijkstra / Bellman-Ford → Weighted shortest paths
     <tr><td class="cb-col"><input type="checkbox" class="solved-cb" data-key="graphs-bfs-dfs_5"></td><td>5</td><td>Clone Graph</td><td>DFS + HashMap</td><td>Medium</td><td><a href="https://leetcode.com/problems/clone-graph/">LC 133</a></td></tr>
     <tr class="solved"><td class="cb-col"><input type="checkbox" class="solved-cb" data-key="graphs-bfs-dfs_6"></td><td>6</td><td>Number of Provinces</td><td>DFS Components</td><td>Medium</td><td><a href="https://leetcode.com/problems/number-of-provinces/">LC 547</a></td></tr>
     <tr class="solved"><td class="cb-col"><input type="checkbox" class="solved-cb" data-key="graphs-bfs-dfs_7"></td><td>7</td><td>Course Schedule</td><td>Cycle Detection</td><td>Medium</td><td><a href="https://leetcode.com/problems/course-schedule/">LC 207</a></td></tr>
-    <tr><td class="cb-col"><input type="checkbox" class="solved-cb" data-key="graphs-bfs-dfs_8"></td><td>8</td><td>Course Schedule II</td><td>Topological Sort</td><td>Medium</td><td><a href="https://leetcode.com/problems/course-schedule-ii/">LC 210</a></td></tr>
+    <tr class="solved"><td class="cb-col"><input type="checkbox" class="solved-cb" data-key="graphs-bfs-dfs_8"></td><td>8</td><td>Course Schedule II</td><td>Topological Sort</td><td>Medium</td><td><a href="https://leetcode.com/problems/course-schedule-ii/">LC 210</a></td></tr>
 </tbody></table><h3>Solve After (Day 3-4) — Strengthen Patterns</h3><table>
     <tbody><tr><th class="cb-col">✔</th><th>#</th><th>Problem</th><th>Pattern</th><th>Difficulty</th><th>Link</th></tr>
     <tr><td class="cb-col"><input type="checkbox" class="solved-cb" data-key="graphs-bfs-dfs_9"></td><td>9</td><td>Pacific Atlantic Water Flow</td><td>Multi-source DFS</td><td>Medium</td><td><a href="https://leetcode.com/problems/pacific-atlantic-water-flow/">LC 417</a></td></tr>
     <tr><td class="cb-col"><input type="checkbox" class="solved-cb" data-key="graphs-bfs-dfs_10"></td><td>10</td><td>Word Ladder</td><td>BFS Implicit Graph</td><td>Hard</td><td><a href="https://leetcode.com/problems/word-ladder/">LC 127</a></td></tr>
-    <tr><td class="cb-col"><input type="checkbox" class="solved-cb" data-key="graphs-bfs-dfs_11"></td><td>11</td><td>Open the Lock</td><td>BFS State Space</td><td>Medium</td><td><a href="https://leetcode.com/problems/open-the-lock/">LC 752</a></td></tr>
+    <tr class="solved"><td class="cb-col"><input type="checkbox" class="solved-cb" data-key="graphs-bfs-dfs_11"></td><td>11</td><td>Open the Lock</td><td>BFS State Space</td><td>Medium</td><td><a href="https://leetcode.com/problems/open-the-lock/">LC 752</a></td></tr>
     <tr><td class="cb-col"><input type="checkbox" class="solved-cb" data-key="graphs-bfs-dfs_12"></td><td>12</td><td>Surrounded Regions</td><td>DFS Border</td><td>Medium</td><td><a href="https://leetcode.com/problems/surrounded-regions/">LC 130</a></td></tr>
     <tr><td class="cb-col"><input type="checkbox" class="solved-cb" data-key="graphs-bfs-dfs_13"></td><td>13</td><td>Graph Valid Tree</td><td>DFS Cycle + Components</td><td>Medium</td><td><a href="https://leetcode.com/problems/graph-valid-tree/">LC 261</a></td></tr>
     <tr><td class="cb-col"><input type="checkbox" class="solved-cb" data-key="graphs-bfs-dfs_14"></td><td>14</td><td>Shortest Path in Binary Matrix</td><td>BFS Grid</td><td>Medium</td><td><a href="https://leetcode.com/problems/shortest-path-in-binary-matrix/">LC 1091</a></td></tr>
