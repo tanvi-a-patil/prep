@@ -74,7 +74,12 @@
   "graphs-bfs-dfs_6": true,
   "graphs-bfs-dfs_7": true,
   "graphs-bfs-dfs_8": true,
-  "graphs-bfs-dfs_11": true
+  "graphs-bfs-dfs_11": true,
+  "graphs-bfs-dfs_12": true,
+  "heaps_4": true,
+  "heaps_5": true,
+  "heaps_1": true,
+  "heaps_2": true
 }</script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SDE 2 Interview Prep — DSA, LLD, HLD</title>
@@ -664,12 +669,12 @@ th.cb-col, td.cb-col { text-align: center; width: 40px; }
         <span class="card-num">09</span>
         <span class="card-label">Trees</span>
         <h3>Heaps / Priority Queue</h3>
-      <div class="card-progress">0 / 15 solved</div><div class="progress-bar-wrap"><div class="progress-bar-fill" style="width:0%"></div></div></div>
+      <div class="card-progress">4 / 15 solved</div><div class="progress-bar-wrap"><div class="progress-bar-fill" style="width: 26.6667%;"></div></div></div>
       <div class="card" onclick="showTopic('graphs-bfs-dfs')" style="--card-color: #8E44AD">
         <span class="card-num">10</span>
         <span class="card-label">Graphs</span>
         <h3>Graphs (BFS/DFS)</h3>
-      <div class="card-progress">8 / 15 solved</div><div class="progress-bar-wrap"><div class="progress-bar-fill" style="width: 53.3333%;"></div></div></div>
+      <div class="card-progress">9 / 15 solved</div><div class="progress-bar-wrap"><div class="progress-bar-fill" style="width: 60%;"></div></div></div>
       <div class="card" onclick="showTopic('graphs-advanced')" style="--card-color: #8E44AD">
         <span class="card-num">11</span>
         <span class="card-label">Graphs</span>
@@ -7716,7 +7721,7 @@ Is it a BST?<br>
       <button class="back-btn" onclick="showCategory('dsa')">← Back to DSA Topics</button>
     </div>
   </div>
-  <div class="topic-page" id="page-heaps">
+  <div class="topic-page active" id="page-heaps">
     <div class="topic-header">
       <button class="back-btn" onclick="showCategory('dsa')">← Back to DSA Topics</button>
       <span class="topic-number">09 / 18</span>
@@ -7864,7 +7869,46 @@ PriorityQueue&lt;int[]&gt; pq = new PriorityQueue&lt;&gt;((a, b) -&gt;
 
 <!-- ============================================ -->
 <h2 class="collapsed">Section 3: Pattern Recognition Framework</h2>
-<div class="section-content collapsed"><div class="section-content"><p>Six patterns cover ~95% of heap interview problems.</p><div class="pattern-header">Pattern 1: Top K Elements</div><p><strong>When to use:</strong> Find K largest, K smallest, K most frequent, K closest.</p><div class="how-to-arrive">
+<div class="section-content collapsed"><div class="section-content"><p>Six patterns cover ~95% of heap interview problems.</p><div class="pattern-header">Pattern 1: Kth Largest / Smallest Element</div><p><strong>When to use:</strong> Find the single Kth largest or Kth smallest element, especially in a <strong>stream</strong>.</p><div class="how-to-arrive">
+    <strong>How to arrive at this (thinking process):</strong>
+    <ol>
+        <li>You see "Kth largest" or "Kth smallest."</li>
+        <li>For static data: QuickSelect O(n) average is optimal. But for <strong>streaming data</strong>, you can't re-run QuickSelect every time.</li>
+        <li>Maintain a <strong>min-heap of size K</strong>. The root is always the Kth largest.</li>
+        <li>Why? The heap holds the K largest elements seen so far. The smallest among those K (the root) is by definition the Kth largest.</li>
+    </ol>
+</div><blockquote><strong>Analogy:</strong> A leaderboard that only shows the top K players. The player at position K (bottom of leaderboard) is the Kth largest. New scores come in — if they beat position K, they push someone off.</blockquote><div class="important-note">
+<strong>Why min-heap for Kth LARGEST?</strong> The heap holds only K elements — the K largest seen so far. The smallest among them IS the Kth largest:
+<pre><code>nums = [3, 1, 5, 12, 2, 11], k = 3
+
+Sorted:            [1, 2, 3, 5, 11, 12]
+                             ↑ 3rd largest = 5
+
+Min-heap (size 3): [5, 11, 12]
+                    ↑ root = smallest in heap = 5 = same!</code></pre>
+Heap holds [5, 11, 12]: 12 = 1st largest, 11 = 2nd, <strong>5 = 3rd</strong> ← smallest of the top K = root of min-heap.
+</div>
+<pre><code>// LC 703: Kth Largest Element in a Stream
+class KthLargest {
+    private PriorityQueue&lt;Integer&gt; minHeap;
+    private int k;
+
+    public KthLargest(int k, int[] nums) {
+        this.k = k;
+        minHeap = new PriorityQueue&lt;&gt;();
+        for (int n : nums) add(n);
+    }
+
+    public int add(int val) {
+        minHeap.offer(val);
+        if (minHeap.size() &gt; k) minHeap.poll();
+        return minHeap.peek(); // root = Kth largest
+    }
+}</code></pre><div class="tip-box">
+    <strong>Pattern 1 vs 2:</strong> Pattern 1 returns a <em>single value</em> and often involves a stream; Pattern 2 returns a <em>collection</em> of K elements.
+</div><div class="edge-cases">
+    <strong>Edge cases:</strong> Stream has fewer than K elements initially, duplicate values in stream, val equals current Kth largest.
+</div><div class="pattern-header">Pattern 2: Top K Elements</div><p><strong>When to use:</strong> Find K largest, K smallest, K most frequent, K closest.</p><div class="how-to-arrive">
     <strong>How to arrive at this (thinking process):</strong>
     <ol>
         <li>You see "K largest/smallest/closest/frequent" in the problem.</li>
@@ -7886,7 +7930,32 @@ public int[] topKLargest(int[] nums, int k) {
         if (minHeap.size() &gt; k) minHeap.poll(); // bouncer kicks smallest
     }
     return minHeap.stream().mapToInt(i -&gt; i).toArray();
-}</code></pre><h4>Top K Frequent — HashMap + Heap combo:</h4><pre><code>// LC 347: Top K Frequent Elements
+}</code></pre><h4>Top K Frequent — HashMap + Heap combo:</h4>
+<details style="background: var(--blue-light); border-left: 4px solid var(--blue); border-radius: 0 8px 8px 0; margin: 15px 0; padding: 15px 20px;">
+<summary style="cursor: pointer; font-weight: bold; color: var(--blue); font-size: 1.05em;">Why do we need both HashMap and Heap?</summary>
+<p>Each solves a different part:</p>
+<ul>
+<li><strong>HashMap</strong> → "how many times does each element appear?" <code>[1,1,1,2,2,3] → {1:3, 2:2, 3:1}</code></li>
+<li><strong>Heap</strong> → "which k elements have the highest frequency?" <code>top 2 → [1, 2]</code></li>
+</ul>
+<p><strong>Brute force:</strong> HashMap to count, then sort all entries by frequency, return top k → <strong>O(n log n)</strong></p>
+<p><strong>Optimized:</strong> HashMap to count, then min-heap of size k to keep only top k → <strong>O(n log k)</strong></p>
+<table>
+<tbody><tr><th></th><th>Brute force (sort)</th><th>Heap (size k)</th></tr>
+<tr><td><strong>Count freq</strong></td><td>O(n)</td><td>O(n)</td></tr>
+<tr><td><strong>Find top k</strong></td><td>O(n log n) — sort all</td><td>O(n log k) — heap of size k</td></tr>
+<tr><td><strong>Total</strong></td><td>O(n log n)</td><td>O(n log k)</td></tr>
+</tbody></table>
+<p><strong>Why min-heap, not max-heap?</strong> Min-heap of size k keeps the smallest frequency on top. When a new element has higher frequency, it kicks out the smallest. After processing all entries, the heap holds exactly the top k.</p>
+<p><strong>Solution in words:</strong></p>
+<ol>
+<li>Iterate over array, put each number in a HashMap to count frequencies.</li>
+<li>Iterate over the map, add each {number, frequency} pair to a min-heap.</li>
+<li>Keep only k elements in the heap — whenever size exceeds k, poll the minimum (lowest frequency gets kicked out).</li>
+<li>Return the remaining k elements as an array — these are the top k frequent.</li>
+</ol>
+</details>
+<pre><code>// LC 347: Top K Frequent Elements
 public int[] topKFrequent(int[] nums, int k) {
     Map&lt;Integer, Integer&gt; freq = new HashMap&lt;&gt;();
     for (int n : nums) freq.merge(n, 1, Integer::sum);
@@ -7900,37 +7969,41 @@ public int[] topKFrequent(int[] nums, int k) {
         if (pq.size() &gt; k) pq.poll();
     }
     return pq.stream().mapToInt(e -&gt; e.getKey()).toArray();
-}</code></pre><div class="edge-cases">
+}</code></pre>
+<details style="background: var(--blue-light); border-left: 4px solid var(--blue); border-radius: 0 8px 8px 0; margin: 15px 0; padding: 15px 20px;" open="">
+<summary style="cursor: pointer; font-weight: bold; color: var(--blue); font-size: 1.05em;">Common PriorityQueue comparator patterns</summary>
+<p><strong>The pattern:</strong> <code>(a, b) -&gt; a.X - b.X</code> for min-heap, <code>(a, b) -&gt; b.X - a.X</code> for max-heap.</p>
+<pre><code>// 1. Map entries — sort by frequency (Top K Frequent)
+PriorityQueue&lt;Map.Entry&lt;Integer, Integer&gt;&gt; pq =
+    new PriorityQueue&lt;&gt;((a, b) -&gt; a.getValue() - b.getValue());
+
+// 2. int arrays — sort by specific index
+// e.g., intervals, edges [cost, node], points [x, y]
+new PriorityQueue&lt;int[]&gt;((a, b) -&gt; a[0] - b[0]);  // by first element
+new PriorityQueue&lt;int[]&gt;((a, b) -&gt; a[1] - b[1]);  // by second element
+
+// 3. Integers — min vs max
+PriorityQueue&lt;Integer&gt; minHeap = new PriorityQueue&lt;&gt;();
+PriorityQueue&lt;Integer&gt; maxHeap = new PriorityQueue&lt;&gt;(Collections.reverseOrder());
+
+// 4. Multi-field — e.g., Dijkstra [distance, node]
+new PriorityQueue&lt;int[]&gt;((a, b) -&gt; a[0] != b[0]
+    ? a[0] - b[0] : a[1] - b[1]);
+
+// 5. ListNode — sort by value (Merge K Lists)
+new PriorityQueue&lt;ListNode&gt;((a, b) -&gt; a.val - b.val);</code></pre>
+<table>
+<tbody><tr><th>Problem</th><th>Heap contains</th><th>Sort by</th></tr>
+<tr><td>Top K Frequent (LC 347)</td><td>Map.Entry</td><td><code>.getValue()</code> (frequency)</td></tr>
+<tr><td>K Closest Points (LC 973)</td><td>int[]</td><td><code>x²+y²</code> (distance)</td></tr>
+<tr><td>Merge K Lists (LC 23)</td><td>ListNode</td><td><code>.val</code></td></tr>
+<tr><td>Meeting Rooms II (LC 253)</td><td>int</td><td>end time</td></tr>
+<tr><td>Dijkstra</td><td>int[]</td><td><code>[0]</code> (distance)</td></tr>
+</tbody></table>
+</details>
+<div class="edge-cases">
     <strong>Edge cases:</strong> k == nums.length (return all), k == 0 (empty), all same frequency (any K valid), k &gt; unique elements.
-</div><p><strong>Classic problems:</strong> <a href="https://leetcode.com/problems/top-k-frequent-elements/">LC 347</a>, <a href="https://leetcode.com/problems/k-closest-points-to-origin/">LC 973</a>, <a href="https://leetcode.com/problems/kth-largest-element-in-an-array/">LC 215</a>, <a href="https://leetcode.com/problems/sort-characters-by-frequency/">LC 451</a></p><div class="pattern-header">Pattern 2: Kth Largest / Smallest Element</div><p><strong>When to use:</strong> Find the single Kth largest or Kth smallest element, especially in a <strong>stream</strong>.</p><div class="how-to-arrive">
-    <strong>How to arrive at this (thinking process):</strong>
-    <ol>
-        <li>You see "Kth largest" or "Kth smallest."</li>
-        <li>For static data: QuickSelect O(n) average is optimal. But for <strong>streaming data</strong>, you can't re-run QuickSelect every time.</li>
-        <li>Maintain a <strong>min-heap of size K</strong>. The root is always the Kth largest.</li>
-        <li>Why? The heap holds the K largest elements seen so far. The smallest among those K (the root) is by definition the Kth largest.</li>
-    </ol>
-</div><blockquote><strong>Analogy:</strong> A leaderboard that only shows the top K players. The player at position K (bottom of leaderboard) is the Kth largest. New scores come in — if they beat position K, they push someone off.</blockquote><pre><code>// LC 703: Kth Largest Element in a Stream
-class KthLargest {
-    private PriorityQueue&lt;Integer&gt; minHeap;
-    private int k;
-
-    public KthLargest(int k, int[] nums) {
-        this.k = k;
-        minHeap = new PriorityQueue&lt;&gt;();
-        for (int n : nums) add(n);
-    }
-
-    public int add(int val) {
-        minHeap.offer(val);
-        if (minHeap.size() &gt; k) minHeap.poll();
-        return minHeap.peek(); // root = Kth largest
-    }
-}</code></pre><div class="tip-box">
-    <strong>Pattern 1 vs 2:</strong> Pattern 1 returns a <em>collection</em>; Pattern 2 returns a <em>single value</em> and often involves a stream.
-</div><div class="edge-cases">
-    <strong>Edge cases:</strong> Stream has fewer than K elements initially, duplicate values in stream, val equals current Kth largest.
-</div><div class="pattern-header">Pattern 3: Merge K Sorted Structures</div><p><strong>When to use:</strong> K sorted lists/arrays/streams need to be merged into one sorted output.</p><div class="how-to-arrive">
+</div><p><strong>Classic problems:</strong> <a href="https://leetcode.com/problems/top-k-frequent-elements/">LC 347</a>, <a href="https://leetcode.com/problems/k-closest-points-to-origin/">LC 973</a>, <a href="https://leetcode.com/problems/kth-largest-element-in-an-array/">LC 215</a>, <a href="https://leetcode.com/problems/sort-characters-by-frequency/">LC 451</a></p><div class="pattern-header">Pattern 3: Merge K Sorted Structures</div><p><strong>When to use:</strong> K sorted lists/arrays/streams need to be merged into one sorted output.</p><div class="how-to-arrive">
     <strong>How to arrive at this (thinking process):</strong>
     <ol>
         <li>You have K sorted structures. Need one merged sorted output.</li>
@@ -8440,15 +8513,15 @@ PriorityQueue&lt;Integer&gt; pq = new PriorityQueue&lt;&gt;(Integer::compare);</
 </tbody></table></div></div>
 
 <!-- ============================================ -->
-<h2 class="page-break collapsed">Section 9: Must-Solve Problems</h2>
+<h2 class="page-break">Section 9: Must-Solve Problems</h2>
 
-<div class="section-content collapsed"><div class="section-content"><h3>Solve First (Core Patterns — Day 1-2)</h3><table>
+<div class="section-content"><div class="section-content"><h3>Solve First (Core Patterns — Day 1-2)</h3><table>
     <tbody><tr><th class="cb-col">✔</th><th>#</th><th>Problem</th><th>Pattern</th><th>Difficulty</th><th>Link</th></tr>
-    <tr><td class="cb-col"><input type="checkbox" class="solved-cb" data-key="heaps_1"></td><td>1</td><td>Last Stone Weight</td><td>Max-Heap Basics</td><td>Easy</td><td><a href="https://leetcode.com/problems/last-stone-weight/">LC 1046</a></td></tr>
-    <tr><td class="cb-col"><input type="checkbox" class="solved-cb" data-key="heaps_2"></td><td>2</td><td>Kth Largest Element in Stream</td><td>Kth Element</td><td>Easy</td><td><a href="https://leetcode.com/problems/kth-largest-element-in-a-stream/">LC 703</a></td></tr>
+    <tr class="solved"><td class="cb-col"><input type="checkbox" class="solved-cb" data-key="heaps_1"></td><td>1</td><td>Last Stone Weight</td><td>Max-Heap Basics</td><td>Easy</td><td><a href="https://leetcode.com/problems/last-stone-weight/">LC 1046</a></td></tr>
+    <tr class="solved"><td class="cb-col"><input type="checkbox" class="solved-cb" data-key="heaps_2"></td><td>2</td><td>Kth Largest Element in Stream</td><td>Kth Element</td><td>Easy</td><td><a href="https://leetcode.com/problems/kth-largest-element-in-a-stream/">LC 703</a></td></tr>
     <tr><td class="cb-col"><input type="checkbox" class="solved-cb" data-key="heaps_3"></td><td>3</td><td>K Closest Points to Origin</td><td>Top K</td><td>Medium</td><td><a href="https://leetcode.com/problems/k-closest-points-to-origin/">LC 973</a></td></tr>
-    <tr><td class="cb-col"><input type="checkbox" class="solved-cb" data-key="heaps_4"></td><td>4</td><td>Kth Largest Element in Array</td><td>Top K / QuickSelect</td><td>Medium</td><td><a href="https://leetcode.com/problems/kth-largest-element-in-an-array/">LC 215</a></td></tr>
-    <tr><td class="cb-col"><input type="checkbox" class="solved-cb" data-key="heaps_5"></td><td>5</td><td>Top K Frequent Elements</td><td>Top K + HashMap</td><td>Medium</td><td><a href="https://leetcode.com/problems/top-k-frequent-elements/">LC 347</a></td></tr>
+    <tr class="solved"><td class="cb-col"><input type="checkbox" class="solved-cb" data-key="heaps_4"></td><td>4</td><td>Kth Largest Element in Array</td><td>Top K / QuickSelect</td><td>Medium</td><td><a href="https://leetcode.com/problems/kth-largest-element-in-an-array/">LC 215</a></td></tr>
+    <tr class="solved"><td class="cb-col"><input type="checkbox" class="solved-cb" data-key="heaps_5"></td><td>5</td><td>Top K Frequent Elements</td><td>Top K + HashMap</td><td>Medium</td><td><a href="https://leetcode.com/problems/top-k-frequent-elements/">LC 347</a></td></tr>
     <tr><td class="cb-col"><input type="checkbox" class="solved-cb" data-key="heaps_6"></td><td>6</td><td>Sort Characters By Frequency</td><td>Top K + HashMap</td><td>Medium</td><td><a href="https://leetcode.com/problems/sort-characters-by-frequency/">LC 451</a></td></tr>
     <tr><td class="cb-col"><input type="checkbox" class="solved-cb" data-key="heaps_7"></td><td>7</td><td>Merge K Sorted Lists</td><td>Merge K</td><td>Hard</td><td><a href="https://leetcode.com/problems/merge-k-sorted-lists/">LC 23</a></td></tr>
     <tr><td class="cb-col"><input type="checkbox" class="solved-cb" data-key="heaps_8"></td><td>8</td><td>Find Median from Data Stream</td><td>Two Heaps</td><td>Hard</td><td><a href="https://leetcode.com/problems/find-median-from-data-stream/">LC 295</a></td></tr>
@@ -8516,7 +8589,7 @@ Multi:    (a, b) -&gt; a[0] != b[0] ? a[0] - b[0] : a[1] - b[1]</code></pre>
       <button class="back-btn" onclick="showCategory('dsa')">← Back to DSA Topics</button>
     </div>
   </div>
-  <div class="topic-page active" id="page-graphs-bfs-dfs">
+  <div class="topic-page" id="page-graphs-bfs-dfs">
     <div class="topic-header">
       <button class="back-btn" onclick="showCategory('dsa')">← Back to DSA Topics</button>
       <span class="topic-number">10 / 18</span>
@@ -8626,8 +8699,8 @@ Map&lt;Integer, List&lt;Integer&gt;&gt; buildGraph(int[][] edges, boolean direct
 
 
 <!-- ============================================ -->
-<h2 class="">Section 3: Pattern Recognition Framework</h2>
-<div class="section-content"><div class="section-content"><p>Six patterns cover ~95% of graph interview problems.</p>
+<h2 class="collapsed">Section 3: Pattern Recognition Framework</h2>
+<div class="section-content collapsed"><div class="section-content"><p>Six patterns cover ~95% of graph interview problems.</p>
 <div class="mistake-box">
 <strong>BFS Rule #1: Mark visited when ENQUEUING, not when DEQUEUING</strong>
 <pre><code>// WRONG: same node added to queue many times → TLE
@@ -9730,9 +9803,9 @@ Dijkstra / Bellman-Ford → Weighted shortest paths
 
 
 <!-- ============================================ -->
-<h2 class="page-break">Section 9: Must-Solve Problems</h2>
+<h2 class="page-break collapsed">Section 9: Must-Solve Problems</h2>
 
-<div class="section-content"><div class="section-content"><h3>Solve First (Day 1-2) — Build Foundation</h3><table>
+<div class="section-content collapsed"><div class="section-content"><h3>Solve First (Day 1-2) — Build Foundation</h3><table>
     <tbody><tr><th class="cb-col">✔</th><th>#</th><th>Problem</th><th>Pattern</th><th>Difficulty</th><th>Link</th></tr>
     <tr class="solved"><td class="cb-col"><input type="checkbox" class="solved-cb" data-key="graphs-bfs-dfs_1"></td><td>1</td><td>Number of Islands</td><td>Grid DFS/BFS</td><td>Medium</td><td><a href="https://leetcode.com/problems/number-of-islands/">LC 200</a></td></tr>
     <tr class="solved"><td class="cb-col"><input type="checkbox" class="solved-cb" data-key="graphs-bfs-dfs_2"></td><td>2</td><td>Flood Fill</td><td>Grid DFS</td><td>Easy</td><td><a href="https://leetcode.com/problems/flood-fill/">LC 733</a></td></tr>
@@ -9747,7 +9820,7 @@ Dijkstra / Bellman-Ford → Weighted shortest paths
     <tr><td class="cb-col"><input type="checkbox" class="solved-cb" data-key="graphs-bfs-dfs_9"></td><td>9</td><td>Pacific Atlantic Water Flow</td><td>Multi-source DFS</td><td>Medium</td><td><a href="https://leetcode.com/problems/pacific-atlantic-water-flow/">LC 417</a></td></tr>
     <tr><td class="cb-col"><input type="checkbox" class="solved-cb" data-key="graphs-bfs-dfs_10"></td><td>10</td><td>Word Ladder</td><td>BFS Implicit Graph</td><td>Hard</td><td><a href="https://leetcode.com/problems/word-ladder/">LC 127</a></td></tr>
     <tr class="solved"><td class="cb-col"><input type="checkbox" class="solved-cb" data-key="graphs-bfs-dfs_11"></td><td>11</td><td>Open the Lock</td><td>BFS State Space</td><td>Medium</td><td><a href="https://leetcode.com/problems/open-the-lock/">LC 752</a></td></tr>
-    <tr><td class="cb-col"><input type="checkbox" class="solved-cb" data-key="graphs-bfs-dfs_12"></td><td>12</td><td>Surrounded Regions</td><td>DFS Border</td><td>Medium</td><td><a href="https://leetcode.com/problems/surrounded-regions/">LC 130</a></td></tr>
+    <tr class="solved"><td class="cb-col"><input type="checkbox" class="solved-cb" data-key="graphs-bfs-dfs_12"></td><td>12</td><td>Surrounded Regions</td><td>DFS Border</td><td>Medium</td><td><a href="https://leetcode.com/problems/surrounded-regions/">LC 130</a></td></tr>
     <tr><td class="cb-col"><input type="checkbox" class="solved-cb" data-key="graphs-bfs-dfs_13"></td><td>13</td><td>Graph Valid Tree</td><td>DFS Cycle + Components</td><td>Medium</td><td><a href="https://leetcode.com/problems/graph-valid-tree/">LC 261</a></td></tr>
     <tr><td class="cb-col"><input type="checkbox" class="solved-cb" data-key="graphs-bfs-dfs_14"></td><td>14</td><td>Shortest Path in Binary Matrix</td><td>BFS Grid</td><td>Medium</td><td><a href="https://leetcode.com/problems/shortest-path-in-binary-matrix/">LC 1091</a></td></tr>
     <tr><td class="cb-col"><input type="checkbox" class="solved-cb" data-key="graphs-bfs-dfs_15"></td><td>15</td><td>Walls and Gates</td><td>Multi-source BFS</td><td>Medium</td><td><a href="https://leetcode.com/problems/walls-and-gates/">LC 286</a></td></tr>
@@ -17280,15 +17353,37 @@ window.addEventListener('DOMContentLoaded', function() {
 var progressData = {};
 var unsavedChanges = false;
 
+function isHosted() {
+  return window.location.protocol === 'https:' || window.location.protocol === 'http:';
+}
+
 function loadProgress() {
+  // Hosted (Netlify etc.): load from localStorage
+  // Local file: load from embedded JSON, merge with localStorage
   try {
-    var el = document.getElementById('dsa-progress-data');
-    progressData = JSON.parse(el.textContent) || {};
+    var stored = JSON.parse(localStorage.getItem('dsa-progress') || '{}');
+    var embedded = {};
+    try {
+      var el = document.getElementById('dsa-progress-data');
+      embedded = JSON.parse(el.textContent) || {};
+    } catch(e) {}
+    // Merge: localStorage wins (more recent), embedded fills gaps
+    progressData = Object.assign({}, embedded, stored);
   } catch(e) { progressData = {}; }
   return progressData;
 }
 
 function markUnsaved() {
+  // Always save to localStorage immediately (works hosted and local)
+  localStorage.setItem('dsa-progress', JSON.stringify(progressData));
+
+  // Hosted: localStorage is enough, no Save button needed
+  if (isHosted()) {
+    showSaved();
+    return;
+  }
+
+  // Local file: show Save button so user can save to file
   unsavedChanges = true;
   document.getElementById('save-btn').classList.add('visible');
   document.getElementById('save-btn').classList.remove('saved');
@@ -17324,7 +17419,16 @@ function showSaved() {
 }
 
 async function saveFile() {
-  // Try File System Access API (Chrome/Edge) — saves in-place, no download
+  // Always save to localStorage (works everywhere — hosted and local)
+  localStorage.setItem('dsa-progress', JSON.stringify(progressData));
+
+  // If hosted (Netlify etc.), localStorage is enough — no file download
+  if (isHosted()) {
+    showSaved();
+    return;
+  }
+
+  // Local file: also save to the file using File System Access API
   if (window.showSaveFilePicker) {
     try {
       if (!fileHandle) {
