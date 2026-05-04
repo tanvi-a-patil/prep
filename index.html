@@ -79,7 +79,9 @@
   "heaps_4": true,
   "heaps_5": true,
   "heaps_1": true,
-  "heaps_2": true
+  "heaps_2": true,
+  "greedy_1": true,
+  "greedy_2": true
 }</script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SDE 2 Interview Prep — DSA, LLD, HLD</title>
@@ -694,7 +696,7 @@ th.cb-col, td.cb-col { text-align: center; width: 40px; }
         <span class="card-num">14</span>
         <span class="card-label">Strategies</span>
         <h3>Greedy Algorithms</h3>
-      <div class="card-progress">0 / 15 solved</div><div class="progress-bar-wrap"><div class="progress-bar-fill" style="width:0%"></div></div></div>
+      <div class="card-progress">2 / 15 solved</div><div class="progress-bar-wrap"><div class="progress-bar-fill" style="width: 13.3333%;"></div></div></div>
       <div class="card" onclick="showTopic('intervals')" style="--card-color: #16A085">
         <span class="card-num">15</span>
         <span class="card-label">Strategies</span>
@@ -7721,7 +7723,7 @@ Is it a BST?<br>
       <button class="back-btn" onclick="showCategory('dsa')">← Back to DSA Topics</button>
     </div>
   </div>
-  <div class="topic-page active" id="page-heaps">
+  <div class="topic-page" id="page-heaps">
     <div class="topic-header">
       <button class="back-btn" onclick="showCategory('dsa')">← Back to DSA Topics</button>
       <span class="topic-number">09 / 18</span>
@@ -8513,9 +8515,9 @@ PriorityQueue&lt;Integer&gt; pq = new PriorityQueue&lt;&gt;(Integer::compare);</
 </tbody></table></div></div>
 
 <!-- ============================================ -->
-<h2 class="page-break">Section 9: Must-Solve Problems</h2>
+<h2 class="page-break collapsed">Section 9: Must-Solve Problems</h2>
 
-<div class="section-content"><div class="section-content"><h3>Solve First (Core Patterns — Day 1-2)</h3><table>
+<div class="section-content collapsed"><div class="section-content"><h3>Solve First (Core Patterns — Day 1-2)</h3><table>
     <tbody><tr><th class="cb-col">✔</th><th>#</th><th>Problem</th><th>Pattern</th><th>Difficulty</th><th>Link</th></tr>
     <tr class="solved"><td class="cb-col"><input type="checkbox" class="solved-cb" data-key="heaps_1"></td><td>1</td><td>Last Stone Weight</td><td>Max-Heap Basics</td><td>Easy</td><td><a href="https://leetcode.com/problems/last-stone-weight/">LC 1046</a></td></tr>
     <tr class="solved"><td class="cb-col"><input type="checkbox" class="solved-cb" data-key="heaps_2"></td><td>2</td><td>Kth Largest Element in Stream</td><td>Kth Element</td><td>Easy</td><td><a href="https://leetcode.com/problems/kth-largest-element-in-a-stream/">LC 703</a></td></tr>
@@ -12277,7 +12279,7 @@ Need to SPLIT/MERGE a RANGE optimally?<br>
       <button class="back-btn" onclick="showCategory('dsa')">← Back to DSA Topics</button>
     </div>
   </div>
-  <div class="topic-page" id="page-greedy">
+  <div class="topic-page active" id="page-greedy">
     <div class="topic-header">
       <button class="back-btn" onclick="showCategory('dsa')">← Back to DSA Topics</button>
       <span class="topic-number">14 / 18</span>
@@ -12376,7 +12378,30 @@ public int maxNonOverlapping(int[][] intervals) {
         <li>Or circular arrangement to find valid starting point (Gas Station)</li>
     </ul>
     <strong>Strategy:</strong> Track farthest reachable position. If current index exceeds farthest, you’re stuck.
-</div><pre><code>// Jump Game: Can you reach the end?
+</div>
+<details style="background: var(--blue-light); border-left: 4px solid var(--blue); border-radius: 0 8px 8px 0; margin: 15px 0; padding: 15px 20px;">
+<summary style="cursor: pointer; font-weight: bold; color: var(--blue); font-size: 1.05em;">How Jump Game works — what is <code>farthest</code>?</summary>
+<p><code>farthest</code> = the maximum index you can reach from any position visited so far.</p>
+<p><code>i + nums[i]</code> = "I'm at index <code>i</code>, can jump <code>nums[i]</code> steps, so I can land on index <code>i + nums[i]</code>."</p>
+<p>You don't add jumps together — each index gives a <strong>fresh jump range</strong> from that position. <code>farthest</code> tracks the best reach across all visited indices.</p>
+<pre><code>nums = [2, 3, 1, 1, 4]    ← reachable
+
+i=0: farthest = max(0, 0+2) = 2  → from 0, can reach index 2
+i=1: farthest = max(2, 1+3) = 4  → from 1, can reach index 4 (the end!)
+i=2: farthest = max(4, 2+1) = 4
+i=3: farthest = max(4, 3+1) = 4
+i=4: reached the end → return true ✅</code></pre>
+<pre><code>nums = [3, 2, 1, 0, 4]    ← unreachable
+
+i=0: farthest = max(0, 0+3) = 3
+i=1: farthest = max(3, 1+2) = 3
+i=2: farthest = max(3, 2+1) = 3
+i=3: farthest = max(3, 3+0) = 3  → nums[3]=0, stuck!
+i=4: i(4) &gt; farthest(3) → return false ❌
+     "No visited index could ever reach here"</code></pre>
+<p><strong>The guarantee:</strong> By walking <code>i=0,1,2,3...</code> and tracking max reach, you check: "across ALL positions I can visit, can ANY of them reach the end?" If <code>farthest</code> never reaches the last index, no chain of jumps can get there.</p>
+</details>
+<pre><code>// Jump Game: Can you reach the end?
 public boolean canJump(int[] nums) {
     int farthest = 0;
     for (int i = 0; i &lt; nums.length; i++) {
@@ -12418,9 +12443,20 @@ public int findContentChildren(int[] children, int[] cookies) {
         cookie++;
     }
     return child;
-}
+}</code></pre>
+<details style="background: var(--blue-light); border-left: 4px solid var(--blue); border-radius: 0 8px 8px 0; margin: 15px 0; padding: 15px 20px;">
+<summary style="cursor: pointer; font-weight: bold; color: var(--blue); font-size: 1.05em;">Boats to Save People — Why pair lightest + heaviest, not two lightest?</summary>
+<p>Pairing two light people wastes boat capacity. The heavy person ends up riding alone anyway.</p>
+<pre><code>people = [1, 2, 3, 8], limit = 9
 
-// Boats to Save People: Min boats (max 2 people, weight limit)
+Two lightest first:              Lightest + heaviest:
+  Boat 1: 1+2 = 3 (wasted 6!)     Boat 1: 1+8 = 9 (perfect!)
+  Boat 2: 3 alone                  Boat 2: 2+3 = 5
+  Boat 3: 8 alone                  Total: 2 boats ✅
+  Total: 3 boats ❌</code></pre>
+<p><strong>The insight:</strong> The heaviest person either shares a boat with someone, or rides alone. Pair them with the <strong>lightest</strong> — best chance to fit. The lightest person is the most flexible (can pair with anyone), so use that flexibility on the hardest case first.</p>
+</details>
+<pre><code>// Boats to Save People: Min boats (max 2 people, weight limit)
 public int numRescueBoats(int[] people, int limit) {
     Arrays.sort(people);
     int lo = 0, hi = people.length - 1, boats = 0;
@@ -12438,7 +12474,28 @@ public int numRescueBoats(int[] people, int limit) {
     </ul>
     <strong>Signal words:</strong> “minimum cost to combine”, “reorganize to avoid adjacency”, “schedule with cooldown”<br>
     <strong>Strategy:</strong> Use min-heap or max-heap. Always process the best available option first.
-</div><pre><code>// Minimum Cost to Connect Sticks (Huffman-style)
+</div>
+<details style="background: var(--blue-light); border-left: 4px solid var(--blue); border-radius: 0 8px 8px 0; margin: 15px 0; padding: 15px 20px;">
+<summary style="cursor: pointer; font-weight: bold; color: var(--blue); font-size: 1.05em;">Minimum Cost to Connect Sticks — Why always pick the two smallest?</summary>
+<p>The cost of connecting two sticks = sum of their lengths. The combined stick gets used in <strong>future connections</strong>, so its cost compounds. Bigger sticks created early get added to the total more times.</p>
+<pre><code>sticks = [1, 3, 5]
+
+Greedy (smallest first):         Non-greedy (largest first):
+  Connect 1+3 = 4, cost = 4       Connect 3+5 = 8, cost = 8
+  Connect 4+5 = 9, cost = 9       Connect 1+8 = 9, cost = 9
+  Total: 13 ✅                     Total: 17 ❌</code></pre>
+<p><strong>Why min-heap?</strong> Need to repeatedly pick the two smallest. Min-heap gives smallest in O(log n). After combining, push result back — it might not be the smallest anymore.</p>
+<pre><code>sticks = [2, 4, 3] → Heap: [2, 3, 4]
+
+Step 1: Poll 2 and 3 → cost = 5, total = 5
+        Push 5 → Heap: [4, 5]
+
+Step 2: Poll 4 and 5 → cost = 9, total = 5+9 = 14
+        Push 9 → Heap: [9]
+
+Size = 1 → done. Answer: 14</code></pre>
+</details>
+<pre><code>// Minimum Cost to Connect Sticks (Huffman-style)
 public int connectSticks(int[] sticks) {
     PriorityQueue&lt;Integer&gt; pq = new PriorityQueue&lt;&gt;();
     for (int s : sticks) pq.offer(s);
@@ -12451,8 +12508,30 @@ public int connectSticks(int[] sticks) {
     return totalCost;
 }
 
-// Reorganize String: No two adjacent chars same
-public String reorganizeString(String s) {
+// Reorganize String: No two adjacent chars same</code></pre>
+<details style="background: var(--blue-light); border-left: 4px solid var(--blue); border-radius: 0 8px 8px 0; margin: 15px 0; padding: 15px 20px;">
+<summary style="cursor: pointer; font-weight: bold; color: var(--blue); font-size: 1.05em;">Reorganize String — Why max-heap?</summary>
+<p>Always place the <strong>most frequent</strong> character next. If high-frequency chars aren't used early, they pile up and become adjacent.</p>
+<p><strong>Algorithm:</strong></p>
+<ol>
+<li>Count frequency of each character</li>
+<li>Max-heap of {char, freq} sorted by frequency</li>
+<li>At each step:
+    <ul>
+    <li>Most frequent != last placed → place it</li>
+    <li>Most frequent == last placed → place <strong>second</strong> most frequent instead</li>
+    <li>No second option → impossible, return ""</li>
+    </ul>
+</li>
+</ol>
+<pre><code>Trace: "aab" → freq: a=2, b=1 → Heap: [{a,2}, {b,1}]
+
+Step 1: Poll {a,2}, last=none → place 'a' → "a"
+Step 2: Poll {a,1}, last='a' → SAME! Poll {b,1} → place 'b' → "ab"
+Step 3: Poll {a,1}, last='b' → OK → place 'a' → "aba" ✅</code></pre>
+<p><strong>When is it impossible?</strong> Any char's frequency &gt; <code>(length+1)/2</code>. For <code>"aaab"</code>, a=3 but max allowed = (4+1)/2 = 2 → can't avoid adjacency.</p>
+</details>
+<pre><code>public String reorganizeString(String s) {
     int[] freq = new int[26];
     for (char c : s.toCharArray()) freq[c - 'a']++;
     PriorityQueue&lt;int[]&gt; pq = new PriorityQueue&lt;&gt;((a, b) -&gt; b[1] - a[1]);
@@ -12482,7 +12561,25 @@ public String reorganizeString(String s) {
     </ul>
     <strong>Signal words:</strong> “remove K digits”, “smallest subsequence”, “remove duplicate letters”<br>
     <strong>Strategy:</strong> Use a stack. For each new element, pop while stack top is worse and removals remain.
-</div><pre><code>// Remove K Digits: Smallest number after removing k digits
+</div>
+<details style="background: var(--blue-light); border-left: 4px solid var(--blue); border-radius: 0 8px 8px 0; margin: 15px 0; padding: 15px 20px;">
+<summary style="cursor: pointer; font-weight: bold; color: var(--blue); font-size: 1.05em;">Remove K Digits — How the stack greedy works</summary>
+<p><strong>Idea:</strong> A number is smaller when larger digits appear later. So whenever a new digit is smaller than the stack top, pop the larger digit (use one removal). This greedily pushes large digits out early.</p>
+<pre><code>num = "1432219", k = 3
+
+Stack: []
+'1' → push → [1]
+'4' → push → [1,4]
+'3' → 3 &lt; 4 → pop 4 (k=2) → [1] → push 3 → [1,3]
+'2' → 2 &lt; 3 → pop 3 (k=1) → [1] → push 2 → [1,2]
+'2' → push → [1,2,2]
+'1' → 1 &lt; 2 → pop 2 (k=0) → [1,2] → push 1 → [1,2,1]
+'9' → push → [1,2,1,9]
+
+k=0, done. Result: "1219" ✅</code></pre>
+<p><strong>Edge cases:</strong> If k remains after scanning (e.g., "1234", k=2), pop from the end. Strip leading zeros. Return "0" if empty.</p>
+</details>
+<pre><code>// Remove K Digits: Smallest number after removing k digits
 public String removeKdigits(String num, int k) {
     Deque&lt;Character&gt; stack = new ArrayDeque&lt;&gt;();
     for (char c : num.toCharArray()) {
@@ -12498,9 +12595,30 @@ public String removeKdigits(String num, int k) {
     while (!stack.isEmpty()) sb.append(stack.pollLast());
     while (sb.length() &gt; 0 &amp;&amp; sb.charAt(0) == '0') sb.deleteCharAt(0);
     return sb.length() == 0 ? "0" : sb.toString();
-}
+}</code></pre>
+<details style="background: var(--blue-light); border-left: 4px solid var(--blue); border-radius: 0 8px 8px 0; margin: 15px 0; padding: 15px 20px;">
+<summary style="cursor: pointer; font-weight: bold; color: var(--blue); font-size: 1.05em;">Remove Duplicate Letters — Stack + last index + inStack</summary>
+<p><strong>Goal:</strong> Smallest subsequence containing every unique character exactly once.</p>
+<p><strong>Three tools:</strong></p>
+<ul>
+<li><code>lastIndex[c]</code> — last occurrence of char c. Tells us: "can I safely remove this char now and find it later?"</li>
+<li><code>inStack[c]</code> — is char c already in the result? Skip if yes.</li>
+<li><strong>Stack</strong> — build result. Pop top if it's larger than current AND appears later in the string.</li>
+</ul>
+<pre><code>s = "bcabc"
+lastIndex: a=2, b=3, c=4
 
-// Remove Duplicate Letters: Smallest subsequence with all unique chars
+'b' → stack: [b]
+'c' → c &gt; b → push → [b,c]
+'a' → a &lt; c, c appears later (4&gt;2) → pop c → [b]
+       a &lt; b, b appears later (3&gt;2) → pop b → []
+       push a → [a]
+'b' → push → [a,b]
+'c' → push → [a,b,c]
+
+Result: "abc" ✅</code></pre>
+</details>
+<pre><code>// Remove Duplicate Letters: Smallest subsequence with all unique chars
 public String removeDuplicateLetters(String s) {
     int[] lastIndex = new int[26];
     for (int i = 0; i &lt; s.length(); i++) lastIndex[s.charAt(i) - 'a'] = i;
@@ -12529,7 +12647,27 @@ public String removeDuplicateLetters(String s) {
     </ul>
     <strong>Signal words:</strong> intervals, merge, partition, ranges, last occurrence<br>
     <strong>Strategy:</strong> Sort by start (or end), then scan linearly and merge/extend/split.
-</div><pre><code>// Partition Labels: Max partitions where each letter in at most one
+</div>
+<details style="background: var(--blue-light); border-left: 4px solid var(--blue); border-radius: 0 8px 8px 0; margin: 15px 0; padding: 15px 20px;">
+<summary style="cursor: pointer; font-weight: bold; color: var(--blue); font-size: 1.05em;">Partition Labels — How last occurrence defines partitions</summary>
+<p><strong>Idea:</strong> For each character, find its last occurrence. A partition can end at index <code>i</code> only if ALL characters seen so far have their last occurrence ≤ <code>i</code>. Track the farthest last occurrence as you scan.</p>
+<pre><code>s = "ababcbacadefegde"
+
+Scan:
+i=0 'a': lastIndex[a]=8 → end=8
+i=1 'b': lastIndex[b]=5 → end=8
+...
+i=8 'a': i == end(8) → partition! length = 8-0+1 = 9
+
+i=9  'd': lastIndex[d]=14 → end=14
+i=10 'e': lastIndex[e]=15 → end=15
+...
+i=15 'e': i == end(15) → partition! length = 15-9+1 = 7
+
+Result: [9, 7, 8]</code></pre>
+<p><code>i == end</code> means: every character in this partition has been fully contained. Safe to cut here.</p>
+</details>
+<pre><code>// Partition Labels: Max partitions where each letter in at most one
 public List&lt;Integer&gt; partitionLabels(String s) {
     int[] lastIndex = new int[26];
     for (int i = 0; i &lt; s.length(); i++)
@@ -12545,9 +12683,21 @@ public List&lt;Integer&gt; partitionLabels(String s) {
         }
     }
     return result;
-}
+}</code></pre>
+<details style="background: var(--blue-light); border-left: 4px solid var(--blue); border-radius: 0 8px 8px 0; margin: 15px 0; padding: 15px 20px;">
+<summary style="cursor: pointer; font-weight: bold; color: var(--blue); font-size: 1.05em;">Minimum Arrows to Burst Balloons — Sort by end, count non-overlapping groups</summary>
+<p><strong>Idea:</strong> Sort balloons by <strong>end position</strong>. Shoot an arrow at the first balloon's end. Any balloon that starts after this arrow needs a new arrow.</p>
+<pre><code>points = [[10,16],[2,8],[1,6],[7,12]]
+Sorted by end: [[1,6],[2,8],[7,12],[10,16]]
 
-// Minimum Arrows to Burst Balloons
+Arrow 1 at 6: bursts [1,6] and [2,8] (2 ≤ 6)
+              [7,12] starts at 7 &gt; 6 → new arrow needed
+Arrow 2 at 12: bursts [7,12] and [10,16] (10 ≤ 12)
+
+Answer: 2 arrows</code></pre>
+<p><strong>Why sort by end?</strong> Shooting at the earliest end point maximizes overlap with subsequent balloons. Greedy: use each arrow as efficiently as possible.</p>
+</details>
+<pre><code>// Minimum Arrows to Burst Balloons
 public int findMinArrowShots(int[][] points) {
     Arrays.sort(points, (a, b) -&gt; Integer.compare(a[1], b[1]));
     int arrows = 1, arrowPos = points[0][1];
@@ -12804,12 +12954,12 @@ public int findMinArrowShots(int[][] points) {
 </tbody></table></div></div>
 
 <!-- ============================================ -->
-<h2 class="collapsed">Section 9: Must-Solve Problems</h2>
+<h2 class="">Section 9: Must-Solve Problems</h2>
 
-<div class="section-content collapsed"><div class="section-content"><h3>Easy</h3><table>
+<div class="section-content"><div class="section-content"><h3>Easy</h3><table>
     <tbody><tr><th class="cb-col">✔</th><th>#</th><th>Problem</th><th>Pattern</th><th>Key Insight</th><th>Link</th></tr>
-    <tr><td class="cb-col"><input type="checkbox" class="solved-cb" data-key="greedy_1"></td><td>1</td><td>Jump Game</td><td>Farthest Reach</td><td>Track max reachable index</td><td><a href="https://leetcode.com/problems/jump-game/">LC 55</a></td></tr>
-    <tr><td class="cb-col"><input type="checkbox" class="solved-cb" data-key="greedy_2"></td><td>2</td><td>Assign Cookies</td><td>Two-Pointer</td><td>Sort both, match smallest to smallest</td><td><a href="https://leetcode.com/problems/assign-cookies/">LC 455</a></td></tr>
+    <tr class="solved"><td class="cb-col"><input type="checkbox" class="solved-cb" data-key="greedy_1"></td><td>1</td><td>Jump Game</td><td>Farthest Reach</td><td>Track max reachable index</td><td><a href="https://leetcode.com/problems/jump-game/">LC 55</a></td></tr>
+    <tr class="solved"><td class="cb-col"><input type="checkbox" class="solved-cb" data-key="greedy_2"></td><td>2</td><td>Assign Cookies</td><td>Two-Pointer</td><td>Sort both, match smallest to smallest</td><td><a href="https://leetcode.com/problems/assign-cookies/">LC 455</a></td></tr>
 </tbody></table><h3>Medium</h3><table>
     <tbody><tr><th class="cb-col">✔</th><th>#</th><th>Problem</th><th>Pattern</th><th>Key Insight</th><th>Link</th></tr>
     <tr><td class="cb-col"><input type="checkbox" class="solved-cb" data-key="greedy_3"></td><td>3</td><td>Jump Game II</td><td>Farthest Reach</td><td>BFS-style: track jump boundary</td><td><a href="https://leetcode.com/problems/jump-game-ii/">LC 45</a></td></tr>
