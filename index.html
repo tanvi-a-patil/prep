@@ -81,7 +81,13 @@
   "heaps_1": true,
   "heaps_2": true,
   "greedy_1": true,
-  "greedy_2": true
+  "greedy_2": true,
+  "heaps_7": true,
+  "heaps_8": true,
+  "heaps_6": true,
+  "heaps_3": true,
+  "heaps_10": true,
+  "heaps_9": true
 }</script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SDE 2 Interview Prep — DSA, LLD, HLD</title>
@@ -356,261 +362,101 @@ th.cb-col, td.cb-col { text-align: center; width: 40px; }
     </div>
   </div>
 
-    <!-- ===== 7-WEEK STUDY PLAN ===== -->
+    <!-- ===== DSA STUDY PLAN ===== -->
   <div style="max-width:960px; width:100%; margin:50px auto 0; text-align:left;">
-        <h2 style="text-align:center; cursor:pointer; color:var(--primary); border:none; user-select:none; font-size:1.5em;" onclick="var el=this.nextElementSibling; el.style.display = el.style.display==='none'?'block':'none'; this.textContent = el.style.display==='none' ? '▶ 7-Week Hybrid Study Plan (Apr 7 → May 25)' : '▼ 7-Week Hybrid Study Plan (Apr 7 → May 25)';">
-            ▼ 7-Week Hybrid Study Plan (Apr 7 → May 25)
+        <h2 style="text-align:center; cursor:pointer; color:var(--primary); border:none; user-select:none; font-size:1.5em;" onclick="var el=this.nextElementSibling; el.style.display = el.style.display==='none'?'block':'none'; this.textContent = el.style.display==='none' ? '▶ DSA Study Plan (May 5 → May 31)' : '▼ DSA Study Plan (May 5 → May 31)';">
+            ▼ DSA Study Plan (May 5 → May 31)
     </h2>
     <div style="background:white; border-radius:16px; padding:30px 35px; border:2px solid #e5e7eb; margin-top:12px;">
 
-            <p style="color:#777; margin-bottom:18px; font-size:0.95em;">Hybrid schedule (3 office + 2 WFH) • ~23 hrs/week • 1 leave/week on commute day • Interview-ready by late May</p>
+            <p style="color:#777; margin-bottom:18px; font-size:0.95em;">27 days • 3 hrs/day • ~81 hrs total • DSA only • DP at the end</p>
 
-      <!-- Weekly Structure -->
       <div style="background:var(--primary-light); border-radius:10px; padding:16px 20px; margin-bottom:24px;">
-        <strong style="color:var(--primary);">Weekly Time Budget (~23 hrs)</strong><br>
-        <span style="display:inline-block; width:200px; font-weight:600;">Office commute (passive)</span> 3 hrs — review notes on phone, pattern recognition<br>
-        <span style="display:inline-block; width:200px; font-weight:600;">Office evenings</span> 2 hrs — 1 problem max per evening<br>
-        <span style="display:inline-block; width:200px; font-weight:600;">WFH days (2/week)</span> 7 hrs — morning + saved commute + post-work<br>
-        <span style="display:inline-block; width:200px; font-weight:600;">Weekends</span> 7–8 hrs — Sat 4-5 hrs (hard topics), Sun 3 hrs (revision)<br>
-        <span style="display:inline-block; width:200px; font-weight:600;">Leave day (1/week)</span> 4 hrs — deep focused prep day
-      </div>
-
-      <!-- Leave Strategy -->
-      <div style="background:var(--yellow-light); border-radius:10px; padding:16px 20px; margin-bottom:24px; border-left:4px solid var(--yellow);">
-        <strong style="color:var(--yellow);">Leave Strategy (10 of 25 AL)</strong><br>
-        7 leaves — 1 per week on a commute day (e.g., every Wednesday)<br>
-        2–3 leaves — saved for interview week (mock practice + rest)<br>
-        15 leaves — preserved for encashment (~1 month expenses safety net)
+        <strong style="color:var(--primary);">Progress: ~80 / 259 solved</strong><br>
+        <strong style="color:var(--green);">Done/Almost:</strong> Stack (12/14), Trees (13/16), Backtracking (12/14), Arrays (8/14)<br>
+        <strong style="color:var(--yellow);">In Progress:</strong> Graphs BFS/DFS (9/15), Two Pointers (6/13), Binary Search (6/15), Sliding Window (5/12), Heaps (4/15), Greedy (2/15), Linked List (3/14)<br>
+        <strong style="color:var(--red);">Not Started:</strong> Graphs Advanced, Strings, Intervals, Trie, Bit Manipulation, DP
       </div>
 
       <!-- WEEK 1 -->
-    <h3 style="color:var(--primary); border-bottom:2px solid var(--primary-light); padding-bottom:6px; margin-bottom:12px;">Week 1 (Apr 7–13): Finish Stack + Linked List + Trees</h3>
-      <p style="font-size:0.9em; color:#666; margin-bottom:10px;">Done so far: Arrays/Hashing, Two Pointers, Binary Search, Sliding Window, Stack (7 problems)</p>
-
+    <h3 style="color:var(--primary); border-bottom:2px solid var(--primary-light); padding-bottom:6px; margin-bottom:12px;">Week 1 (May 5–11): Finish In-Progress Topics</h3>
       <table style="width:100%; border-collapse:collapse; font-size:0.92em; margin-bottom:24px;">
         <tbody><tr style="background:var(--primary); color:white;">
-          <th style="padding:8px 10px; text-align:left; width:100px;">Day</th>
-          <th style="padding:8px 10px; text-align:left; width:80px;">Type</th>
+          <th style="padding:8px 10px; text-align:left; width:80px;">Day</th>
+          <th style="padding:8px 10px; text-align:left;">Topic</th>
           <th style="padding:8px 10px; text-align:left;">Focus</th>
           <th style="padding:8px 10px; text-align:left; width:50px;">Hrs</th>
         </tr>
-                <tr style="background:#fafafa;"><td style="padding:6px 10px;">Mon</td><td>Office</td><td>Commute: revise Stack patterns on phone</td><td>1</td></tr>
-                <tr><td style="padding:6px 10px;">Tue</td><td>Office</td><td>Commute: Linked List notes. Evening: 1 problem</td><td>2</td></tr>
-                <tr style="background:var(--green-light);"><td style="padding:6px 10px;"><strong>Wed</strong></td><td><strong>LEAVE</strong></td><td>Finish Stack problems + Linked List (3–4 problems)</td><td>5</td></tr>
-                <tr style="background:#fafafa;"><td style="padding:6px 10px;">Thu</td><td>WFH</td><td>Trees/BST — patterns 1–3 (DFS, BFS, BST)</td><td>3.5</td></tr>
-                <tr><td style="padding:6px 10px;">Fri</td><td>WFH</td><td>Trees/BST — patterns 4–5 (construction, path problems)</td><td>3.5</td></tr>
-                <tr style="background:#fafafa;"><td style="padding:6px 10px;">Sat</td><td>Weekend</td><td>Trees practice — 4 problems timed</td><td>5</td></tr>
-                <tr><td style="padding:6px 10px;">Sun</td><td>Weekend</td><td>Revise week's weak spots, 2 retry problems</td><td>3</td></tr>
+                <tr style="background:#fafafa;"><td style="padding:6px 10px;">Mon 5</td><td>Heaps</td><td>Finish remaining 11 problems</td><td>3</td></tr>
+                <tr><td style="padding:6px 10px;">Tue 6</td><td>Greedy</td><td>Problems 3–8</td><td>3</td></tr>
+                <tr style="background:#fafafa;"><td style="padding:6px 10px;">Wed 7</td><td>Greedy</td><td>Problems 9–15</td><td>3</td></tr>
+                <tr><td style="padding:6px 10px;">Thu 8</td><td>Graphs BFS/DFS</td><td>Finish remaining 6 problems</td><td>3</td></tr>
+                <tr style="background:#fafafa;"><td style="padding:6px 10px;">Fri 9</td><td>Linked List</td><td>Problems 1–7</td><td>3</td></tr>
+                <tr><td style="padding:6px 10px;">Sat 10</td><td>Linked List</td><td>Problems 8–14</td><td>3</td></tr>
+                <tr style="background:#fafafa;"><td style="padding:6px 10px;">Sun 11</td><td>Finish leftovers</td><td>Arrays(6), Two Pointers(7), Binary Search(9), Sliding Window(7), Stack(2), Backtracking(2)</td><td>3</td></tr>
       </tbody></table>
 
       <!-- WEEK 2 -->
-    <h3 style="color:var(--primary); border-bottom:2px solid var(--primary-light); padding-bottom:6px; margin-bottom:12px;">Week 2 (Apr 14–20): Backtracking + Heaps + Graphs Basics</h3>
-
+    <h3 style="color:var(--primary); border-bottom:2px solid var(--primary-light); padding-bottom:6px; margin-bottom:12px;">Week 2 (May 12–18): New Topics</h3>
       <table style="width:100%; border-collapse:collapse; font-size:0.92em; margin-bottom:24px;">
         <tbody><tr style="background:var(--primary); color:white;">
-          <th style="padding:8px 10px; text-align:left; width:100px;">Day</th>
-          <th style="padding:8px 10px; text-align:left; width:80px;">Type</th>
+          <th style="padding:8px 10px; text-align:left; width:80px;">Day</th>
+          <th style="padding:8px 10px; text-align:left;">Topic</th>
           <th style="padding:8px 10px; text-align:left;">Focus</th>
           <th style="padding:8px 10px; text-align:left; width:50px;">Hrs</th>
         </tr>
-                <tr style="background:#fafafa;"><td style="padding:6px 10px;">Mon</td><td>Office</td><td>Commute: read Backtracking notes</td><td>1</td></tr>
-                <tr><td style="padding:6px 10px;">Tue</td><td>Office</td><td>Commute: Heaps notes. Evening: 1 backtracking problem</td><td>2</td></tr>
-                <tr style="background:var(--green-light);"><td style="padding:6px 10px;"><strong>Wed</strong></td><td><strong>LEAVE</strong></td><td>Backtracking (permutations, combinations, subsets) + Heaps</td><td>5</td></tr>
-                <tr style="background:#fafafa;"><td style="padding:6px 10px;">Thu</td><td>WFH</td><td>Heaps — Top K, merge K, two heaps pattern</td><td>3.5</td></tr>
-                <tr><td style="padding:6px 10px;">Fri</td><td>WFH</td><td>Graphs BFS/DFS — traversal, islands, cycle detection</td><td>3.5</td></tr>
-                <tr style="background:#fafafa;"><td style="padding:6px 10px;">Sat</td><td>Weekend</td><td>Graphs BFS/DFS practice — 4 problems</td><td>5</td></tr>
-                <tr><td style="padding:6px 10px;">Sun</td><td>Weekend</td><td>Revise Trees + Backtracking (solve 2 from each)</td><td>3</td></tr>
+                <tr style="background:#fafafa;"><td style="padding:6px 10px;">Mon 12</td><td>Graphs Advanced</td><td>Problems 1–5 (Union-Find, Dijkstra)</td><td>3</td></tr>
+                <tr><td style="padding:6px 10px;">Tue 13</td><td>Graphs Advanced</td><td>Problems 6–10</td><td>3</td></tr>
+                <tr style="background:#fafafa;"><td style="padding:6px 10px;">Wed 14</td><td>Graphs Advanced</td><td>Problems 11–15</td><td>3</td></tr>
+                <tr><td style="padding:6px 10px;">Thu 15</td><td>Strings</td><td>Problems 1–8</td><td>3</td></tr>
+                <tr style="background:#fafafa;"><td style="padding:6px 10px;">Fri 16</td><td>Strings</td><td>Problems 9–15</td><td>3</td></tr>
+                <tr><td style="padding:6px 10px;">Sat 17</td><td>Intervals</td><td>Problems 1–8</td><td>3</td></tr>
+                <tr style="background:#fafafa;"><td style="padding:6px 10px;">Sun 18</td><td>Intervals</td><td>Problems 9–15</td><td>3</td></tr>
       </tbody></table>
 
       <!-- WEEK 3 -->
-    <h3 style="color:var(--primary); border-bottom:2px solid var(--primary-light); padding-bottom:6px; margin-bottom:12px;">Week 3 (Apr 21–27): Graphs Advanced + DP Part 1</h3>
-
+    <h3 style="color:var(--primary); border-bottom:2px solid var(--primary-light); padding-bottom:6px; margin-bottom:12px;">Week 3 (May 19–25): Remaining + DP Start</h3>
       <table style="width:100%; border-collapse:collapse; font-size:0.92em; margin-bottom:24px;">
         <tbody><tr style="background:var(--primary); color:white;">
-          <th style="padding:8px 10px; text-align:left; width:100px;">Day</th>
-          <th style="padding:8px 10px; text-align:left; width:80px;">Type</th>
+          <th style="padding:8px 10px; text-align:left; width:80px;">Day</th>
+          <th style="padding:8px 10px; text-align:left;">Topic</th>
           <th style="padding:8px 10px; text-align:left;">Focus</th>
           <th style="padding:8px 10px; text-align:left; width:50px;">Hrs</th>
         </tr>
-                <tr style="background:#fafafa;"><td style="padding:6px 10px;">Mon</td><td>Office</td><td>Commute: Graphs Advanced notes (Dijkstra, Topo sort)</td><td>1</td></tr>
-                <tr><td style="padding:6px 10px;">Tue</td><td>Office</td><td>Commute: DP Part 1 notes. Evening: 1 graph problem</td><td>2</td></tr>
-                <tr style="background:var(--green-light);"><td style="padding:6px 10px;"><strong>Wed</strong></td><td><strong>LEAVE</strong></td><td>Graphs Advanced (shortest path, MST, Union Find)</td><td>5</td></tr>
-                <tr style="background:#fafafa;"><td style="padding:6px 10px;">Thu</td><td>WFH</td><td>DP Part 1 — Fibonacci, climbing stairs, house robber</td><td>3.5</td></tr>
-                <tr><td style="padding:6px 10px;">Fri</td><td>WFH</td><td>DP Part 1 — 0/1 Knapsack, subset sum, coin change</td><td>3.5</td></tr>
-                <tr style="background:#fafafa;"><td style="padding:6px 10px;">Sat</td><td>Weekend</td><td>DP practice — 4–5 problems (needs most time)</td><td>5</td></tr>
-                <tr><td style="padding:6px 10px;">Sun</td><td>Weekend</td><td>Revise Graphs + retry 2 DP problems</td><td>3</td></tr>
+                <tr style="background:#fafafa;"><td style="padding:6px 10px;">Mon 19</td><td>Trie</td><td>Problems 1–6</td><td>3</td></tr>
+                <tr><td style="padding:6px 10px;">Tue 20</td><td>Trie</td><td>Problems 7–12</td><td>3</td></tr>
+                <tr style="background:#fafafa;"><td style="padding:6px 10px;">Wed 21</td><td>Bit Manipulation</td><td>Problems 1–8</td><td>3</td></tr>
+                <tr><td style="padding:6px 10px;">Thu 22</td><td>Bit Manipulation</td><td>Problems 9–15</td><td>3</td></tr>
+                <tr style="background:var(--yellow-light);"><td style="padding:6px 10px;">Fri 23</td><td><strong>DP Part 1</strong></td><td>1D DP basics (Fibonacci, Climbing Stairs, House Robber)</td><td>3</td></tr>
+                <tr style="background:var(--yellow-light);"><td style="padding:6px 10px;">Sat 24</td><td><strong>DP Part 1</strong></td><td>Knapsack, Coin Change</td><td>3</td></tr>
+                <tr style="background:var(--yellow-light);"><td style="padding:6px 10px;">Sun 25</td><td><strong>DP Part 1</strong></td><td>LCS, LIS, Edit Distance</td><td>3</td></tr>
       </tbody></table>
 
       <!-- WEEK 4 -->
-    <h3 style="color:var(--primary); border-bottom:2px solid var(--primary-light); padding-bottom:6px; margin-bottom:12px;">Week 4 (Apr 28 — May 4): DP Part 2 + Greedy + Intervals + Trie/Strings/Bits</h3>
-      <p style="font-size:0.9em; color:#666; margin-bottom:10px;">Compressed: Trie, Strings, Bit Manipulation are lower-frequency — covered in 1 leave day. HLD passive learning starts via commute.</p>
-
-      <table style="width:100%; border-collapse:collapse; font-size:0.92em; margin-bottom:24px;">
-        <tbody><tr style="background:var(--primary); color:white;">
-          <th style="padding:8px 10px; text-align:left; width:100px;">Day</th>
-          <th style="padding:8px 10px; text-align:left; width:80px;">Type</th>
-          <th style="padding:8px 10px; text-align:left;">Focus</th>
-          <th style="padding:8px 10px; text-align:left; width:50px;">Hrs</th>
-        </tr>
-                <tr style="background:#fafafa;"><td style="padding:6px 10px;">Mon</td><td>Office</td><td>Commute: DP Part 2 notes (LCS, LIS, matrix) + <strong style="color:#E67E22;">HLD: read Fundamentals</strong></td><td>1</td></tr>
-                <tr><td style="padding:6px 10px;">Tue</td><td>Office</td><td>Commute: Greedy notes + <strong style="color:#E67E22;">HLD: CAP, LB, caching concepts</strong>. Evening: 1 DP problem</td><td>2</td></tr>
-                <tr style="background:var(--green-light);"><td style="padding:6px 10px;"><strong>Wed</strong></td><td><strong>LEAVE</strong></td><td>DP Part 2 (string DP, interval DP) + Trie + Strings + Bit Manipulation (finish DSA!)</td><td>5</td></tr>
-                <tr style="background:#fafafa;"><td style="padding:6px 10px;">Thu</td><td>WFH</td><td>Greedy — all patterns (activity selection, jump game)</td><td>3.5</td></tr>
-                <tr><td style="padding:6px 10px;">Fri</td><td>WFH</td><td>Intervals — merge, insert, meeting rooms, sweep line</td><td>3.5</td></tr>
-                <tr style="background:#fafafa;"><td style="padding:6px 10px;">Sat</td><td>Weekend</td><td>Mixed DP + Greedy practice — 4 problems timed</td><td>5</td></tr>
-                <tr><td style="padding:6px 10px;">Sun</td><td>Weekend</td><td>Revise all DP (highest-weight interview topic)</td><td>3</td></tr>
-      </tbody></table>
-
-      <!-- WEEK 5 -->
-    <h3 style="color:var(--blue); border-bottom:2px solid var(--blue-light); padding-bottom:6px; margin-bottom:12px;">Week 5 (May 5–11): LLD + HLD Fundamentals</h3>
-      <p style="font-size:0.9em; color:#666; margin-bottom:10px;">LLD patterns + practice problems. HLD building blocks covered in parallel via commute + Sunday.</p>
-
-      <table style="width:100%; border-collapse:collapse; font-size:0.92em; margin-bottom:24px;">
-        <tbody><tr style="background:var(--blue); color:white;">
-          <th style="padding:8px 10px; text-align:left; width:100px;">Day</th>
-          <th style="padding:8px 10px; text-align:left; width:80px;">Type</th>
-          <th style="padding:8px 10px; text-align:left;">Focus</th>
-          <th style="padding:8px 10px; text-align:left; width:50px;">Hrs</th>
-        </tr>
-                <tr style="background:#fafafa;"><td style="padding:6px 10px;">Mon</td><td>Office</td><td>Commute: <strong style="color:#E67E22;">HLD: DB Design — SQL vs NoSQL, sharding, indexing</strong></td><td>1</td></tr>
-                <tr><td style="padding:6px 10px;">Tue</td><td>Office</td><td>Commute: <strong style="color:#E67E22;">HLD: Consistent hashing, message queues</strong>. Evening: 1 LLD problem</td><td>2</td></tr>
-                <tr style="background:var(--green-light);"><td style="padding:6px 10px;"><strong>Wed</strong></td><td><strong>LEAVE</strong></td><td>LLD — SOLID + Creational + Structural + Behavioral patterns</td><td>5</td></tr>
-                <tr style="background:#fafafa;"><td style="padding:6px 10px;">Thu</td><td>WFH</td><td>LLD — UML + Parking Lot (full design + code)</td><td>3.5</td></tr>
-                <tr><td style="padding:6px 10px;">Fri</td><td>WFH</td><td>LLD — Elevator + BookMyShow</td><td>3.5</td></tr>
-                <tr style="background:#fafafa;"><td style="padding:6px 10px;">Sat</td><td>Weekend</td><td>LLD — Splitwise + Rate Limiter</td><td>5</td></tr>
-                <tr><td style="padding:6px 10px;">Sun</td><td>Weekend</td><td><strong style="color:#E67E22;">HLD: URL Shortener + Twitter Feed</strong> (read notes + draw architecture)</td><td>3</td></tr>
-      </tbody></table>
-
-      <!-- WEEK 6 -->
-    <h3 style="color:#E67E22; border-bottom:2px solid #FEF5E7; padding-bottom:6px; margin-bottom:12px;">Week 6 (May 12–18): HLD Deep Dive — System Designs</h3>
-      <p style="font-size:0.9em; color:#666; margin-bottom:10px;">Full focus on HLD. You already have fundamentals from 2 weeks of commute reading + last Sunday.</p>
-
-      <table style="width:100%; border-collapse:collapse; font-size:0.92em; margin-bottom:24px;">
-        <tbody><tr style="background:#E67E22; color:white;">
-          <th style="padding:8px 10px; text-align:left; width:100px;">Day</th>
-          <th style="padding:8px 10px; text-align:left; width:80px;">Type</th>
-          <th style="padding:8px 10px; text-align:left;">Focus</th>
-          <th style="padding:8px 10px; text-align:left; width:50px;">Hrs</th>
-        </tr>
-                <tr style="background:#fafafa;"><td style="padding:6px 10px;">Mon</td><td>Office</td><td>Commute: re-read URL Shortener + Twitter Feed designs</td><td>1</td></tr>
-                <tr><td style="padding:6px 10px;">Tue</td><td>Office</td><td>Commute: WhatsApp notes (WebSocket, delivery, offline). Evening: draw architecture</td><td>2</td></tr>
-                <tr style="background:var(--green-light);"><td style="padding:6px 10px;"><strong>Wed</strong></td><td><strong>LEAVE</strong></td><td>HLD — WhatsApp + Uber (full design from scratch, timed 40 min each)</td><td>5</td></tr>
-                <tr style="background:#fafafa;"><td style="padding:6px 10px;">Thu</td><td>WFH</td><td>HLD — Notification System + Instagram</td><td>3.5</td></tr>
-                <tr><td style="padding:6px 10px;">Fri</td><td>WFH</td><td>HLD — Rate Limiter + Distributed Cache</td><td>3.5</td></tr>
-                <tr style="background:#fafafa;"><td style="padding:6px 10px;">Sat</td><td>Weekend</td><td>HLD practice — pick 2 systems, design from memory in 40 min each</td><td>5</td></tr>
-                <tr><td style="padding:6px 10px;">Sun</td><td>Weekend</td><td>Revise all HLD — practice explaining out loud, re-draw weak ones</td><td>3</td></tr>
-      </tbody></table>
-
-      <!-- WEEK 7 -->
-    <h3 style="color:var(--red); border-bottom:2px solid var(--red-light); padding-bottom:6px; margin-bottom:12px;">Week 7 (May 19–25): Full Revision + Mock Interviews</h3>
-
+    <h3 style="color:var(--red); border-bottom:2px solid var(--red-light); padding-bottom:6px; margin-bottom:12px;">Week 4 (May 26–31): DP Deep Dive + Revision</h3>
       <table style="width:100%; border-collapse:collapse; font-size:0.92em; margin-bottom:24px;">
         <tbody><tr style="background:var(--red); color:white;">
-          <th style="padding:8px 10px; text-align:left; width:100px;">Day</th>
-          <th style="padding:8px 10px; text-align:left; width:80px;">Type</th>
+          <th style="padding:8px 10px; text-align:left; width:80px;">Day</th>
+          <th style="padding:8px 10px; text-align:left;">Topic</th>
           <th style="padding:8px 10px; text-align:left;">Focus</th>
           <th style="padding:8px 10px; text-align:left; width:50px;">Hrs</th>
         </tr>
-                <tr style="background:#fafafa;"><td style="padding:6px 10px;">Mon</td><td>Office</td><td>Commute: revise DSA patterns (decision trees from notes)</td><td>1</td></tr>
-                <tr><td style="padding:6px 10px;">Tue</td><td>Office</td><td>Commute: revise LLD + HLD tradeoffs. Evening: 1 timed problem</td><td>2</td></tr>
-                <tr style="background:var(--green-light);"><td style="padding:6px 10px;"><strong>Wed</strong></td><td><strong>LEAVE</strong></td><td>Mock interview: 1 DSA + 1 LLD + 1 HLD (timed, full simulation)</td><td>5</td></tr>
-                <tr style="background:#fafafa;"><td style="padding:6px 10px;">Thu</td><td>WFH</td><td>Retry all problems you got wrong / struggled with</td><td>3.5</td></tr>
-                <tr><td style="padding:6px 10px;">Fri</td><td>WFH</td><td>Mock: random 2 LC mediums in 40 min each + 1 HLD from memory</td><td>3.5</td></tr>
-                <tr style="background:var(--yellow-light);"><td style="padding:6px 10px;">Sat–Sun</td><td>Weekend</td><td>Save 2–3 leaves here if interview is next week. Weak areas + rest</td><td>6</td></tr>
+                <tr style="background:var(--yellow-light);"><td style="padding:6px 10px;">Mon 26</td><td><strong>DP Part 2</strong></td><td>2D DP, Grid paths</td><td>3</td></tr>
+                <tr style="background:var(--yellow-light);"><td style="padding:6px 10px;">Tue 27</td><td><strong>DP Part 2</strong></td><td>Interval DP, String DP</td><td>3</td></tr>
+                <tr style="background:var(--yellow-light);"><td style="padding:6px 10px;">Wed 28</td><td><strong>DP Part 2</strong></td><td>Remaining DP problems</td><td>3</td></tr>
+                <tr style="background:#fafafa;"><td style="padding:6px 10px;">Thu 29</td><td>Revision</td><td>Weak topics, redo hard problems</td><td>3</td></tr>
+                <tr><td style="padding:6px 10px;">Fri 30</td><td>Revision</td><td>Mock interview practice</td><td>3</td></tr>
+                <tr style="background:#fafafa;"><td style="padding:6px 10px;">Sat 31</td><td>Revision</td><td>Final review of all patterns</td><td>3</td></tr>
       </tbody></table>
 
       <!-- KEY RULES -->
       <div style="background:var(--yellow-light); border-radius:10px; padding:16px 20px; border-left:4px solid var(--yellow);">
         <strong style="color:var(--yellow);">Key Rules</strong><br>
-        <strong>1.</strong> Commute = passive review only. Read notes on phone, no coding.<br>
-        <strong>2.</strong> WFH mornings are sacred. Solve before Slack gets busy.<br>
-        <strong>3.</strong> Saturday = hardest topic of the week. Fresh mind, most time.<br>
-        <strong>4.</strong> Sunday = lighter revision. Prevents burnout, solidifies memory.<br>
-        <strong>5.</strong> DP gets 2 full weeks — highest-weight interview topic.<br>
-        <strong>6.</strong> HLD starts passively in Week 4 commutes — 3.5 weeks total exposure.<br>
-        <strong>7.</strong> Stuck 15 min? Read solution, understand, re-solve next day. Don't spiral.
+        <strong>1.</strong> ~5 problems/day for new topics, ~8/day for finishing partially-done topics.<br>
+        <strong>2.</strong> Stuck 15 min? Read solution, understand, re-solve next day. Don't spiral.<br>
+        <strong>3.</strong> DP is last and gets 6 days — highest-weight interview topic.<br>
+        <strong>4.</strong> Last 3 days = pure revision + mock practice.
       </div>
-
-            <!-- AI ADD-ON TRACK -->
-            <div style="margin-top:26px; background:white; border-radius:16px; padding:28px 32px; border:2px solid #e5e7eb;">
-                <h3 style="color:#8E44AD; border-bottom:2px solid #F4ECF7; padding-bottom:6px; margin-bottom:12px;">Applied AI Add-On Track (For SDE 2 + AI Roles)</h3>
-                <p style="color:#666; font-size:0.94em; margin-bottom:16px;">Use this as a <strong>parallel track</strong>, not a replacement for DSA/LLD/HLD. Target outcome: <strong>Software Engineer / SDE 2 who can ship AI-powered features in production</strong>.</p>
-
-                <div style="background:#F4ECF7; border-radius:10px; padding:16px 20px; margin-bottom:18px;">
-                    <strong style="color:#8E44AD;">Time Split Recommendation</strong><br>
-                    <span style="display:inline-block; width:150px; font-weight:600;">70%</span> Core SDE 2 prep (DSA + LLD + HLD + mocks)<br>
-                    <span style="display:inline-block; width:150px; font-weight:600;">20%</span> Applied AI concepts + API integration<br>
-                    <span style="display:inline-block; width:150px; font-weight:600;">10%</span> AI portfolio + resume positioning
-                </div>
-
-                <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-bottom:18px;">
-                    <div style="background:#FBFCFC; border:1px solid #e5e7eb; border-left:5px solid #8E44AD; border-radius:0 12px 12px 0; padding:18px;">
-                        <h4 style="color:#8E44AD; margin:0 0 10px;">What to Learn</h4>
-                        <ul style="font-size:0.9em; margin:0;">
-                            <li><strong>LLM basics:</strong> tokens, context window, temperature, hallucinations, prompting</li>
-                            <li><strong>Core AI app patterns:</strong> chat, summarization, extraction, classification, RAG</li>
-                            <li><strong>Tool calling / agents:</strong> structured outputs, tool invocation, orchestration</li>
-                            <li><strong>Embeddings + retrieval:</strong> chunking, vector search, reranking, hybrid search</li>
-                            <li><strong>Evaluation:</strong> prompt evals, regression sets, failure analysis, human review</li>
-                            <li><strong>Production concerns:</strong> latency, cost, retries, rate limits, observability, guardrails</li>
-                        </ul>
-                    </div>
-
-                    <div style="background:#FBFCFC; border:1px solid #e5e7eb; border-left:5px solid #16A085; border-radius:0 12px 12px 0; padding:18px;">
-                        <h4 style="color:#16A085; margin:0 0 10px;">Suggested Stack</h4>
-                        <ul style="font-size:0.9em; margin:0;">
-                            <li><strong>Language:</strong> Python (recommended) + your main SDE stack</li>
-                            <li><strong>Model APIs:</strong> OpenAI / Gemini / Anthropic style APIs</li>
-                            <li><strong>Vector DB:</strong> pgvector, Pinecone, Weaviate, Chroma</li>
-                            <li><strong>Frameworks:</strong> light exposure to LangChain or LlamaIndex</li>
-                            <li><strong>Backend:</strong> FastAPI / Node backend, queues, streaming, auth, persistence</li>
-                            <li><strong>Ops:</strong> logs, traces, prompt versioning, cost tracking</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <h4 style="color:#8E44AD; margin:0 0 10px;">6-Week Parallel Roadmap (60–90 min/day)</h4>
-                <table style="width:100%; border-collapse:collapse; font-size:0.91em; margin-bottom:18px;">
-                    <tbody><tr style="background:#8E44AD; color:white;">
-                        <th style="padding:8px 10px; text-align:left; width:70px;">Week</th>
-                        <th style="padding:8px 10px; text-align:left; width:220px;">Focus</th>
-                        <th style="padding:8px 10px; text-align:left;">What to do</th>
-                    </tr>
-                    <tr style="background:#fafafa;"><td style="padding:6px 10px;">1</td><td><strong>LLM Fundamentals</strong></td><td>Learn prompts, tokens, context limits, model parameters, hallucinations; build a tiny chatbot using an API</td></tr>
-                    <tr><td style="padding:6px 10px;">2</td><td><strong>Prompting + Structured Output</strong></td><td>Practice extraction, summarization, JSON output, classification; add input/output validation and retries</td></tr>
-                    <tr style="background:#fafafa;"><td style="padding:6px 10px;">3</td><td><strong>Embeddings + RAG</strong></td><td>Learn chunking, embeddings, vector search, metadata filters; build an internal docs assistant</td></tr>
-                    <tr><td style="padding:6px 10px;">4</td><td><strong>Tool Calling / Agent Workflows</strong></td><td>Build a workflow that can call tools/APIs, fetch data, and return structured answers with fallbacks</td></tr>
-                    <tr style="background:#fafafa;"><td style="padding:6px 10px;">5</td><td><strong>Evals + Reliability</strong></td><td>Create a small eval dataset, track failures, add guardrails, caching, and cost/latency monitoring</td></tr>
-                    <tr><td style="padding:6px 10px;">6</td><td><strong>Portfolio + Interview Prep</strong></td><td>Polish 2 projects, write resume bullets, prepare to explain architecture, tradeoffs, and failure handling</td></tr>
-                </tbody></table>
-
-                <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-bottom:18px;">
-                    <div style="background:#EBF5FB; border-left:4px solid #2980B9; border-radius:0 10px 10px 0; padding:16px 18px;">
-                        <h4 style="color:#2980B9; margin:0 0 10px;">Portfolio Projects to Add</h4>
-                        <ul style="font-size:0.9em; margin:0;">
-                            <li>Internal docs assistant with RAG + citations</li>
-                            <li>Ticket / PR summarizer with action-item extraction</li>
-                            <li>Support assistant with human approval flow</li>
-                            <li>Developer workflow agent that calls internal tools/APIs</li>
-                        </ul>
-                    </div>
-
-                    <div style="background:#EAFAF1; border-left:4px solid #27AE60; border-radius:0 10px 10px 0; padding:16px 18px;">
-                        <h4 style="color:#27AE60; margin:0 0 10px;">Interview / Resume Positioning</h4>
-                        <ul style="font-size:0.9em; margin:0;">
-                            <li>Position yourself as <strong>SDE 2 who can build AI-powered features</strong></li>
-                            <li>Lead with engineering impact, not "prompt engineering" alone</li>
-                            <li>Be ready to explain quality, cost, latency, observability, and security</li>
-                            <li>Use resume bullets that highlight backend integration and production tradeoffs</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div style="background:#FEF9E7; border-radius:10px; padding:16px 20px; border-left:4px solid #F39C12;">
-                    <strong style="color:#B9770E;">Important</strong><br>
-                    Do <strong>not</strong> drop DSA, LLD, or HLD for AI prep. Most SDE 2 + AI roles still expect strong software engineering fundamentals. AI is an <strong>add-on differentiator</strong>, not a substitute for core engineering skill.
-                </div>
-            </div>
 
     </div>
   </div>
@@ -671,7 +517,7 @@ th.cb-col, td.cb-col { text-align: center; width: 40px; }
         <span class="card-num">09</span>
         <span class="card-label">Trees</span>
         <h3>Heaps / Priority Queue</h3>
-      <div class="card-progress">4 / 15 solved</div><div class="progress-bar-wrap"><div class="progress-bar-fill" style="width: 26.6667%;"></div></div></div>
+      <div class="card-progress">10 / 15 solved</div><div class="progress-bar-wrap"><div class="progress-bar-fill" style="width: 66.6667%;"></div></div></div>
       <div class="card" onclick="showTopic('graphs-bfs-dfs')" style="--card-color: #8E44AD">
         <span class="card-num">10</span>
         <span class="card-label">Graphs</span>
@@ -7723,7 +7569,7 @@ Is it a BST?<br>
       <button class="back-btn" onclick="showCategory('dsa')">← Back to DSA Topics</button>
     </div>
   </div>
-  <div class="topic-page" id="page-heaps">
+  <div class="topic-page active" id="page-heaps">
     <div class="topic-header">
       <button class="back-btn" onclick="showCategory('dsa')">← Back to DSA Topics</button>
       <span class="topic-number">09 / 18</span>
@@ -7870,8 +7716,8 @@ PriorityQueue&lt;int[]&gt; pq = new PriorityQueue&lt;&gt;((a, b) -&gt;
 
 
 <!-- ============================================ -->
-<h2 class="collapsed">Section 3: Pattern Recognition Framework</h2>
-<div class="section-content collapsed"><div class="section-content"><p>Six patterns cover ~95% of heap interview problems.</p><div class="pattern-header">Pattern 1: Kth Largest / Smallest Element</div><p><strong>When to use:</strong> Find the single Kth largest or Kth smallest element, especially in a <strong>stream</strong>.</p><div class="how-to-arrive">
+<h2 class="">Section 3: Pattern Recognition Framework</h2>
+<div class="section-content"><div class="section-content"><p>Six patterns cover ~95% of heap interview problems.</p><div class="pattern-header">Pattern 1: Kth Largest / Smallest Element</div><p><strong>When to use:</strong> Find the single Kth largest or Kth smallest element, especially in a <strong>stream</strong>.</p><div class="how-to-arrive">
     <strong>How to arrive at this (thinking process):</strong>
     <ol>
         <li>You see "Kth largest" or "Kth smallest."</li>
@@ -8080,7 +7926,8 @@ class MedianFinder {
     This guarantees both invariants are maintained after every insert.
 </div><div class="edge-cases">
     <strong>Edge cases:</strong> First element (single, median = itself), two elements (one in each), all identical, elements in sorted order, integer overflow when averaging → use <code>a / 2.0 + b / 2.0</code>.
-</div><p><strong>Classic problems:</strong> <a href="https://leetcode.com/problems/find-median-from-data-stream/">LC 295</a>, <a href="https://leetcode.com/problems/sliding-window-median/">LC 480</a>, <a href="https://leetcode.com/problems/ipo/">LC 502</a></p><div class="pattern-header">Pattern 5: Greedy + Heap</div><p><strong>When to use:</strong> Repeatedly pick the <strong>best available option</strong> to build an optimal solution. The heap is the tool; greedy is the algorithm.</p><div class="how-to-arrive">
+</div><p><strong>Classic problems:</strong> <a href="https://leetcode.com/problems/find-median-from-data-stream/">LC 295</a>, <a href="https://leetcode.com/problems/sliding-window-median/">LC 480</a>, <a href="https://leetcode.com/problems/ipo/">LC 502</a></p>
+<div class="pattern-header">Pattern 5: Greedy + Heap</div><p><strong>When to use:</strong> Repeatedly pick the <strong>best available option</strong> to build an optimal solution. The heap is the tool; greedy is the algorithm.</p><div class="how-to-arrive">
     <strong>How to arrive at this (thinking process):</strong>
     <ol>
         <li>The problem asks you to make a <strong>sequence of choices</strong>, each time picking the "best" option.</li>
@@ -8088,29 +7935,9 @@ class MedianFinder {
         <li>You need a structure that always gives you the current best in O(log n).</li>
         <li>That's a heap. The greedy strategy defines "best" (most frequent, cheapest, most urgent), and the heap serves it up.</li>
     </ol>
-</div><blockquote><strong>Analogy:</strong> A chef preparing a buffet with a limited oven. Each time the oven is free, they cook the dish that the most people are waiting for (greedy choice). The heap tracks which dishes have the most pending orders.</blockquote><pre><code>// LC 621: Task Scheduler
-public int leastInterval(char[] tasks, int n) {
-    int[] freq = new int[26];
-    for (char t : tasks) freq[t - 'A']++;
-
-    PriorityQueue&lt;Integer&gt; maxHeap = new PriorityQueue&lt;&gt;(Collections.reverseOrder());
-    for (int f : freq) if (f &gt; 0) maxHeap.offer(f);
-
-    Queue&lt;int[]&gt; cooldown = new LinkedList&lt;&gt;(); // [remaining_count, available_at_time]
-    int time = 0;
-
-    while (!maxHeap.isEmpty() || !cooldown.isEmpty()) {
-        time++;
-        if (!maxHeap.isEmpty()) {
-            int count = maxHeap.poll() - 1;
-            if (count &gt; 0) cooldown.offer(new int[]{count, time + n});
-        }
-        if (!cooldown.isEmpty() &amp;&amp; cooldown.peek()[1] == time) {
-            maxHeap.offer(cooldown.poll()[0]);
-        }
-    }
-    return time;
-}</code></pre><h4>Reorganize String (<a href="https://leetcode.com/problems/reorganize-string/" target="_blank">LC 767</a>) — Same pattern:</h4><pre><code>public String reorganizeString(String s) {
+</div><blockquote><strong>Analogy:</strong> A chef preparing a buffet with a limited oven. Each time the oven is free, they cook the dish that the most people are waiting for (greedy choice). The heap tracks which dishes have the most pending orders.</blockquote>
+<h4>Reorganize String (<a href="https://leetcode.com/problems/reorganize-string/" target="_blank">LC 767</a>)</h4>
+<pre><code>public String reorganizeString(String s) {
     int[] freq = new int[26];
     for (char c : s.toCharArray()) freq[c - 'a']++;
 
@@ -8132,7 +7959,76 @@ public int leastInterval(char[] tasks, int n) {
         sb.append((char)(maxHeap.poll()[0] + 'a'));
     }
     return sb.toString();
-}</code></pre><div class="edge-cases">
+}</code></pre>
+<div class="mistake-box">
+<strong>Bug: Poll-two can create adjacent duplicates when frequencies are tied.</strong> Heap gives no guaranteed order for equal frequencies. Fix: swap if first would create a duplicate.
+<pre><code>// Inside the while loop, after polling two:
+if (sb.length() &gt; 0 &amp;&amp; sb.charAt(sb.length()-1) == (char)(first[0]+'a')) {
+    int[] temp = first; first = second; second = temp;
+}</code></pre></div>
+<details style="background: var(--blue-light); border-left: 4px solid var(--blue); border-radius: 0 8px 8px 0; margin: 15px 0; padding: 15px 20px;" open="">
+<summary style="cursor: pointer; font-weight: bold; color: var(--blue); font-size: 1.05em;">Task Scheduler — How the cooldown queue works</summary>
+<p><strong>What is the cooldown queue?</strong> After executing a task, it can't run again for <code>n</code> time units. We park it in a cooldown queue with a timestamp — it returns to the heap when ready.</p>
+<p>Each entry stores: <code>{remaining_frequency, ready_at_time}</code></p>
+<pre><code>cooldown.offer(new int[]{count, time + n});
+//                       ↑          ↑
+//               remaining freq   when this task can be used again
+
+// time + n: executed at time t, needs n gap → available at t + n
+// n=2, execute A at time 1 → next A at time 1+2 = 3
+//   Time 1  Time 2  Time 3
+//     A      wait    wait    A can run here ✅</code></pre>
+<p><strong>The flow each time unit:</strong></p>
+<ol>
+<li><code>time++</code></li>
+<li>If heap has tasks → poll most frequent, decrement, put in cooldown. If heap is empty → CPU idles (time still increments)</li>
+<li>Check cooldown front → if <code>ready_at == time</code>, move back to heap</li>
+</ol>
+<pre><code>Tasks: [A,A,A,B,B], n=2
+
+Time 1: Heap:[A:3,B:2] → poll A(3→2), cooldown:[{A:2,ready:3}]
+Time 2: Heap:[B:2]     → poll B(2→1), cooldown:[{A:2,3},{B:1,4}]
+Time 3: A ready! → move to heap → poll A(2→1), cooldown:[{B:1,4},{A:1,5}]
+Time 4: B ready! → move to heap → poll B(1→0)
+Time 5: A ready! → move to heap → poll A(1→0)
+
+Answer: 5</code></pre>
+<p><strong>Why a Queue?</strong> Tasks enter cooldown in time order. Earliest to become ready is always at the front — FIFO, perfect for a queue.</p>
+<p><strong>vs Reorganize String:</strong> Reorganize has gap=1, so tasks go back to heap immediately — no cooldown queue needed. Task Scheduler has gap=n, so tasks must wait.</p>
+<p><strong>Why most frequent first?</strong> The problem doesn't say this — but it's the optimal greedy strategy. Delaying high-frequency tasks creates more idle slots at the end:</p>
+<pre><code>Tasks: [A,A,A,B], n=2
+
+Most frequent first:     Least frequent first:
+  A B _ A _ _ A            B _ _ A _ _ A _ _ A
+  Time = 7 ✅              Time = 10 ❌</code></pre>
+<p><strong>In words:</strong> Calculate frequencies, dump them in a max-heap (highest frequency first). We can't keep processing the same task back-to-back — there's a cooling period of <code>n</code>. So maintain a cooldown queue with <code>current_time + n</code> (FIFO). As we process a heap record, push it to the cooldown queue if there are remaining frequencies. When a task's cooldown expires, move it back to the heap.</p>
+<p><strong>Why heap stores only frequency, not the char?</strong> The problem asks for total time (<code>int</code>), not the actual schedule. We don't care <em>which</em> task runs — just how many remain. If the problem asked "return the schedule order", you'd need to store the char too (like Reorganize String does).</p>
+</details>
+<pre><code>// LC 621: Task Scheduler
+public int leastInterval(char[] tasks, int n) {
+    int[] freq = new int[26];
+    for (char t : tasks) freq[t - 'A']++;
+
+    PriorityQueue&lt;Integer&gt; maxHeap = new PriorityQueue&lt;&gt;(Collections.reverseOrder());
+    for (int f : freq) if (f &gt; 0) maxHeap.offer(f);
+
+    Queue&lt;int[]&gt; cooldown = new LinkedList&lt;&gt;(); // [remaining_count, available_at_time]
+    int time = 0;
+
+    while (!maxHeap.isEmpty() || !cooldown.isEmpty()) {
+        time++;
+        if (!maxHeap.isEmpty()) {
+            int count = maxHeap.poll() - 1;
+            if (count &gt; 0) cooldown.offer(new int[]{count, time + n});
+        }
+        if (!cooldown.isEmpty() &amp;&amp; cooldown.peek()[1] == time) {
+            maxHeap.offer(cooldown.poll()[0]);
+        }
+    }
+    return time;
+}</code></pre>
+
+<div class="edge-cases">
     <strong>Edge cases:</strong> Cooldown n = 0 (no constraint), single task type, all tasks same frequency, impossible case in reorganize (one char freq &gt; (len+1)/2).
 </div><p><strong>Classic problems:</strong> <a href="https://leetcode.com/problems/task-scheduler/">LC 621</a>, <a href="https://leetcode.com/problems/reorganize-string/">LC 767</a>, <a href="https://leetcode.com/problems/ipo/">LC 502</a></p><div class="pattern-header">Pattern 6: Dijkstra (Graph + Heap)</div><p><strong>When to use:</strong> Shortest path in a weighted graph with <strong>non-negative</strong> edge weights.</p><div class="how-to-arrive">
     <strong>How to arrive at this (thinking process):</strong>
@@ -8515,22 +8411,22 @@ PriorityQueue&lt;Integer&gt; pq = new PriorityQueue&lt;&gt;(Integer::compare);</
 </tbody></table></div></div>
 
 <!-- ============================================ -->
-<h2 class="page-break collapsed">Section 9: Must-Solve Problems</h2>
+<h2 class="page-break">Section 9: Must-Solve Problems</h2>
 
-<div class="section-content collapsed"><div class="section-content"><h3>Solve First (Core Patterns — Day 1-2)</h3><table>
+<div class="section-content"><div class="section-content"><h3>Solve First (Core Patterns — Day 1-2)</h3><table>
     <tbody><tr><th class="cb-col">✔</th><th>#</th><th>Problem</th><th>Pattern</th><th>Difficulty</th><th>Link</th></tr>
     <tr class="solved"><td class="cb-col"><input type="checkbox" class="solved-cb" data-key="heaps_1"></td><td>1</td><td>Last Stone Weight</td><td>Max-Heap Basics</td><td>Easy</td><td><a href="https://leetcode.com/problems/last-stone-weight/">LC 1046</a></td></tr>
     <tr class="solved"><td class="cb-col"><input type="checkbox" class="solved-cb" data-key="heaps_2"></td><td>2</td><td>Kth Largest Element in Stream</td><td>Kth Element</td><td>Easy</td><td><a href="https://leetcode.com/problems/kth-largest-element-in-a-stream/">LC 703</a></td></tr>
-    <tr><td class="cb-col"><input type="checkbox" class="solved-cb" data-key="heaps_3"></td><td>3</td><td>K Closest Points to Origin</td><td>Top K</td><td>Medium</td><td><a href="https://leetcode.com/problems/k-closest-points-to-origin/">LC 973</a></td></tr>
+    <tr class="solved"><td class="cb-col"><input type="checkbox" class="solved-cb" data-key="heaps_3"></td><td>3</td><td>K Closest Points to Origin</td><td>Top K</td><td>Medium</td><td><a href="https://leetcode.com/problems/k-closest-points-to-origin/">LC 973</a></td></tr>
     <tr class="solved"><td class="cb-col"><input type="checkbox" class="solved-cb" data-key="heaps_4"></td><td>4</td><td>Kth Largest Element in Array</td><td>Top K / QuickSelect</td><td>Medium</td><td><a href="https://leetcode.com/problems/kth-largest-element-in-an-array/">LC 215</a></td></tr>
     <tr class="solved"><td class="cb-col"><input type="checkbox" class="solved-cb" data-key="heaps_5"></td><td>5</td><td>Top K Frequent Elements</td><td>Top K + HashMap</td><td>Medium</td><td><a href="https://leetcode.com/problems/top-k-frequent-elements/">LC 347</a></td></tr>
-    <tr><td class="cb-col"><input type="checkbox" class="solved-cb" data-key="heaps_6"></td><td>6</td><td>Sort Characters By Frequency</td><td>Top K + HashMap</td><td>Medium</td><td><a href="https://leetcode.com/problems/sort-characters-by-frequency/">LC 451</a></td></tr>
-    <tr><td class="cb-col"><input type="checkbox" class="solved-cb" data-key="heaps_7"></td><td>7</td><td>Merge K Sorted Lists</td><td>Merge K</td><td>Hard</td><td><a href="https://leetcode.com/problems/merge-k-sorted-lists/">LC 23</a></td></tr>
-    <tr><td class="cb-col"><input type="checkbox" class="solved-cb" data-key="heaps_8"></td><td>8</td><td>Find Median from Data Stream</td><td>Two Heaps</td><td>Hard</td><td><a href="https://leetcode.com/problems/find-median-from-data-stream/">LC 295</a></td></tr>
+    <tr class="solved"><td class="cb-col"><input type="checkbox" class="solved-cb" data-key="heaps_6"></td><td>6</td><td>Sort Characters By Frequency</td><td>Top K + HashMap</td><td>Medium</td><td><a href="https://leetcode.com/problems/sort-characters-by-frequency/">LC 451</a></td></tr>
+    <tr class="solved"><td class="cb-col"><input type="checkbox" class="solved-cb" data-key="heaps_7"></td><td>7</td><td>Merge K Sorted Lists</td><td>Merge K</td><td>Hard</td><td><a href="https://leetcode.com/problems/merge-k-sorted-lists/">LC 23</a></td></tr>
+    <tr class="solved"><td class="cb-col"><input type="checkbox" class="solved-cb" data-key="heaps_8"></td><td>8</td><td>Find Median from Data Stream</td><td>Two Heaps</td><td>Hard</td><td><a href="https://leetcode.com/problems/find-median-from-data-stream/">LC 295</a></td></tr>
 </tbody></table><h3>Solve After (Reinforce + Extend — Day 3-4)</h3><table>
     <tbody><tr><th class="cb-col">✔</th><th>#</th><th>Problem</th><th>Pattern</th><th>Difficulty</th><th>Link</th></tr>
-    <tr><td class="cb-col"><input type="checkbox" class="solved-cb" data-key="heaps_9"></td><td>9</td><td>Task Scheduler</td><td>Greedy + Heap</td><td>Medium</td><td><a href="https://leetcode.com/problems/task-scheduler/">LC 621</a></td></tr>
-    <tr><td class="cb-col"><input type="checkbox" class="solved-cb" data-key="heaps_10"></td><td>10</td><td>Reorganize String</td><td>Greedy + Heap</td><td>Medium</td><td><a href="https://leetcode.com/problems/reorganize-string/">LC 767</a></td></tr>
+    <tr class="solved"><td class="cb-col"><input type="checkbox" class="solved-cb" data-key="heaps_9"></td><td>9</td><td>Task Scheduler</td><td>Greedy + Heap</td><td>Medium</td><td><a href="https://leetcode.com/problems/task-scheduler/">LC 621</a></td></tr>
+    <tr class="solved"><td class="cb-col"><input type="checkbox" class="solved-cb" data-key="heaps_10"></td><td>10</td><td>Reorganize String</td><td>Greedy + Heap</td><td>Medium</td><td><a href="https://leetcode.com/problems/reorganize-string/">LC 767</a></td></tr>
     <tr><td class="cb-col"><input type="checkbox" class="solved-cb" data-key="heaps_11"></td><td>11</td><td>Network Delay Time</td><td>Dijkstra</td><td>Medium</td><td><a href="https://leetcode.com/problems/network-delay-time/">LC 743</a></td></tr>
     <tr><td class="cb-col"><input type="checkbox" class="solved-cb" data-key="heaps_12"></td><td>12</td><td>Ugly Number II</td><td>Heap / DP</td><td>Medium</td><td><a href="https://leetcode.com/problems/ugly-number-ii/">LC 264</a></td></tr>
     <tr><td class="cb-col"><input type="checkbox" class="solved-cb" data-key="heaps_13"></td><td>13</td><td>IPO</td><td>Two Heaps + Greedy</td><td>Hard</td><td><a href="https://leetcode.com/problems/ipo/">LC 502</a></td></tr>
@@ -12279,7 +12175,7 @@ Need to SPLIT/MERGE a RANGE optimally?<br>
       <button class="back-btn" onclick="showCategory('dsa')">← Back to DSA Topics</button>
     </div>
   </div>
-  <div class="topic-page active" id="page-greedy">
+  <div class="topic-page" id="page-greedy">
     <div class="topic-header">
       <button class="back-btn" onclick="showCategory('dsa')">← Back to DSA Topics</button>
       <span class="topic-number">14 / 18</span>
@@ -12409,10 +12305,43 @@ public boolean canJump(int[] nums) {
         farthest = Math.max(farthest, i + nums[i]);
     }
     return true;
-}
+}</code></pre>
+<details style="background: var(--blue-light); border-left: 4px solid var(--blue); border-radius: 0 8px 8px 0; margin: 15px 0; padding: 15px 20px;">
+<summary style="cursor: pointer; font-weight: bold; color: var(--blue); font-size: 1.05em;">Jump Game I → II: What changes?</summary>
+<table>
+<tbody><tr><th></th><th>Jump Game I (LC 55)</th><th>Jump Game II (LC 45)</th></tr>
+<tr><td><strong>Question</strong></td><td>Can you reach the end?</td><td>Minimum jumps to reach end?</td></tr>
+<tr><td><strong>Returns</strong></td><td><code>boolean</code></td><td><code>int</code> (count)</td></tr>
+<tr><td><strong>Tracks</strong></td><td><code>farthest</code> only</td><td><code>farthest</code> + <code>curEnd</code> + <code>jumps</code></td></tr>
+</tbody></table>
+<p><strong>What is <code>curEnd</code>?</strong> The farthest index you can reach with the current number of jumps. It's a wall — once you hit it, you must use another jump.</p>
+<pre><code>nums = [2, 3, 1, 1, 4]
 
-// Jump Game II: Minimum jumps to reach end
-// Hack: track maxReach, not actual jumps. If i &gt; maxReach, unreachable.
+Start: curEnd = 0 (haven't jumped, can only be at index 0)
+       [2, 3, 1, 1, 4]
+       ^  i==curEnd → must jump! curEnd = farthest(2), jumps=1
+
+Jump 1 range: indices 0-2 (curEnd=2)
+       [2, 3, 1, 1, 4]
+        -------
+       Walk this range, track farthest:
+         i=1: farthest = max(2, 1+3) = 4
+         i=2: hit curEnd → must jump! curEnd = farthest(4), jumps=2
+
+Jump 2 range: indices 3-4 (curEnd=4) → reached the end!
+       [2, 3, 1, 1, 4]
+              ---------
+Answer: 2 jumps ✅</code></pre>
+<p><strong>Think of it as:</strong> Walk right, exploring how far you COULD jump. Don't actually jump until you HAVE to (when you hit <code>curEnd</code>). Then jump to the farthest point found while walking.</p>
+<pre><code>curEnd   = "you must jump by this index"
+farthest = "best landing spot found so far"
+
+When i == curEnd:
+  "I've run out of range from my last jump"
+  "Time to jump → curEnd = farthest, jumps++"</code></pre>
+<p>It's like BFS where each "level" is one jump. <code>curEnd</code> marks where the current level ends.</p>
+</details>
+<pre><code>// Jump Game II: Minimum jumps to reach end
 public int jump(int[] nums) {
     int jumps = 0, curEnd = 0, farthest = 0;
     for (int i = 0; i &lt; nums.length - 1; i++) {
@@ -12530,30 +12459,68 @@ Step 1: Poll {a,2}, last=none → place 'a' → "a"
 Step 2: Poll {a,1}, last='a' → SAME! Poll {b,1} → place 'b' → "ab"
 Step 3: Poll {a,1}, last='b' → OK → place 'a' → "aba" ✅</code></pre>
 <p><strong>When is it impossible?</strong> Any char's frequency &gt; <code>(length+1)/2</code>. For <code>"aaab"</code>, a=3 but max allowed = (4+1)/2 = 2 → can't avoid adjacency.</p>
+<p><strong>Why <code>(char)(first[0] + 'a')</code>?</strong> <code>first[0]</code> is an <code>int</code> (from <code>int[]</code>). Any arithmetic on <code>char</code> in Java produces <code>int</code>. So <code>int + char → int</code>, not <code>char</code>. Must cast back explicitly: <code>(char)(0 + 'a') → 'a'</code>.</p>
+<p><strong>Why <code>if (freq[i] &gt; 0)</code> before adding to heap?</strong> Without it, you'd add all 26 letters (most with freq 0) to the heap. The algorithm would try to "place" non-existent characters → wrong results.</p>
 </details>
 <pre><code>public String reorganizeString(String s) {
     int[] freq = new int[26];
     for (char c : s.toCharArray()) freq[c - 'a']++;
-    PriorityQueue&lt;int[]&gt; pq = new PriorityQueue&lt;&gt;((a, b) -&gt; b[1] - a[1]);
+
+    PriorityQueue&lt;int[]&gt; maxHeap = new PriorityQueue&lt;&gt;((a, b) -&gt; b[1] - a[1]);
     for (int i = 0; i &lt; 26; i++)
-        if (freq[i] &gt; 0) pq.offer(new int[]{i, freq[i]});
+        if (freq[i] &gt; 0) maxHeap.offer(new int[]{i, freq[i]});  // only non-zero!
 
     StringBuilder sb = new StringBuilder();
-    while (!pq.isEmpty()) {
-        int[] first = pq.poll();
-        if (sb.length() == 0 || sb.charAt(sb.length()-1) != (char)(first[0]+'a')) {
-            sb.append((char)(first[0] + 'a'));
-            if (--first[1] &gt; 0) pq.offer(first);
-        } else {
-            if (pq.isEmpty()) return "";
-            int[] second = pq.poll();
-            sb.append((char)(second[0] + 'a'));
-            if (--second[1] &gt; 0) pq.offer(second);
-            pq.offer(first);
-        }
+    while (maxHeap.size() &gt;= 2) {
+        int[] first = maxHeap.poll();        // most frequent
+        int[] second = maxHeap.poll();       // second most
+        sb.append((char)(first[0] + 'a'));
+        sb.append((char)(second[0] + 'a'));
+        if (--first[1] &gt; 0) maxHeap.offer(first);
+        if (--second[1] &gt; 0) maxHeap.offer(second);
+    }
+    if (!maxHeap.isEmpty()) {
+        if (maxHeap.peek()[1] &gt; 1) return ""; // impossible
+        sb.append((char)(maxHeap.poll()[0] + 'a'));
     }
     return sb.toString();
-}</code></pre><div class="pattern-header">Pattern 5: Greedy on Strings/Arrays (Stack-Based)</div><div class="how-to-arrive">
+}</code></pre>
+<div class="mistake-box">
+<strong>Bug: Poll-two can create adjacent duplicates when frequencies are tied.</strong> Heap gives no guaranteed order for equal frequencies. Fix: swap if first would create a duplicate.
+</div>
+<pre><code>// Safer version — swap to avoid adjacent duplicates
+public String reorganizeString(String s) {
+    int[] freq = new int[26];
+    for (char c : s.toCharArray()) freq[c - 'a']++;
+
+    PriorityQueue&lt;int[]&gt; maxHeap = new PriorityQueue&lt;&gt;((a, b) -&gt; b[1] - a[1]);
+    for (int i = 0; i &lt; 26; i++)
+        if (freq[i] &gt; 0) maxHeap.offer(new int[]{i, freq[i]});
+
+    StringBuilder sb = new StringBuilder();
+    while (maxHeap.size() &gt;= 2) {
+        int[] first = maxHeap.poll();
+        int[] second = maxHeap.poll();
+
+        // If first would create adjacent duplicate, swap
+        if (sb.length() &gt; 0 &amp;&amp; sb.charAt(sb.length()-1) == (char)(first[0]+'a')) {
+            int[] temp = first;
+            first = second;
+            second = temp;
+        }
+
+        sb.append((char)(first[0] + 'a'));
+        sb.append((char)(second[0] + 'a'));
+        if (--first[1] &gt; 0) maxHeap.offer(first);
+        if (--second[1] &gt; 0) maxHeap.offer(second);
+    }
+    if (!maxHeap.isEmpty()) {
+        if (maxHeap.peek()[1] &gt; 1) return "";
+        sb.append((char)(maxHeap.poll()[0] + 'a'));
+    }
+    return sb.toString();
+}</code></pre>
+<div class="pattern-header">Pattern 5: Greedy on Strings/Arrays (Stack-Based)</div><div class="how-to-arrive">
     <strong>How to Arrive at This Pattern:</strong><br>
     <ul>
         <li>Problem asks to build <strong>lexicographically smallest/largest</strong> result</li>
@@ -12954,9 +12921,9 @@ public int findMinArrowShots(int[][] points) {
 </tbody></table></div></div>
 
 <!-- ============================================ -->
-<h2 class="">Section 9: Must-Solve Problems</h2>
+<h2 class="collapsed">Section 9: Must-Solve Problems</h2>
 
-<div class="section-content"><div class="section-content"><h3>Easy</h3><table>
+<div class="section-content collapsed"><div class="section-content"><h3>Easy</h3><table>
     <tbody><tr><th class="cb-col">✔</th><th>#</th><th>Problem</th><th>Pattern</th><th>Key Insight</th><th>Link</th></tr>
     <tr class="solved"><td class="cb-col"><input type="checkbox" class="solved-cb" data-key="greedy_1"></td><td>1</td><td>Jump Game</td><td>Farthest Reach</td><td>Track max reachable index</td><td><a href="https://leetcode.com/problems/jump-game/">LC 55</a></td></tr>
     <tr class="solved"><td class="cb-col"><input type="checkbox" class="solved-cb" data-key="greedy_2"></td><td>2</td><td>Assign Cookies</td><td>Two-Pointer</td><td>Sort both, match smallest to smallest</td><td><a href="https://leetcode.com/problems/assign-cookies/">LC 455</a></td></tr>
