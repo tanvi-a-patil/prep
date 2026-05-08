@@ -87,7 +87,15 @@
   "heaps_6": true,
   "heaps_3": true,
   "heaps_10": true,
-  "heaps_9": true
+  "heaps_9": true,
+  "greedy_3": true,
+  "greedy_4": true,
+  "greedy_7": true,
+  "greedy_9": true,
+  "greedy_11": true,
+  "greedy_14": true,
+  "greedy_13": true,
+  "greedy_8": true
 }</script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SDE 2 Interview Prep — DSA, LLD, HLD</title>
@@ -542,7 +550,7 @@ th.cb-col, td.cb-col { text-align: center; width: 40px; }
         <span class="card-num">14</span>
         <span class="card-label">Strategies</span>
         <h3>Greedy Algorithms</h3>
-      <div class="card-progress">2 / 15 solved</div><div class="progress-bar-wrap"><div class="progress-bar-fill" style="width: 13.3333%;"></div></div></div>
+      <div class="card-progress">10 / 15 solved</div><div class="progress-bar-wrap"><div class="progress-bar-fill" style="width: 66.6667%;"></div></div></div>
       <div class="card" onclick="showTopic('intervals')" style="--card-color: #16A085">
         <span class="card-num">15</span>
         <span class="card-label">Strategies</span>
@@ -7569,7 +7577,7 @@ Is it a BST?<br>
       <button class="back-btn" onclick="showCategory('dsa')">← Back to DSA Topics</button>
     </div>
   </div>
-  <div class="topic-page active" id="page-heaps">
+  <div class="topic-page" id="page-heaps">
     <div class="topic-header">
       <button class="back-btn" onclick="showCategory('dsa')">← Back to DSA Topics</button>
       <span class="topic-number">09 / 18</span>
@@ -7716,8 +7724,8 @@ PriorityQueue&lt;int[]&gt; pq = new PriorityQueue&lt;&gt;((a, b) -&gt;
 
 
 <!-- ============================================ -->
-<h2 class="">Section 3: Pattern Recognition Framework</h2>
-<div class="section-content"><div class="section-content"><p>Six patterns cover ~95% of heap interview problems.</p><div class="pattern-header">Pattern 1: Kth Largest / Smallest Element</div><p><strong>When to use:</strong> Find the single Kth largest or Kth smallest element, especially in a <strong>stream</strong>.</p><div class="how-to-arrive">
+<h2 class="collapsed">Section 3: Pattern Recognition Framework</h2>
+<div class="section-content collapsed"><div class="section-content"><p>Six patterns cover ~95% of heap interview problems.</p><div class="pattern-header">Pattern 1: Kth Largest / Smallest Element</div><p><strong>When to use:</strong> Find the single Kth largest or Kth smallest element, especially in a <strong>stream</strong>.</p><div class="how-to-arrive">
     <strong>How to arrive at this (thinking process):</strong>
     <ol>
         <li>You see "Kth largest" or "Kth smallest."</li>
@@ -8411,9 +8419,9 @@ PriorityQueue&lt;Integer&gt; pq = new PriorityQueue&lt;&gt;(Integer::compare);</
 </tbody></table></div></div>
 
 <!-- ============================================ -->
-<h2 class="page-break">Section 9: Must-Solve Problems</h2>
+<h2 class="page-break collapsed">Section 9: Must-Solve Problems</h2>
 
-<div class="section-content"><div class="section-content"><h3>Solve First (Core Patterns — Day 1-2)</h3><table>
+<div class="section-content collapsed"><div class="section-content"><h3>Solve First (Core Patterns — Day 1-2)</h3><table>
     <tbody><tr><th class="cb-col">✔</th><th>#</th><th>Problem</th><th>Pattern</th><th>Difficulty</th><th>Link</th></tr>
     <tr class="solved"><td class="cb-col"><input type="checkbox" class="solved-cb" data-key="heaps_1"></td><td>1</td><td>Last Stone Weight</td><td>Max-Heap Basics</td><td>Easy</td><td><a href="https://leetcode.com/problems/last-stone-weight/">LC 1046</a></td></tr>
     <tr class="solved"><td class="cb-col"><input type="checkbox" class="solved-cb" data-key="heaps_2"></td><td>2</td><td>Kth Largest Element in Stream</td><td>Kth Element</td><td>Easy</td><td><a href="https://leetcode.com/problems/kth-largest-element-in-a-stream/">LC 703</a></td></tr>
@@ -12175,7 +12183,7 @@ Need to SPLIT/MERGE a RANGE optimally?<br>
       <button class="back-btn" onclick="showCategory('dsa')">← Back to DSA Topics</button>
     </div>
   </div>
-  <div class="topic-page" id="page-greedy">
+  <div class="topic-page active" id="page-greedy">
     <div class="topic-header">
       <button class="back-btn" onclick="showCategory('dsa')">← Back to DSA Topics</button>
       <span class="topic-number">14 / 18</span>
@@ -12340,6 +12348,8 @@ When i == curEnd:
   "I've run out of range from my last jump"
   "Time to jump → curEnd = farthest, jumps++"</code></pre>
 <p>It's like BFS where each "level" is one jump. <code>curEnd</code> marks where the current level ends.</p>
+<p><strong>Why loop to <code>length - 2</code>?</strong> You don't need to process the last index — the goal is to <strong>reach</strong> it, not jump from it. If <code>i</code> reached the last index and <code>i == curEnd</code>, it would count an extra jump at the destination.</p>
+<p><strong>Why <code>curEnd = farthest</code> when <code>i == curEnd</code>?</strong> <code>curEnd</code> is "how far can I go with the jumps I've made so far." When I've walked to that boundary (<code>i == curEnd</code>), I've seen all options — now commit to the best one (<code>curEnd = farthest</code>).</p>
 </details>
 <pre><code>// Jump Game II: Minimum jumps to reach end
 public int jump(int[] nums) {
@@ -12355,7 +12365,43 @@ public int jump(int[] nums) {
 }</code></pre><div class="tip-box">
 <strong>Hack: Track <code>maxReach</code>, not actual jumps.</strong><br>
 Don't simulate jumping step by step. Just maintain the farthest reachable index. Sweep left to right: if <code>i &gt; maxReach</code>, you can't get here, return false. Otherwise update <code>maxReach = max(maxReach, i + nums[i])</code>. One pass, O(n), zero confusion.
-</div><div class="pattern-header">Pattern 3: Assign / Match Greedily (Two Sorted Arrays)</div><div class="how-to-arrive">
+</div><h4>Gas Station (<a href="https://leetcode.com/problems/gas-station/" target="_blank">LC 134</a>)</h4>
+<details style="background: var(--blue-light); border-left: 4px solid var(--blue); border-radius: 0 8px 8px 0; margin: 15px 0; padding: 15px 20px;">
+<summary style="cursor: pointer; font-weight: bold; color: var(--blue); font-size: 1.05em;">Gas Station — From brute force to O(n) O(1)</summary>
+<p><strong>Brute force O(n²):</strong> Try every starting index, simulate the circuit. TLE on large inputs.</p>
+<p><strong>Prefix sum O(n), O(n):</strong> Build prefix sum of <code>gas[i] - cost[i]</code>. The minimum prefix point is where you're most "in debt." Start right after it — you face the easy part first, build fuel, then handle the hard part with reserves.</p>
+<pre><code>diff[i] = gas[i] - cost[i]
+prefix = [1, -1, -3, -2, 0]
+                  ↑ minimum at index 2 → start at (2+1)%n = 3</code></pre>
+<p><strong>Optimized O(n), O(1):</strong> Same logic — track minimum prefix on the fly instead of storing the array. Replace <code>prefix[]</code> with <code>total</code> and <code>minIndex</code>.</p>
+<pre><code>int total = 0, minIndex = 0, minTotal = MAX;
+for (int i = 0; i &lt; n; i++) {
+    total += gas[i] - cost[i];
+    if (total &lt; minTotal) { minTotal = total; minIndex = i; }
+}
+if (total &lt; 0) return -1;
+return (minIndex + 1) % n;</code></pre>
+<p><strong>The evolution:</strong></p>
+<table>
+<tbody><tr><th>Approach</th><th>Idea</th><th>Time</th><th>Space</th></tr>
+<tr><td>Brute force</td><td>Try all starts, simulate</td><td>O(n²)</td><td>O(1)</td></tr>
+<tr><td>Prefix sum</td><td>Start after min prefix</td><td>O(n)</td><td>O(n)</td></tr>
+<tr><td>Optimized</td><td>Track min on the fly</td><td>O(n)</td><td>O(1)</td></tr>
+</tbody></table>
+</details>
+<pre><code>public int canCompleteCircuit(int[] gas, int[] cost) {
+    int totalSurplus = 0, currentSurplus = 0, start = 0;
+    for (int i = 0; i &lt; gas.length; i++) {
+        totalSurplus += gas[i] - cost[i];
+        currentSurplus += gas[i] - cost[i];
+        if (currentSurplus &lt; 0) {
+            start = i + 1;
+            currentSurplus = 0;
+        }
+    }
+    return totalSurplus &gt;= 0 ? start : -1;
+}</code></pre>
+<div class="pattern-header">Pattern 3: Assign / Match Greedily (Two Sorted Arrays)</div><div class="how-to-arrive">
     <strong>How to Arrive at This Pattern:</strong><br>
     <ul>
         <li>Two sets: resources and requirements (cookies &amp; children, boats &amp; people)</li>
@@ -12544,7 +12590,12 @@ Stack: []
 '9' → push → [1,2,1,9]
 
 k=0, done. Result: "1219" ✅</code></pre>
-<p><strong>Edge cases:</strong> If k remains after scanning (e.g., "1234", k=2), pop from the end. Strip leading zeros. Return "0" if empty.</p>
+<p><strong>If k remains after scanning</strong> (e.g., "1234", k=2), digits are ascending — largest are at the front (most recently pushed). <code>pop()</code> removes them — exactly what we want for the smallest number.</p>
+<p><strong>Why <code>Deque</code> instead of <code>Stack</code>?</strong> <code>push</code> adds to the front. <code>pollLast</code> reads from the opposite end → correct digit order without reversing.</p>
+<pre><code>push order: 1, 2, 1, 9 → Deque: [9, 1, 2, 1]
+                                  front        back
+pollLast: 1, 2, 1, 9 → "1219" ✅  (correct order)
+pop:      9, 1, 2, 1 → "9121" ❌  (reversed)</code></pre>
 </details>
 <pre><code>// Remove K Digits: Smallest number after removing k digits
 public String removeKdigits(String num, int k) {
@@ -12633,6 +12684,14 @@ i=15 'e': i == end(15) → partition! length = 15-9+1 = 7
 
 Result: [9, 7, 8]</code></pre>
 <p><code>i == end</code> means: every character in this partition has been fully contained. Safe to cut here.</p>
+<p><strong>Mental model:</strong> Each character creates an interval <code>[firstOccurrence, lastOccurrence]</code>. Overlapping intervals must be in the same partition:</p>
+<pre><code>s = "ababcbaca..."
+a → [0, 8]
+b → [1, 5]
+c → [4, 7]
+
+These overlap → merge into one partition [0, 8] → length 9</code></pre>
+<p>Same pattern as Merge Intervals, Jump Game (extend reach), and Video Stitching — continuously extend the boundary, cut when current index reaches it.</p>
 </details>
 <pre><code>// Partition Labels: Max partitions where each letter in at most one
 public List&lt;Integer&gt; partitionLabels(String s) {
@@ -12842,18 +12901,7 @@ public int findMinArrowShots(int[][] points) {
     <strong>⚠ Cannot Reach End:</strong> Jump Game returns false when <code>i &gt; farthest</code>.
 </div><div class="mistake-box">
     <strong>Integer overflow in comparators:</strong> Use <code>Integer.compare(a, b)</code> instead of <code>a - b</code> to avoid overflow.
-</div><h4>Gas Station (<a href="https://leetcode.com/problems/gas-station/" target="_blank">LC 134</a>)</h4><pre><code>public int canCompleteCircuit(int[] gas, int[] cost) {
-    int totalSurplus = 0, currentSurplus = 0, start = 0;
-    for (int i = 0; i &lt; gas.length; i++) {
-        totalSurplus += gas[i] - cost[i];
-        currentSurplus += gas[i] - cost[i];
-        if (currentSurplus &lt; 0) {
-            start = i + 1;
-            currentSurplus = 0;
-        }
-    }
-    return totalSurplus &gt;= 0 ? start : -1;
-}</code></pre><div class="important-note">
+</div><div class="important-note">
     <strong>When Greedy Seems Right But Isn’t:</strong>
     <table>
         <tbody><tr><th>Problem</th><th>Greedy Temptation</th><th>Why It Fails</th></tr>
@@ -12921,26 +12969,26 @@ public int findMinArrowShots(int[][] points) {
 </tbody></table></div></div>
 
 <!-- ============================================ -->
-<h2 class="collapsed">Section 9: Must-Solve Problems</h2>
+<h2 class="">Section 9: Must-Solve Problems</h2>
 
-<div class="section-content collapsed"><div class="section-content"><h3>Easy</h3><table>
+<div class="section-content"><div class="section-content"><h3>Easy</h3><table>
     <tbody><tr><th class="cb-col">✔</th><th>#</th><th>Problem</th><th>Pattern</th><th>Key Insight</th><th>Link</th></tr>
     <tr class="solved"><td class="cb-col"><input type="checkbox" class="solved-cb" data-key="greedy_1"></td><td>1</td><td>Jump Game</td><td>Farthest Reach</td><td>Track max reachable index</td><td><a href="https://leetcode.com/problems/jump-game/">LC 55</a></td></tr>
     <tr class="solved"><td class="cb-col"><input type="checkbox" class="solved-cb" data-key="greedy_2"></td><td>2</td><td>Assign Cookies</td><td>Two-Pointer</td><td>Sort both, match smallest to smallest</td><td><a href="https://leetcode.com/problems/assign-cookies/">LC 455</a></td></tr>
 </tbody></table><h3>Medium</h3><table>
     <tbody><tr><th class="cb-col">✔</th><th>#</th><th>Problem</th><th>Pattern</th><th>Key Insight</th><th>Link</th></tr>
-    <tr><td class="cb-col"><input type="checkbox" class="solved-cb" data-key="greedy_3"></td><td>3</td><td>Jump Game II</td><td>Farthest Reach</td><td>BFS-style: track jump boundary</td><td><a href="https://leetcode.com/problems/jump-game-ii/">LC 45</a></td></tr>
-    <tr><td class="cb-col"><input type="checkbox" class="solved-cb" data-key="greedy_4"></td><td>4</td><td>Gas Station</td><td>Reach / Circular</td><td>Reset start when surplus goes negative</td><td><a href="https://leetcode.com/problems/gas-station/">LC 134</a></td></tr>
+    <tr class="solved"><td class="cb-col"><input type="checkbox" class="solved-cb" data-key="greedy_3"></td><td>3</td><td>Jump Game II</td><td>Farthest Reach</td><td>BFS-style: track jump boundary</td><td><a href="https://leetcode.com/problems/jump-game-ii/">LC 45</a></td></tr>
+    <tr class="solved"><td class="cb-col"><input type="checkbox" class="solved-cb" data-key="greedy_4"></td><td>4</td><td>Gas Station</td><td>Reach / Circular</td><td>Reset start when surplus goes negative</td><td><a href="https://leetcode.com/problems/gas-station/">LC 134</a></td></tr>
     <tr><td class="cb-col"><input type="checkbox" class="solved-cb" data-key="greedy_5"></td><td>5</td><td>Non-overlapping Intervals</td><td>Activity Selection</td><td>Sort by end, count kept</td><td><a href="https://leetcode.com/problems/non-overlapping-intervals/">LC 435</a></td></tr>
     <tr><td class="cb-col"><input type="checkbox" class="solved-cb" data-key="greedy_6"></td><td>6</td><td>Meeting Rooms II</td><td>Interval Sort</td><td>Sort starts &amp; ends separately, sweep</td><td><a href="https://leetcode.com/problems/meeting-rooms-ii/">LC 253</a></td></tr>
-    <tr><td class="cb-col"><input type="checkbox" class="solved-cb" data-key="greedy_7"></td><td>7</td><td>Boats to Save People</td><td>Two-Pointer</td><td>Pair heaviest with lightest</td><td><a href="https://leetcode.com/problems/boats-to-save-people/">LC 881</a></td></tr>
-    <tr><td class="cb-col"><input type="checkbox" class="solved-cb" data-key="greedy_8"></td><td>8</td><td>Task Scheduler</td><td>Heap Greedy</td><td>Max freq determines frame size</td><td><a href="https://leetcode.com/problems/task-scheduler/">LC 621</a></td></tr>
-    <tr><td class="cb-col"><input type="checkbox" class="solved-cb" data-key="greedy_9"></td><td>9</td><td>Remove K Digits</td><td>Stack Greedy</td><td>Pop larger digits when smaller arrives</td><td><a href="https://leetcode.com/problems/remove-k-digits/">LC 402</a></td></tr>
+    <tr class="solved"><td class="cb-col"><input type="checkbox" class="solved-cb" data-key="greedy_7"></td><td>7</td><td>Boats to Save People</td><td>Two-Pointer</td><td>Pair heaviest with lightest</td><td><a href="https://leetcode.com/problems/boats-to-save-people/">LC 881</a></td></tr>
+    <tr class="solved"><td class="cb-col"><input type="checkbox" class="solved-cb" data-key="greedy_8"></td><td>8</td><td>Task Scheduler</td><td>Heap Greedy</td><td>Max freq determines frame size</td><td><a href="https://leetcode.com/problems/task-scheduler/">LC 621</a></td></tr>
+    <tr class="solved"><td class="cb-col"><input type="checkbox" class="solved-cb" data-key="greedy_9"></td><td>9</td><td>Remove K Digits</td><td>Stack Greedy</td><td>Pop larger digits when smaller arrives</td><td><a href="https://leetcode.com/problems/remove-k-digits/">LC 402</a></td></tr>
     <tr><td class="cb-col"><input type="checkbox" class="solved-cb" data-key="greedy_10"></td><td>10</td><td>Largest Number</td><td>String Greedy</td><td>Compare a+b vs b+a</td><td><a href="https://leetcode.com/problems/largest-number/">LC 179</a></td></tr>
-    <tr><td class="cb-col"><input type="checkbox" class="solved-cb" data-key="greedy_11"></td><td>11</td><td>Remove Duplicate Letters</td><td>Stack Greedy</td><td>Stack + last index + in-stack boolean</td><td><a href="https://leetcode.com/problems/remove-duplicate-letters/">LC 316</a></td></tr>
+    <tr class="solved"><td class="cb-col"><input type="checkbox" class="solved-cb" data-key="greedy_11"></td><td>11</td><td>Remove Duplicate Letters</td><td>Stack Greedy</td><td>Stack + last index + in-stack boolean</td><td><a href="https://leetcode.com/problems/remove-duplicate-letters/">LC 316</a></td></tr>
     <tr><td class="cb-col"><input type="checkbox" class="solved-cb" data-key="greedy_12"></td><td>12</td><td>Minimum Number of Arrows</td><td>Activity Selection</td><td>Sort by end, count groups</td><td><a href="https://leetcode.com/problems/minimum-number-of-arrows-to-burst-balloons/">LC 452</a></td></tr>
-    <tr><td class="cb-col"><input type="checkbox" class="solved-cb" data-key="greedy_13"></td><td>13</td><td>Partition Labels</td><td>Interval / Range</td><td>Last occurrence defines interval end</td><td><a href="https://leetcode.com/problems/partition-labels/">LC 763</a></td></tr>
-    <tr><td class="cb-col"><input type="checkbox" class="solved-cb" data-key="greedy_14"></td><td>14</td><td>Reorganize String</td><td>Heap Greedy</td><td>Place most frequent, alternate</td><td><a href="https://leetcode.com/problems/reorganize-string/">LC 767</a></td></tr>
+    <tr class="solved"><td class="cb-col"><input type="checkbox" class="solved-cb" data-key="greedy_13"></td><td>13</td><td>Partition Labels</td><td>Interval / Range</td><td>Last occurrence defines interval end</td><td><a href="https://leetcode.com/problems/partition-labels/">LC 763</a></td></tr>
+    <tr class="solved"><td class="cb-col"><input type="checkbox" class="solved-cb" data-key="greedy_14"></td><td>14</td><td>Reorganize String</td><td>Heap Greedy</td><td>Place most frequent, alternate</td><td><a href="https://leetcode.com/problems/reorganize-string/">LC 767</a></td></tr>
 </tbody></table><h3>Hard</h3><table>
     <tbody><tr><th class="cb-col">✔</th><th>#</th><th>Problem</th><th>Pattern</th><th>Key Insight</th><th>Link</th></tr>
     <tr><td class="cb-col"><input type="checkbox" class="solved-cb" data-key="greedy_15"></td><td>15</td><td>Candy</td><td>Two-Pass Greedy</td><td>Left-to-right then right-to-left, take max</td><td><a href="https://leetcode.com/problems/candy/">LC 135</a></td></tr>
