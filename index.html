@@ -95,7 +95,14 @@
   "greedy_11": true,
   "greedy_14": true,
   "greedy_13": true,
-  "greedy_8": true
+  "greedy_8": true,
+  "linked-list_1": true,
+  "linked-list_3": true,
+  "linked-list_5": true,
+  "linked-list_7": true,
+  "linked-list_8": true,
+  "linked-list_9": true,
+  "linked-list_10": true
 }</script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SDE 2 Interview Prep — DSA, LLD, HLD</title>
@@ -510,7 +517,7 @@ th.cb-col, td.cb-col { text-align: center; width: 40px; }
         <span class="card-num">06</span>
         <span class="card-label">Data Structures</span>
         <h3>Linked List</h3>
-      <div class="card-progress">3 / 14 solved</div><div class="progress-bar-wrap"><div class="progress-bar-fill" style="width: 21.4286%;"></div></div></div>
+      <div class="card-progress">10 / 14 solved</div><div class="progress-bar-wrap"><div class="progress-bar-fill" style="width: 71.4286%;"></div></div></div>
       <div class="card" onclick="showTopic('backtracking')" style="--card-color: #E74C3C">
         <span class="card-num">07</span>
         <span class="card-label">Recursion</span>
@@ -4941,7 +4948,7 @@ Problem involves...<br>
       <button class="back-btn" onclick="showCategory('dsa')">← Back to DSA Topics</button>
     </div>
   </div>
-  <div class="topic-page" id="page-linked-list">
+  <div class="topic-page active" id="page-linked-list">
     <div class="topic-header">
       <button class="back-btn" onclick="showCategory('dsa')">← Back to DSA Topics</button>
       <span class="topic-number">06 / 18</span>
@@ -5056,10 +5063,10 @@ list.addFirst(1);  list.addLast(2);  list.removeFirst();  list.removeLast();</co
 
 
 <!-- ============================================ -->
-<h2 class="page-break collapsed">Section 3: Pattern Recognition &amp; Intuition Building</h2>
+<h2 class="page-break">Section 3: Pattern Recognition &amp; Intuition Building</h2>
 
 <!-- Pattern 1 -->
-<div class="section-content collapsed"><div class="section-content"><div class="pattern-header">Pattern 1: Two Pointers (Fast &amp; Slow / Floyd's Algorithm)</div><div class="how-to-arrive">
+<div class="section-content"><div class="section-content"><div class="pattern-header">Pattern 1: Two Pointers (Fast &amp; Slow / Floyd's Algorithm)</div><div class="how-to-arrive">
     <strong>How to Arrive at This:</strong><br>
     <strong>Cycle detection:</strong> "Can I detect a cycle without O(n) extra space? Two pointers at different speeds — like two runners on a circular track, the faster MUST eventually lap the slower."<br>
     <strong>Find middle:</strong> "One pointer at 2x speed. When fast reaches end, slow is exactly at middle."<br>
@@ -5255,7 +5262,28 @@ public ListNode reverseListRecursive(ListNode head) {
         first = temp1;
         secondHalf = temp2;
     }
-}</code></pre><h4><a href="https://leetcode.com/problems/odd-even-linked-list/" target="_blank">Odd Even Linked List (LC 328)</a> - Medium</h4><pre><code>public ListNode oddEvenList(ListNode head) {
+}</code></pre><h4><a href="https://leetcode.com/problems/odd-even-linked-list/" target="_blank">Odd Even Linked List (LC 328)</a> - Medium</h4>
+<div class="tip-box">
+<p><strong>Idea: </strong>Maintain two chains:<br>
+odd list, even list<br>
+Then connect:<br>	odd tail -&gt; even head </p></div>
+<pre><code>Initial:
+1 -&gt; 2 -&gt; 3 -&gt; 4 -&gt; 5
+^    ^
+odd even
+
+After processing:
+
+Odd chain:
+1 -&gt; 3 -&gt; 5
+
+Even chain:
+2 -&gt; 4
+
+Connect them:
+1 -&gt; 3 -&gt; 5 -&gt; 2 -&gt; 4✅</code></pre>
+
+<pre><code>public ListNode oddEvenList(ListNode head) {
     if (head == null) return null;
     ListNode odd = head, even = head.next, evenHead = even;
 
@@ -5276,7 +5304,7 @@ public ListNode reverseListRecursive(ListNode head) {
         else { greater.next = head; greater = greater.next; }
         head = head.next;
     }
-    greater.next = null;
+    greater.next = null; // MUST cut the connection
     less.next = greaterHead.next;
     return lessHead.next;
 }</code></pre><h4><a href="https://leetcode.com/problems/rotate-list/" target="_blank">Rotate List (LC 61)</a> - Medium</h4><pre><code>public ListNode rotateRight(ListNode head, int k) {
@@ -5695,20 +5723,20 @@ while (fast != null &amp;&amp; fast.next != null)</code></pre>
 </tbody></table></div></div>
 
 <!-- ============================================ -->
-<h2 class="page-break collapsed">Section 9: Must-Solve Problems</h2>
+<h2 class="page-break">Section 9: Must-Solve Problems</h2>
 
-<div class="section-content collapsed"><div class="section-content"><table>
+<div class="section-content"><div class="section-content"><table>
     <tbody><tr><th class="cb-col">✔</th><th>#</th><th>Problem</th><th>Diff</th><th>Pattern</th><th>Hint</th></tr>
-    <tr class=""><td class="cb-col"><input type="checkbox" class="solved-cb" data-key="linked-list_1"></td><td>1</td><td><a href="https://leetcode.com/problems/reverse-linked-list/" target="_blank">Reverse Linked List (LC 206)</a></td><td>Easy</td><td>P2</td><td>Three pointers: prev, curr, next</td></tr>
+    <tr class="solved"><td class="cb-col"><input type="checkbox" class="solved-cb" data-key="linked-list_1"></td><td>1</td><td><a href="https://leetcode.com/problems/reverse-linked-list/" target="_blank">Reverse Linked List (LC 206)</a></td><td>Easy</td><td>P2</td><td>Three pointers: prev, curr, next</td></tr>
     <tr class="solved"><td class="cb-col"><input type="checkbox" class="solved-cb" data-key="linked-list_2"></td><td>2</td><td><a href="https://leetcode.com/problems/linked-list-cycle/" target="_blank">Linked List Cycle (LC 141)</a></td><td>Easy</td><td>P1</td><td>Fast 2x, slow 1x. Meet = cycle</td></tr>
-    <tr><td class="cb-col"><input type="checkbox" class="solved-cb" data-key="linked-list_3"></td><td>3</td><td><a href="https://leetcode.com/problems/merge-two-sorted-lists/" target="_blank">Merge Two Sorted Lists (LC 21)</a></td><td>Easy</td><td>P3</td><td>Dummy head + compare smaller</td></tr>
+    <tr class="solved"><td class="cb-col"><input type="checkbox" class="solved-cb" data-key="linked-list_3"></td><td>3</td><td><a href="https://leetcode.com/problems/merge-two-sorted-lists/" target="_blank">Merge Two Sorted Lists (LC 21)</a></td><td>Easy</td><td>P3</td><td>Dummy head + compare smaller</td></tr>
     <tr class="solved"><td class="cb-col"><input type="checkbox" class="solved-cb" data-key="linked-list_4"></td><td>4</td><td><a href="https://leetcode.com/problems/middle-of-the-linked-list/" target="_blank">Middle of Linked List (LC 876)</a></td><td>Easy</td><td>P1</td><td>Fast reaches end, slow = middle</td></tr>
-    <tr><td class="cb-col"><input type="checkbox" class="solved-cb" data-key="linked-list_5"></td><td>5</td><td><a href="https://leetcode.com/problems/remove-nth-node-from-end-of-list/" target="_blank">Remove Nth From End (LC 19)</a></td><td>Med</td><td>P1+5</td><td>n+1 gap + dummy node</td></tr>
+    <tr class="solved"><td class="cb-col"><input type="checkbox" class="solved-cb" data-key="linked-list_5"></td><td>5</td><td><a href="https://leetcode.com/problems/remove-nth-node-from-end-of-list/" target="_blank">Remove Nth From End (LC 19)</a></td><td>Med</td><td>P1+5</td><td>n+1 gap + dummy node</td></tr>
     <tr class="solved"><td class="cb-col"><input type="checkbox" class="solved-cb" data-key="linked-list_6"></td><td>6</td><td><a href="https://leetcode.com/problems/linked-list-cycle-ii/" target="_blank">Linked List Cycle II (LC 142)</a></td><td>Med</td><td>P1</td><td>After meeting, reset to head. Both speed 1.</td></tr>
-    <tr><td class="cb-col"><input type="checkbox" class="solved-cb" data-key="linked-list_7"></td><td>7</td><td><a href="https://leetcode.com/problems/reverse-linked-list-ii/" target="_blank">Reverse Linked List II (LC 92)</a></td><td>Med</td><td>P2+5</td><td>Reverse sublist, reconnect ends</td></tr>
-    <tr><td class="cb-col"><input type="checkbox" class="solved-cb" data-key="linked-list_8"></td><td>8</td><td><a href="https://leetcode.com/problems/palindrome-linked-list/" target="_blank">Palindrome Linked List (LC 234)</a></td><td>Easy</td><td>P1+2</td><td>Find middle, reverse half, compare</td></tr>
-    <tr><td class="cb-col"><input type="checkbox" class="solved-cb" data-key="linked-list_9"></td><td>9</td><td><a href="https://leetcode.com/problems/odd-even-linked-list/" target="_blank">Odd Even Linked List (LC 328)</a></td><td>Med</td><td>P4</td><td>Two chains, connect at end</td></tr>
-    <tr><td class="cb-col"><input type="checkbox" class="solved-cb" data-key="linked-list_10"></td><td>10</td><td><a href="https://leetcode.com/problems/reorder-list/" target="_blank">Reorder List (LC 143)</a></td><td>Med</td><td>P4</td><td>Find middle + reverse + interleave</td></tr>
+    <tr class="solved"><td class="cb-col"><input type="checkbox" class="solved-cb" data-key="linked-list_7"></td><td>7</td><td><a href="https://leetcode.com/problems/reverse-linked-list-ii/" target="_blank">Reverse Linked List II (LC 92)</a></td><td>Med</td><td>P2+5</td><td>Reverse sublist, reconnect ends</td></tr>
+    <tr class="solved"><td class="cb-col"><input type="checkbox" class="solved-cb" data-key="linked-list_8"></td><td>8</td><td><a href="https://leetcode.com/problems/palindrome-linked-list/" target="_blank">Palindrome Linked List (LC 234)</a></td><td>Easy</td><td>P1+2</td><td>Find middle, reverse half, compare</td></tr>
+    <tr class="solved"><td class="cb-col"><input type="checkbox" class="solved-cb" data-key="linked-list_9"></td><td>9</td><td><a href="https://leetcode.com/problems/odd-even-linked-list/" target="_blank">Odd Even Linked List (LC 328)</a></td><td>Med</td><td>P4</td><td>Two chains, connect at end</td></tr>
+    <tr class="solved"><td class="cb-col"><input type="checkbox" class="solved-cb" data-key="linked-list_10"></td><td>10</td><td><a href="https://leetcode.com/problems/reorder-list/" target="_blank">Reorder List (LC 143)</a></td><td>Med</td><td>P4</td><td>Find middle + reverse + interleave</td></tr>
     <tr><td class="cb-col"><input type="checkbox" class="solved-cb" data-key="linked-list_11"></td><td>11</td><td><a href="https://leetcode.com/problems/add-two-numbers/" target="_blank">Add Two Numbers (LC 2)</a></td><td>Med</td><td>P6</td><td>Digit addition with carry</td></tr>
     <tr><td class="cb-col"><input type="checkbox" class="solved-cb" data-key="linked-list_12"></td><td>12</td><td><a href="https://leetcode.com/problems/copy-list-with-random-pointer/" target="_blank">Copy with Random Pointer (LC 138)</a></td><td>Med</td><td>P6</td><td>HashMap: original → copy</td></tr>
     <tr><td class="cb-col"><input type="checkbox" class="solved-cb" data-key="linked-list_13"></td><td>13</td><td><a href="https://leetcode.com/problems/merge-k-sorted-lists/" target="_blank">Merge K Sorted Lists (LC 23)</a></td><td>Hard</td><td>P3</td><td>Min-heap of size k</td></tr>
@@ -12183,7 +12211,7 @@ Need to SPLIT/MERGE a RANGE optimally?<br>
       <button class="back-btn" onclick="showCategory('dsa')">← Back to DSA Topics</button>
     </div>
   </div>
-  <div class="topic-page active" id="page-greedy">
+  <div class="topic-page" id="page-greedy">
     <div class="topic-header">
       <button class="back-btn" onclick="showCategory('dsa')">← Back to DSA Topics</button>
       <span class="topic-number">14 / 18</span>
@@ -12969,9 +12997,9 @@ public int findMinArrowShots(int[][] points) {
 </tbody></table></div></div>
 
 <!-- ============================================ -->
-<h2 class="">Section 9: Must-Solve Problems</h2>
+<h2 class="collapsed">Section 9: Must-Solve Problems</h2>
 
-<div class="section-content"><div class="section-content"><h3>Easy</h3><table>
+<div class="section-content collapsed"><div class="section-content"><h3>Easy</h3><table>
     <tbody><tr><th class="cb-col">✔</th><th>#</th><th>Problem</th><th>Pattern</th><th>Key Insight</th><th>Link</th></tr>
     <tr class="solved"><td class="cb-col"><input type="checkbox" class="solved-cb" data-key="greedy_1"></td><td>1</td><td>Jump Game</td><td>Farthest Reach</td><td>Track max reachable index</td><td><a href="https://leetcode.com/problems/jump-game/">LC 55</a></td></tr>
     <tr class="solved"><td class="cb-col"><input type="checkbox" class="solved-cb" data-key="greedy_2"></td><td>2</td><td>Assign Cookies</td><td>Two-Pointer</td><td>Sort both, match smallest to smallest</td><td><a href="https://leetcode.com/problems/assign-cookies/">LC 455</a></td></tr>
