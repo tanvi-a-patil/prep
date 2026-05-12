@@ -378,7 +378,12 @@ th.cb-col, td.cb-col { text-align: center; width: 40px; }
   </div>
 
     <!-- ===== DSA STUDY PLAN ===== -->
-  <div style="max-width:960px; width:100%; margin:50px auto 0; text-align:left;">
+  <div id="dsa-study-plan" style="max-width:960px; width:100%; margin:50px auto 0; text-align:left;">
+  <script>
+    if (location.hostname !== 'localhost' && location.hostname !== '127.0.0.1' && location.hostname !== '') {
+      document.getElementById('dsa-study-plan').style.display = 'none';
+    }
+  </script>
         <h2 style="text-align:center; cursor:pointer; color:var(--primary); border:none; user-select:none; font-size:1.5em;" onclick="var el=this.nextElementSibling; el.style.display = el.style.display==='none'?'block':'none'; this.textContent = el.style.display==='none' ? '▶ DSA Study Plan (May 5 → May 31)' : '▼ DSA Study Plan (May 5 → May 31)';">
             ▼ DSA Study Plan (May 5 → May 31)
     </h2>
@@ -17500,6 +17505,9 @@ window.addEventListener('DOMContentLoaded', function() {
   } else if (hash && document.getElementById('page-' + hash)) {
     hideAll();
     document.getElementById('page-' + hash).classList.add('active');
+  } else if (location.hostname !== 'localhost' && location.hostname !== '127.0.0.1' && location.hostname !== '') {
+    // On hosted environments, always land on super-home
+    goSuperHome();
   }
 
   // Make h2 sections collapsible within topic content
@@ -17555,13 +17563,18 @@ function loadProgress() {
   // Local file: load from embedded JSON, merge with localStorage
   try {
     var stored = JSON.parse(localStorage.getItem('dsa-progress') || '{}');
-    var embedded = {};
-    try {
-      var el = document.getElementById('dsa-progress-data');
-      embedded = JSON.parse(el.textContent) || {};
-    } catch(e) {}
-    // Merge: localStorage wins (more recent), embedded fills gaps
-    progressData = Object.assign({}, embedded, stored);
+    if (isHosted()) {
+      // Hosted: only use localStorage, ignore embedded progress
+      progressData = stored;
+    } else {
+      // Local file: merge embedded + localStorage (localStorage wins)
+      var embedded = {};
+      try {
+        var el = document.getElementById('dsa-progress-data');
+        embedded = JSON.parse(el.textContent) || {};
+      } catch(e) {}
+      progressData = Object.assign({}, embedded, stored);
+    }
   } catch(e) { progressData = {}; }
   return progressData;
 }
