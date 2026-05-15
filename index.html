@@ -102,7 +102,10 @@
   "linked-list_7": true,
   "linked-list_8": true,
   "linked-list_9": true,
-  "linked-list_10": true
+  "linked-list_10": true,
+  "linked-list_11": true,
+  "linked-list_12": true,
+  "arrays-hashing_12": true
 }</script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SDE 2 Interview Prep — DSA, LLD, HLD</title>
@@ -497,7 +500,7 @@ th.cb-col, td.cb-col { text-align: center; width: 40px; }
         <span class="card-num">01</span>
         <span class="card-label">Fundamentals</span>
         <h3>Arrays &amp; Hashing</h3>
-      <div class="card-progress">8 / 14 solved</div><div class="progress-bar-wrap"><div class="progress-bar-fill" style="width: 57.1429%;"></div></div></div>
+      <div class="card-progress">9 / 14 solved</div><div class="progress-bar-wrap"><div class="progress-bar-fill" style="width: 64.2857%;"></div></div></div>
       <div class="card" onclick="showTopic('two-pointers')" style="--card-color: #2980B9">
         <span class="card-num">02</span>
         <span class="card-label">Techniques</span>
@@ -522,7 +525,7 @@ th.cb-col, td.cb-col { text-align: center; width: 40px; }
         <span class="card-num">06</span>
         <span class="card-label">Data Structures</span>
         <h3>Linked List</h3>
-      <div class="card-progress">10 / 14 solved</div><div class="progress-bar-wrap"><div class="progress-bar-fill" style="width: 71.4286%;"></div></div></div>
+      <div class="card-progress">12 / 14 solved</div><div class="progress-bar-wrap"><div class="progress-bar-fill" style="width: 85.7143%;"></div></div></div>
       <div class="card" onclick="showTopic('backtracking')" style="--card-color: #E74C3C">
         <span class="card-num">07</span>
         <span class="card-label">Recursion</span>
@@ -818,7 +821,7 @@ th.cb-col, td.cb-col { text-align: center; width: 40px; }
 </div>
 
 <!-- ===== DSA TOPIC PAGES ===== -->
-  <div class="topic-page" id="page-arrays-hashing">
+  <div class="topic-page active" id="page-arrays-hashing">
     <div class="topic-header">
       <button class="back-btn" onclick="showCategory('dsa')">← Back to DSA Topics</button>
       <span class="topic-number">01 / 18</span>
@@ -2011,9 +2014,9 @@ for (int n : set) {   // FIX: no duplicates!
 
 
 <!-- ==================== SECTION 7: PROBLEMS ==================== -->
-<h2 class="collapsed">7. Must-Solve Problems</h2>
+<h2 class="">7. Must-Solve Problems</h2>
 
-<div class="section-content collapsed"><div class="section-content"><h3>Solve First (core pattern, do these on Day 1-2)</h3><table>
+<div class="section-content"><div class="section-content"><h3>Solve First (core pattern, do these on Day 1-2)</h3><table>
   <tbody><tr><th class="cb-col">✔</th><th>#</th><th>Problem</th><th>Pattern</th><th>Difficulty</th></tr>
   <tr class="solved"><td class="cb-col"><input type="checkbox" class="solved-cb" data-key="arrays-hashing_1"></td><td>1</td><td><a href="https://leetcode.com/problems/two-sum/" target="_blank">Two Sum (LC 1)</a></td><td>HashMap Complement</td><td>Easy</td></tr>
   <tr class="solved"><td class="cb-col"><input type="checkbox" class="solved-cb" data-key="arrays-hashing_2"></td><td>2</td><td><a href="https://leetcode.com/problems/valid-anagram/" target="_blank">Valid Anagram (LC 242)</a></td><td>Frequency Map</td><td>Easy</td></tr>
@@ -2028,7 +2031,7 @@ for (int n : set) {   // FIX: no duplicates!
   <tr class="solved"><td class="cb-col"><input type="checkbox" class="solved-cb" data-key="arrays-hashing_9"></td><td>9</td><td><a href="https://leetcode.com/problems/longest-consecutive-sequence/" target="_blank">Longest Consecutive Sequence (LC 128)</a></td><td>HashSet Expand</td><td>Medium</td></tr>
   <tr><td class="cb-col"><input type="checkbox" class="solved-cb" data-key="arrays-hashing_10"></td><td>10</td><td><a href="https://leetcode.com/problems/sort-colors/" target="_blank">Sort Colors (LC 75)</a></td><td>Dutch National Flag</td><td>Medium</td></tr>
   <tr><td class="cb-col"><input type="checkbox" class="solved-cb" data-key="arrays-hashing_11"></td><td>11</td><td><a href="https://leetcode.com/problems/first-missing-positive/" target="_blank">First Missing Positive (LC 41)</a></td><td>Index as HashMap</td><td>Hard</td></tr>
-  <tr><td class="cb-col"><input type="checkbox" class="solved-cb" data-key="arrays-hashing_12"></td><td>12</td><td><a href="https://leetcode.com/problems/find-all-duplicates-in-an-array/" target="_blank">Find All Duplicates in Array (LC 442)</a></td><td>Index Marking</td><td>Medium</td></tr>
+  <tr class="solved"><td class="cb-col"><input type="checkbox" class="solved-cb" data-key="arrays-hashing_12"></td><td>12</td><td><a href="https://leetcode.com/problems/find-all-duplicates-in-an-array/" target="_blank">Find All Duplicates in Array (LC 442)</a></td><td>Index Marking</td><td>Medium</td></tr>
   <tr><td class="cb-col"><input type="checkbox" class="solved-cb" data-key="arrays-hashing_13"></td><td>13</td><td><a href="https://leetcode.com/problems/contiguous-array/" target="_blank">Contiguous Array (LC 525)</a></td><td>Prefix Sum + HashMap</td><td>Medium</td></tr>
   <tr><td class="cb-col"><input type="checkbox" class="solved-cb" data-key="arrays-hashing_14"></td><td>14</td><td><a href="https://leetcode.com/problems/majority-element-ii/" target="_blank">Majority Element II (LC 229)</a></td><td>Boyer-Moore Extended</td><td>Medium</td></tr>
 </tbody></table><h3>Spaced Repetition Revisit (solve again after 5-7 days)</h3><p>Pick any 3-4 you struggled with from above. Solve without looking at notes.</p><hr></div></div>
@@ -4953,7 +4956,7 @@ Problem involves...<br>
       <button class="back-btn" onclick="showCategory('dsa')">← Back to DSA Topics</button>
     </div>
   </div>
-  <div class="topic-page active" id="page-linked-list">
+  <div class="topic-page" id="page-linked-list">
     <div class="topic-header">
       <button class="back-btn" onclick="showCategory('dsa')">← Back to DSA Topics</button>
       <span class="topic-number">06 / 18</span>
@@ -5068,10 +5071,10 @@ list.addFirst(1);  list.addLast(2);  list.removeFirst();  list.removeLast();</co
 
 
 <!-- ============================================ -->
-<h2 class="page-break">Section 3: Pattern Recognition &amp; Intuition Building</h2>
+<h2 class="page-break collapsed">Section 3: Pattern Recognition &amp; Intuition Building</h2>
 
 <!-- Pattern 1 -->
-<div class="section-content"><div class="section-content"><div class="pattern-header">Pattern 1: Two Pointers (Fast &amp; Slow / Floyd's Algorithm)</div><div class="how-to-arrive">
+<div class="section-content collapsed"><div class="section-content"><div class="pattern-header">Pattern 1: Two Pointers (Fast &amp; Slow / Floyd's Algorithm)</div><div class="how-to-arrive">
     <strong>How to Arrive at This:</strong><br>
     <strong>Cycle detection:</strong> "Can I detect a cycle without O(n) extra space? Two pointers at different speeds — like two runners on a circular track, the faster MUST eventually lap the slower."<br>
     <strong>Find middle:</strong> "One pointer at 2x speed. When fast reaches end, slow is exactly at middle."<br>
@@ -5312,7 +5315,17 @@ Connect them:
     greater.next = null; // MUST cut the connection
     less.next = greaterHead.next;
     return lessHead.next;
-}</code></pre><h4><a href="https://leetcode.com/problems/rotate-list/" target="_blank">Rotate List (LC 61)</a> - Medium</h4><pre><code>public ListNode rotateRight(ListNode head, int k) {
+}</code></pre><h4><a href="https://leetcode.com/problems/rotate-list/" target="_blank">Rotate List (LC 61)</a> - Medium</h4><div class="explanation">
+    <strong>Key Insight:</strong> Rotating right by <code>k</code> means the last <code>k</code> nodes become the new front. Instead of actually moving nodes, form a circle and cut it at the right place.
+    <ol>
+        <li>Find the <strong>tail</strong> and compute <strong>length</strong> in one pass.</li>
+        <li>Reduce <code>k = k % length</code> — rotating by a full cycle is a no-op.</li>
+        <li>The new tail is at position <code>length - k - 1</code> (0-indexed from head). Walk there.</li>
+        <li><strong>Cut:</strong> <code>newTail.next = null</code>, then <strong>connect:</strong> <code>tail.next = head</code>. Return <code>newHead</code>.</li>
+    </ol>
+    <strong>Example:</strong> <code>[1→2→3→4→5], k=2</code> → last 2 nodes <code>[4,5]</code> move to front → <code>[4→5→1→2→3]</code>.<br>
+    New tail is at index <code>5-2-1 = 2</code> (node 3). Cut after it, link old tail back to old head.
+</div><pre><code>public ListNode rotateRight(ListNode head, int k) {
     if (head == null || head.next == null || k == 0) return head;
 
     int length = 1;
@@ -5341,7 +5354,16 @@ Connect them:
         else curr = curr.next;
     }
     return dummy.next;
-}</code></pre><h4><a href="https://leetcode.com/problems/remove-duplicates-from-sorted-list-ii/" target="_blank">Remove Duplicates from Sorted List II (LC 82)</a> - Medium</h4><pre><code>public ListNode deleteDuplicates(ListNode head) {
+}</code></pre><h4><a href="https://leetcode.com/problems/remove-duplicates-from-sorted-list-ii/" target="_blank">Remove Duplicates from Sorted List II (LC 82)</a> - Medium</h4><div class="explanation">
+    <strong>Key Insight:</strong> Unlike LC 83 (keep one copy), here we must delete <em>all</em> nodes that ever had a duplicate. A <strong>dummy node</strong> is essential since even the head can be removed. Use a <code>prev</code> pointer that only advances when no duplicate is found — it acts as the "safe anchor" before any suspect group.
+    <ol>
+        <li>If <code>prev.next</code> and <code>prev.next.next</code> share the same value, a duplicate group is detected.</li>
+        <li>Record <code>dupVal</code>, then skip <strong>all</strong> nodes with that value by repeatedly doing <code>prev.next = prev.next.next</code>.</li>
+        <li>Do <strong>not</strong> advance <code>prev</code> — the node now at <code>prev.next</code> hasn't been checked yet.</li>
+        <li>If no duplicate, safely advance <code>prev = prev.next</code>.</li>
+    </ol>
+    <strong>Example:</strong> <code>[1→2→3→3→4→4→5]</code> → <code>[1→2→5]</code>. When <code>prev</code> is at 2, it detects 3=3, skips both 3s; then detects 4=4, skips both 4s; then 5 has no pair so <code>prev</code> advances past it.
+</div><pre><code>public ListNode deleteDuplicates(ListNode head) {
     ListNode dummy = new ListNode(0);
     dummy.next = head;
     ListNode prev = dummy;
@@ -5356,7 +5378,17 @@ Connect them:
         }
     }
     return dummy.next;
-}</code></pre><h4><a href="https://leetcode.com/problems/swap-nodes-in-pairs/" target="_blank">Swap Nodes in Pairs (LC 24)</a> - Medium</h4><pre><code>public ListNode swapPairs(ListNode head) {
+}</code></pre><h4><a href="https://leetcode.com/problems/swap-nodes-in-pairs/" target="_blank">Swap Nodes in Pairs (LC 24)</a> - Medium</h4><div class="explanation">
+    <strong>Key Insight:</strong> Swap every two adjacent nodes by rewiring pointers, not swapping values. A <strong>dummy node</strong> is needed because the head changes (second node becomes new head). <code>prev</code> is the node just before the pair being swapped — it anchors the pair into the rest of the list.
+    <ol>
+        <li>Name the pair: <code>first = prev.next</code>, <code>second = prev.next.next</code>.</li>
+        <li><code>first.next = second.next</code> — detach first from second, attach it to what's after the pair.</li>
+        <li><code>second.next = first</code> — second now points back to first (swap complete).</li>
+        <li><code>prev.next = second</code> — re-attach the now-leading second into the list.</li>
+        <li>Advance <code>prev = first</code> — first is now the tail of the swapped pair, so it's the anchor for the next pair.</li>
+    </ol>
+    <strong>Example:</strong> <code>[1→2→3→4]</code> → after first iteration: <code>[dummy→2→1→3→4]</code>, <code>prev</code> is at 1 → after second: <code>[dummy→2→1→4→3]</code>.
+</div><pre><code>public ListNode swapPairs(ListNode head) {
     ListNode dummy = new ListNode(0);
     dummy.next = head;
     ListNode prev = dummy;
@@ -5388,7 +5420,15 @@ Connect them:
         curr = curr.next;
     }
     return dummy.next;
-}</code></pre><h4><a href="https://leetcode.com/problems/copy-list-with-random-pointer/" target="_blank">Copy List with Random Pointer (LC 138)</a> - Medium</h4><pre><code>public Node copyRandomList(Node head) {
+}</code></pre><h4><a href="https://leetcode.com/problems/copy-list-with-random-pointer/" target="_blank">Copy List with Random Pointer (LC 138)</a> - Medium</h4><div class="explanation">
+    <strong>Key Insight:</strong> The <code>random</code> pointer can point to any node — including ones not yet created. You can't wire <code>random</code> in a single pass because the copy of the target may not exist yet. Solution: <strong>two passes with a HashMap</strong> (original node → its copy) as a lookup table.
+    <ol>
+        <li><strong>Pass 1:</strong> Walk the original list and create a copy node for every original node. Store <code>original → copy</code> in the map. At this point no pointers are wired.</li>
+        <li><strong>Pass 2:</strong> Walk again. For each node, set <code>copy.next = map.get(curr.next)</code> and <code>copy.random = map.get(curr.random)</code>. Both lookups are O(1) and safe — all copies already exist. <code>map.get(null)</code> returns <code>null</code>, handling tail and null randoms automatically.</li>
+    </ol>
+    <strong>Why not one pass?</strong> When wiring <code>random</code> for node A, its random target B might appear later in the list — its copy doesn't exist yet.<br>
+    <strong>Example:</strong> <code>[1 →(random)→ 3 → 2 →(random)→ 1]</code>. Pass 1 creates copies of 1, 3, 2. Pass 2 looks up each in the map and wires all pointers correctly.
+</div><pre><code>public Node copyRandomList(Node head) {
     if (head == null) return null;
     Map&lt;Node, Node&gt; map = new HashMap&lt;&gt;();
 
@@ -5408,6 +5448,40 @@ Connect them:
     return map.get(head);
 }</code></pre><h4><a href="https://leetcode.com/problems/lru-cache/" target="_blank">LRU Cache (LC 146)</a> - Medium</h4><div class="important-note">
     <strong>THE most-asked linked list problem for SDE 2.</strong> Know it cold. Be able to write from scratch in under 15 minutes.
+</div><div class="explanation">
+    <strong>Key Insight:</strong> Two data structures working together — a <strong>HashMap</strong> for O(1) lookup by key, and a <strong>doubly linked list</strong> for O(1) tracking of recency order. Head = most recently used, Tail = least recently used. Two sentinel (dummy) head/tail nodes eliminate all null checks when inserting or removing.
+    <br><br>
+    <strong>Data structures:</strong>
+    <ul>
+        <li><code>cache</code>: HashMap&lt;key → DLinkedNode&gt; — jump to any node in O(1).</li>
+        <li>Doubly linked list: order encodes recency. Any access moves that node to the front. Eviction removes from the back.</li>
+        <li>The DLinkedNode stores <code>key</code> too — needed when evicting the tail to know which HashMap entry to delete.</li>
+    </ul>
+    <strong>Operations:</strong>
+    <ul>
+        <li><strong>get:</strong> Hit → <code>moveToHead</code> (mark as recently used), return value. Miss → return -1.</li>
+        <li><strong>put (existing key):</strong> Update value, <code>moveToHead</code>.</li>
+        <li><strong>put (new key):</strong> Create node, add to HashMap and to head. If over capacity, <code>removeTail</code> and delete its key from the HashMap.</li>
+    </ul>
+    <strong>Sentinel node convention to remember:</strong>
+    <ul>
+        <li><strong>Add new node:</strong> Always insert right after the dummy <code>head</code> → <code>head.next</code> is the most recently used slot.</li>
+        <li><strong>Delete LRU node:</strong> Always remove <code>tail.prev</code> — the real node just before the dummy <code>tail</code> is the least recently used.</li>
+    </ul>
+    <strong>Why doubly linked?</strong> To remove a node in O(1) you need both <code>prev</code> and <code>next</code>. A singly linked list would require O(n) traversal to find the predecessor.<br><br>
+    <strong>Step-by-step walkthrough:</strong>
+    <ul>
+        <li><strong>Constructor:</strong> Store the capacity. Create two dummy sentinel nodes (<code>head</code> and <code>tail</code>) and link them: <code>head.next = tail</code>, <code>tail.prev = head</code>. These never hold real data — they just anchor the list so you never deal with null neighbors when inserting or removing real nodes.</li>
+        <li><strong>get(key):</strong> Look up the key in the HashMap. If missing, return -1. If found, call <code>moveToHead</code> on that node (it was just accessed, so it's now the most recently used), then return its value.</li>
+        <li><strong>put(key, value):</strong> Check if the key already exists in the HashMap.
+            <ul>
+                <li><em>Exists:</em> Update the node's value and call <code>moveToHead</code> (access = recently used).</li>
+                <li><em>New key:</em> Create a new node, add it to the HashMap, and call <code>addToHead</code>. Then check if <code>cache.size() &gt; capacity</code> — if so, call <code>removeTail</code> to get the LRU node and remove its key from the HashMap too.</li>
+            </ul>
+        </li>
+    </ul>
+    <strong>What are key and value?</strong> They are exactly what you'd expect from a cache — <code>key</code> is the integer you look up with (passed to <code>get</code>/<code>put</code>), <code>value</code> is the integer stored at that key (returned by <code>get</code>). E.g. <code>put(3, 100)</code> → node stores <code>key=3, value=100</code>.<br>
+    The reason <code>key</code> is stored in the node (not just <code>value</code>) is eviction: when the tail node is removed from the list, you need its <code>key</code> to delete the corresponding entry from the HashMap via <code>cache.remove(tailNode.key)</code>. Without it, you'd have no way to know which HashMap entry to clean up.
 </div><pre><code>class LRUCache {
     class DLinkedNode {
         int key, value;
@@ -5728,9 +5802,9 @@ while (fast != null &amp;&amp; fast.next != null)</code></pre>
 </tbody></table></div></div>
 
 <!-- ============================================ -->
-<h2 class="page-break">Section 9: Must-Solve Problems</h2>
+<h2 class="page-break collapsed">Section 9: Must-Solve Problems</h2>
 
-<div class="section-content"><div class="section-content"><table>
+<div class="section-content collapsed"><div class="section-content"><table>
     <tbody><tr><th class="cb-col">✔</th><th>#</th><th>Problem</th><th>Diff</th><th>Pattern</th><th>Hint</th></tr>
     <tr class="solved"><td class="cb-col"><input type="checkbox" class="solved-cb" data-key="linked-list_1"></td><td>1</td><td><a href="https://leetcode.com/problems/reverse-linked-list/" target="_blank">Reverse Linked List (LC 206)</a></td><td>Easy</td><td>P2</td><td>Three pointers: prev, curr, next</td></tr>
     <tr class="solved"><td class="cb-col"><input type="checkbox" class="solved-cb" data-key="linked-list_2"></td><td>2</td><td><a href="https://leetcode.com/problems/linked-list-cycle/" target="_blank">Linked List Cycle (LC 141)</a></td><td>Easy</td><td>P1</td><td>Fast 2x, slow 1x. Meet = cycle</td></tr>
@@ -5742,8 +5816,8 @@ while (fast != null &amp;&amp; fast.next != null)</code></pre>
     <tr class="solved"><td class="cb-col"><input type="checkbox" class="solved-cb" data-key="linked-list_8"></td><td>8</td><td><a href="https://leetcode.com/problems/palindrome-linked-list/" target="_blank">Palindrome Linked List (LC 234)</a></td><td>Easy</td><td>P1+2</td><td>Find middle, reverse half, compare</td></tr>
     <tr class="solved"><td class="cb-col"><input type="checkbox" class="solved-cb" data-key="linked-list_9"></td><td>9</td><td><a href="https://leetcode.com/problems/odd-even-linked-list/" target="_blank">Odd Even Linked List (LC 328)</a></td><td>Med</td><td>P4</td><td>Two chains, connect at end</td></tr>
     <tr class="solved"><td class="cb-col"><input type="checkbox" class="solved-cb" data-key="linked-list_10"></td><td>10</td><td><a href="https://leetcode.com/problems/reorder-list/" target="_blank">Reorder List (LC 143)</a></td><td>Med</td><td>P4</td><td>Find middle + reverse + interleave</td></tr>
-    <tr><td class="cb-col"><input type="checkbox" class="solved-cb" data-key="linked-list_11"></td><td>11</td><td><a href="https://leetcode.com/problems/add-two-numbers/" target="_blank">Add Two Numbers (LC 2)</a></td><td>Med</td><td>P6</td><td>Digit addition with carry</td></tr>
-    <tr><td class="cb-col"><input type="checkbox" class="solved-cb" data-key="linked-list_12"></td><td>12</td><td><a href="https://leetcode.com/problems/copy-list-with-random-pointer/" target="_blank">Copy with Random Pointer (LC 138)</a></td><td>Med</td><td>P6</td><td>HashMap: original → copy</td></tr>
+    <tr class="solved"><td class="cb-col"><input type="checkbox" class="solved-cb" data-key="linked-list_11"></td><td>11</td><td><a href="https://leetcode.com/problems/add-two-numbers/" target="_blank">Add Two Numbers (LC 2)</a></td><td>Med</td><td>P6</td><td>Digit addition with carry</td></tr>
+    <tr class="solved"><td class="cb-col"><input type="checkbox" class="solved-cb" data-key="linked-list_12"></td><td>12</td><td><a href="https://leetcode.com/problems/copy-list-with-random-pointer/" target="_blank">Copy with Random Pointer (LC 138)</a></td><td>Med</td><td>P6</td><td>HashMap: original → copy</td></tr>
     <tr><td class="cb-col"><input type="checkbox" class="solved-cb" data-key="linked-list_13"></td><td>13</td><td><a href="https://leetcode.com/problems/merge-k-sorted-lists/" target="_blank">Merge K Sorted Lists (LC 23)</a></td><td>Hard</td><td>P3</td><td>Min-heap of size k</td></tr>
     <tr><td class="cb-col"><input type="checkbox" class="solved-cb" data-key="linked-list_14"></td><td>14</td><td><a href="https://leetcode.com/problems/lru-cache/" target="_blank">LRU Cache (LC 146)</a></td><td>Med</td><td>P6</td><td>DLL + HashMap, sentinel head/tail</td></tr>
 </tbody></table><h3>Suggested Study Plan</h3><p><strong>Day 1 (Easy foundations):</strong> Problems 1-4<br>
